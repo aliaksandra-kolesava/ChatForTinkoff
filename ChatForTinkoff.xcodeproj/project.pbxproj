@@ -1,0 +1,347 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3B15E276250E0C7300BC7E69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15E275250E0C7300BC7E69 /* AppDelegate.swift */; };
+		3B15E27A250E0C7300BC7E69 /* ViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15E279250E0C7300BC7E69 /* ViewController1.swift */; };
+		3B15E27D250E0C7300BC7E69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B15E27B250E0C7300BC7E69 /* Main.storyboard */; };
+		3B15E27F250E0C7600BC7E69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B15E27E250E0C7600BC7E69 /* Assets.xcassets */; };
+		3B15E282250E0C7600BC7E69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B15E280250E0C7600BC7E69 /* LaunchScreen.storyboard */; };
+		3B15E28A250E0D0500BC7E69 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15E289250E0D0500BC7E69 /* ViewController2.swift */; };
+		3B15E28C250E107300BC7E69 /* SwitchLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15E28B250E107300BC7E69 /* SwitchLogs.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3B15E272250E0C7300BC7E69 /* ChatForTinkoff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatForTinkoff.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B15E275250E0C7300BC7E69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3B15E279250E0C7300BC7E69 /* ViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController1.swift; sourceTree = "<group>"; };
+		3B15E27C250E0C7300BC7E69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3B15E27E250E0C7600BC7E69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3B15E281250E0C7600BC7E69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3B15E283250E0C7600BC7E69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B15E289250E0D0500BC7E69 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
+		3B15E28B250E107300BC7E69 /* SwitchLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchLogs.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3B15E26F250E0C7300BC7E69 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3B15E269250E0C7300BC7E69 = {
+			isa = PBXGroup;
+			children = (
+				3B15E274250E0C7300BC7E69 /* ChatForTinkoff */,
+				3B15E273250E0C7300BC7E69 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3B15E273250E0C7300BC7E69 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3B15E272250E0C7300BC7E69 /* ChatForTinkoff.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3B15E274250E0C7300BC7E69 /* ChatForTinkoff */ = {
+			isa = PBXGroup;
+			children = (
+				3B15E275250E0C7300BC7E69 /* AppDelegate.swift */,
+				3B15E279250E0C7300BC7E69 /* ViewController1.swift */,
+				3B15E289250E0D0500BC7E69 /* ViewController2.swift */,
+				3B15E28B250E107300BC7E69 /* SwitchLogs.swift */,
+				3B15E27B250E0C7300BC7E69 /* Main.storyboard */,
+				3B15E27E250E0C7600BC7E69 /* Assets.xcassets */,
+				3B15E280250E0C7600BC7E69 /* LaunchScreen.storyboard */,
+				3B15E283250E0C7600BC7E69 /* Info.plist */,
+			);
+			path = ChatForTinkoff;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3B15E271250E0C7300BC7E69 /* ChatForTinkoff */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B15E286250E0C7600BC7E69 /* Build configuration list for PBXNativeTarget "ChatForTinkoff" */;
+			buildPhases = (
+				3B15E26E250E0C7300BC7E69 /* Sources */,
+				3B15E26F250E0C7300BC7E69 /* Frameworks */,
+				3B15E270250E0C7300BC7E69 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChatForTinkoff;
+			productName = ChatForTinkoff;
+			productReference = 3B15E272250E0C7300BC7E69 /* ChatForTinkoff.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3B15E26A250E0C7300BC7E69 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1160;
+				LastUpgradeCheck = 1160;
+				ORGANIZATIONNAME = "Александра Колесова";
+				TargetAttributes = {
+					3B15E271250E0C7300BC7E69 = {
+						CreatedOnToolsVersion = 11.6;
+					};
+				};
+			};
+			buildConfigurationList = 3B15E26D250E0C7300BC7E69 /* Build configuration list for PBXProject "ChatForTinkoff" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3B15E269250E0C7300BC7E69;
+			productRefGroup = 3B15E273250E0C7300BC7E69 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3B15E271250E0C7300BC7E69 /* ChatForTinkoff */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3B15E270250E0C7300BC7E69 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B15E282250E0C7600BC7E69 /* LaunchScreen.storyboard in Resources */,
+				3B15E27F250E0C7600BC7E69 /* Assets.xcassets in Resources */,
+				3B15E27D250E0C7300BC7E69 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3B15E26E250E0C7300BC7E69 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B15E27A250E0C7300BC7E69 /* ViewController1.swift in Sources */,
+				3B15E276250E0C7300BC7E69 /* AppDelegate.swift in Sources */,
+				3B15E28C250E107300BC7E69 /* SwitchLogs.swift in Sources */,
+				3B15E28A250E0D0500BC7E69 /* ViewController2.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3B15E27B250E0C7300BC7E69 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B15E27C250E0C7300BC7E69 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3B15E280250E0C7600BC7E69 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B15E281250E0C7600BC7E69 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3B15E284250E0C7600BC7E69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3B15E285250E0C7600BC7E69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3B15E287250E0C7600BC7E69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ChatForTinkoff/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.aliaksandrakolesava.ChatForTinkoff;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		3B15E288250E0C7600BC7E69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ChatForTinkoff/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.aliaksandrakolesava.ChatForTinkoff;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3B15E26D250E0C7300BC7E69 /* Build configuration list for PBXProject "ChatForTinkoff" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B15E284250E0C7600BC7E69 /* Debug */,
+				3B15E285250E0C7600BC7E69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B15E286250E0C7600BC7E69 /* Build configuration list for PBXNativeTarget "ChatForTinkoff" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B15E287250E0C7600BC7E69 /* Debug */,
+				3B15E288250E0C7600BC7E69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3B15E26A250E0C7300BC7E69 /* Project object */;
+}
