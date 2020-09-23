@@ -11,7 +11,7 @@ import Foundation
 struct SwitchLogs {
     
     // To turn off logs change parameter to false
-    var parameter: Bool = true
+    var parameter: Bool = false
     
     func forAppDelegate(from: String, to: String, method: String) {
         if parameter {
@@ -25,9 +25,9 @@ struct SwitchLogs {
         }
     }
     
-    func forViewControllers(method: String, numOfController: Int) {
+    func forProfileViewController(method: String) {
         if parameter {
-        print("\(method) for ViewController\(numOfController)")
+        print("\(method) for ProfileViewController")
         }
     }
 }
