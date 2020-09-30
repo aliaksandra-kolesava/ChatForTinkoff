@@ -23,6 +23,7 @@ class ProfileViewController: UIViewController {
     var letterName: String = ""
     var letterSurname: String = ""
     
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         //print(editButton.frame)
@@ -31,9 +32,10 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         switchLogs.forProfileViewController(method: "\(#function)")
         editingProfile()
-        profileName.text = "Maria Dudarenko"
+        profileName.text = "Marina Dudarenko"
         firstLetterName.text = initialsName(name: profileName.text ?? "No name")
 
         if initialsSurname(name: profileName.text ?? "No surname") != "" {
@@ -43,7 +45,7 @@ class ProfileViewController: UIViewController {
         }
         aboutYourself.text = "UX/UI designer, web-designer Moscow, Russia"
         
-        print(editButton.frame)
+//        print(editButton.frame)
         imagePicker.delegate = self
     }
     
@@ -54,7 +56,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(editButton.frame)
+//        print(editButton.frame)
         //значения не совпадают, потому что в методе viewDidAppear экран уже загрузился и значения frame меняются на более точные в зависимости от выбранного утсройства и применения Auto LayOut, в то время как в viewDidLoad пишутся значения указанные при верстки в storyboard
         switchLogs.forProfileViewController(method: "\(#function)")
     }
@@ -76,6 +78,11 @@ class ProfileViewController: UIViewController {
         super.viewDidDisappear(animated)
         switchLogs.forProfileViewController(method: "\(#function)")
     }
+
+    @IBAction func closeButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     //MARK: - The Initial Edition Profile
     
