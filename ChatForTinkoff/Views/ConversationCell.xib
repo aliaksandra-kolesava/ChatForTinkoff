@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ConversationCellList" rowHeight="99" id="KGk-i7-Jjw" customClass="ConversationCell" customModule="ChatForTinkoff" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="403" height="99"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="403" height="99"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="Bg3-Gj-v2U">
+                        <rect key="frame" x="10" y="10" width="383" height="79"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="YY4-rJ-S1E">
+                                <rect key="frame" x="0.0" y="0.0" width="383" height="20.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YME-qh-vXC">
+                                        <rect key="frame" x="0.0" y="0.0" width="189.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7e-BO-cVw">
+                                        <rect key="frame" x="190.5" y="0.0" width="192.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6X-pN-VR3">
+                                <rect key="frame" x="0.0" y="46.5" width="43.5" height="32.5"/>
+                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="YY4-rJ-S1E" firstAttribute="centerX" secondItem="Bg3-Gj-v2U" secondAttribute="centerX" id="uw1-ON-flt"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Bg3-Gj-v2U" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="F0j-0P-DKw"/>
+                    <constraint firstItem="Bg3-Gj-v2U" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="M1P-YZ-lJJ"/>
+                    <constraint firstAttribute="bottom" secondItem="Bg3-Gj-v2U" secondAttribute="bottom" constant="10" id="YbU-Ax-oGu"/>
+                    <constraint firstAttribute="trailing" secondItem="Bg3-Gj-v2U" secondAttribute="trailing" constant="10" id="fyI-Ff-Waz"/>
+                    <constraint firstItem="Bg3-Gj-v2U" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="hxo-xT-Gjj"/>
+                    <constraint firstItem="Bg3-Gj-v2U" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="yTv-Ar-FAD"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="dateLabel" destination="o7e-BO-cVw" id="vDI-zz-5PA"/>
+                <outlet property="messageLabel" destination="t6X-pN-VR3" id="dpN-gZ-LJZ"/>
+                <outlet property="nameLabel" destination="YME-qh-vXC" id="t4d-Nm-djc"/>
+            </connections>
+            <point key="canvasLocation" x="203.62318840579712" y="143.63839285714286"/>
+        </tableViewCell>
+    </objects>
+</document>

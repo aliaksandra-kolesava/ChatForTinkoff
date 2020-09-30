@@ -16,6 +16,17 @@
 		3B7D32622514F2BB002FD929 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D32612514F2BB002FD929 /* SF-Pro-Display-Regular.otf */; };
 		3B7D326525175913002FD929 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D326425175913002FD929 /* SF-Pro-Text-Regular.otf */; };
 		3B7D326725175CA6002FD929 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D326625175CA6002FD929 /* Roboto-Regular.ttf */; };
+		3B7D326F251DF02D002FD929 /* ConversationCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D326E251DF02D002FD929 /* ConversationCellModel.swift */; };
+		3B7D3271251DF43B002FD929 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D3270251DF43A002FD929 /* ConversationsListViewController.swift */; };
+		3B7D3273251DF6D0002FD929 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D3272251DF6D0002FD929 /* Constants.swift */; };
+		3B7D3279251E06B0002FD929 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D3277251E06B0002FD929 /* ConversationCell.swift */; };
+		3B7D327A251E06B0002FD929 /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D3278251E06B0002FD929 /* ConversationCell.xib */; };
+		3B7D327C25221097002FD929 /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D327B25221096002FD929 /* ConfigurableView.swift */; };
+		3B7D327E25221D06002FD929 /* ConversationsExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D327D25221D06002FD929 /* ConversationsExamples.swift */; };
+		3B7D328225226BA9002FD929 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D328125226BA9002FD929 /* ConversationViewController.swift */; };
+		3B7D328425232BC1002FD929 /* MessageCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D328325232BC1002FD929 /* MessageCellModel.swift */; };
+		3B7D328725233752002FD929 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D328525233752002FD929 /* MessageCell.swift */; };
+		3B7D328825233752002FD929 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D328625233752002FD929 /* MessageCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +41,17 @@
 		3B7D32612514F2BB002FD929 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		3B7D326425175913002FD929 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		3B7D326625175CA6002FD929 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		3B7D326E251DF02D002FD929 /* ConversationCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCellModel.swift; sourceTree = "<group>"; };
+		3B7D3270251DF43A002FD929 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
+		3B7D3272251DF6D0002FD929 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3B7D3277251E06B0002FD929 /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
+		3B7D3278251E06B0002FD929 /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
+		3B7D327B25221096002FD929 /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
+		3B7D327D25221D06002FD929 /* ConversationsExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsExamples.swift; sourceTree = "<group>"; };
+		3B7D328125226BA9002FD929 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		3B7D328325232BC1002FD929 /* MessageCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellModel.swift; sourceTree = "<group>"; };
+		3B7D328525233752002FD929 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		3B7D328625233752002FD929 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,11 +85,13 @@
 			isa = PBXGroup;
 			children = (
 				3B15E275250E0C7300BC7E69 /* AppDelegate.swift */,
-				3B15E279250E0C7300BC7E69 /* ProfileViewController.swift */,
-				3B15E28B250E107300BC7E69 /* SwitchLogs.swift */,
-				3B15E27B250E0C7300BC7E69 /* Main.storyboard */,
+				3B7D3275251E062F002FD929 /* Models */,
+				3B7D3274251E0615002FD929 /* Views */,
+				3B7D3276251E063F002FD929 /* Controllers */,
 				3B15E27E250E0C7600BC7E69 /* Assets.xcassets */,
 				3B15E280250E0C7600BC7E69 /* LaunchScreen.storyboard */,
+				3B15E28B250E107300BC7E69 /* SwitchLogs.swift */,
+				3B7D3272251DF6D0002FD929 /* Constants.swift */,
 				3B7D32632514F45B002FD929 /* Fonts */,
 				3B15E283250E0C7600BC7E69 /* Info.plist */,
 			);
@@ -82,6 +106,39 @@
 				3B7D326625175CA6002FD929 /* Roboto-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		3B7D3274251E0615002FD929 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3B15E27B250E0C7300BC7E69 /* Main.storyboard */,
+				3B7D3277251E06B0002FD929 /* ConversationCell.swift */,
+				3B7D3278251E06B0002FD929 /* ConversationCell.xib */,
+				3B7D328525233752002FD929 /* MessageCell.swift */,
+				3B7D328625233752002FD929 /* MessageCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3B7D3275251E062F002FD929 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3B7D326E251DF02D002FD929 /* ConversationCellModel.swift */,
+				3B7D327B25221096002FD929 /* ConfigurableView.swift */,
+				3B7D327D25221D06002FD929 /* ConversationsExamples.swift */,
+				3B7D328325232BC1002FD929 /* MessageCellModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3B7D3276251E063F002FD929 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3B7D3270251DF43A002FD929 /* ConversationsListViewController.swift */,
+				3B15E279250E0C7300BC7E69 /* ProfileViewController.swift */,
+				3B7D328125226BA9002FD929 /* ConversationViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +203,8 @@
 				3B15E282250E0C7600BC7E69 /* LaunchScreen.storyboard in Resources */,
 				3B7D326525175913002FD929 /* SF-Pro-Text-Regular.otf in Resources */,
 				3B15E27F250E0C7600BC7E69 /* Assets.xcassets in Resources */,
+				3B7D327A251E06B0002FD929 /* ConversationCell.xib in Resources */,
+				3B7D328825233752002FD929 /* MessageCell.xib in Resources */,
 				3B7D32622514F2BB002FD929 /* SF-Pro-Display-Regular.otf in Resources */,
 				3B15E27D250E0C7300BC7E69 /* Main.storyboard in Resources */,
 			);
@@ -159,8 +218,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B15E27A250E0C7300BC7E69 /* ProfileViewController.swift in Sources */,
+				3B7D328425232BC1002FD929 /* MessageCellModel.swift in Sources */,
+				3B7D327E25221D06002FD929 /* ConversationsExamples.swift in Sources */,
+				3B7D328225226BA9002FD929 /* ConversationViewController.swift in Sources */,
+				3B7D3271251DF43B002FD929 /* ConversationsListViewController.swift in Sources */,
+				3B7D328725233752002FD929 /* MessageCell.swift in Sources */,
 				3B15E276250E0C7300BC7E69 /* AppDelegate.swift in Sources */,
+				3B7D326F251DF02D002FD929 /* ConversationCellModel.swift in Sources */,
 				3B15E28C250E107300BC7E69 /* SwitchLogs.swift in Sources */,
+				3B7D3273251DF6D0002FD929 /* Constants.swift in Sources */,
+				3B7D3279251E06B0002FD929 /* ConversationCell.swift in Sources */,
+				3B7D327C25221097002FD929 /* ConfigurableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

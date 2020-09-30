@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -42,10 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         switchLogs.forAppDelegate(from: "Inactive", to: "Active", method: "\(#function)")
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
-
+    
     func applicationWillTerminate(_ application: UIApplication) {
         switchLogs.forAppDelegate2(method: "\(#function)")
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
 }
 
