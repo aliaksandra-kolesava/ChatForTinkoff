@@ -8,24 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		3B15E276250E0C7300BC7E69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15E275250E0C7300BC7E69 /* AppDelegate.swift */; };
-		3B15E27A250E0C7300BC7E69 /* ViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15E279250E0C7300BC7E69 /* ViewController1.swift */; };
+		3B15E27A250E0C7300BC7E69 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15E279250E0C7300BC7E69 /* ProfileViewController.swift */; };
 		3B15E27D250E0C7300BC7E69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B15E27B250E0C7300BC7E69 /* Main.storyboard */; };
 		3B15E27F250E0C7600BC7E69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B15E27E250E0C7600BC7E69 /* Assets.xcassets */; };
 		3B15E282250E0C7600BC7E69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B15E280250E0C7600BC7E69 /* LaunchScreen.storyboard */; };
-		3B15E28A250E0D0500BC7E69 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15E289250E0D0500BC7E69 /* ViewController2.swift */; };
 		3B15E28C250E107300BC7E69 /* SwitchLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15E28B250E107300BC7E69 /* SwitchLogs.swift */; };
+		3B7D32622514F2BB002FD929 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D32612514F2BB002FD929 /* SF-Pro-Display-Regular.otf */; };
+		3B7D326525175913002FD929 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D326425175913002FD929 /* SF-Pro-Text-Regular.otf */; };
+		3B7D326725175CA6002FD929 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D326625175CA6002FD929 /* Roboto-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3B15E272250E0C7300BC7E69 /* ChatForTinkoff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatForTinkoff.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B15E275250E0C7300BC7E69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3B15E279250E0C7300BC7E69 /* ViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController1.swift; sourceTree = "<group>"; };
+		3B15E279250E0C7300BC7E69 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3B15E27C250E0C7300BC7E69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3B15E27E250E0C7600BC7E69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B15E281250E0C7600BC7E69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B15E283250E0C7600BC7E69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3B15E289250E0D0500BC7E69 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 		3B15E28B250E107300BC7E69 /* SwitchLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchLogs.swift; sourceTree = "<group>"; };
+		3B7D32612514F2BB002FD929 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		3B7D326425175913002FD929 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		3B7D326625175CA6002FD929 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,8 +46,8 @@
 		3B15E269250E0C7300BC7E69 = {
 			isa = PBXGroup;
 			children = (
-				3B15E274250E0C7300BC7E69 /* ChatForTinkoff */,
 				3B15E273250E0C7300BC7E69 /* Products */,
+				3B15E274250E0C7300BC7E69 /* ChatForTinkoff */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,15 +63,25 @@
 			isa = PBXGroup;
 			children = (
 				3B15E275250E0C7300BC7E69 /* AppDelegate.swift */,
-				3B15E279250E0C7300BC7E69 /* ViewController1.swift */,
-				3B15E289250E0D0500BC7E69 /* ViewController2.swift */,
+				3B15E279250E0C7300BC7E69 /* ProfileViewController.swift */,
 				3B15E28B250E107300BC7E69 /* SwitchLogs.swift */,
 				3B15E27B250E0C7300BC7E69 /* Main.storyboard */,
 				3B15E27E250E0C7600BC7E69 /* Assets.xcassets */,
 				3B15E280250E0C7600BC7E69 /* LaunchScreen.storyboard */,
+				3B7D32632514F45B002FD929 /* Fonts */,
 				3B15E283250E0C7600BC7E69 /* Info.plist */,
 			);
 			path = ChatForTinkoff;
+			sourceTree = "<group>";
+		};
+		3B7D32632514F45B002FD929 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3B7D32612514F2BB002FD929 /* SF-Pro-Display-Regular.otf */,
+				3B7D326425175913002FD929 /* SF-Pro-Text-Regular.otf */,
+				3B7D326625175CA6002FD929 /* Roboto-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,8 +142,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B7D326725175CA6002FD929 /* Roboto-Regular.ttf in Resources */,
 				3B15E282250E0C7600BC7E69 /* LaunchScreen.storyboard in Resources */,
+				3B7D326525175913002FD929 /* SF-Pro-Text-Regular.otf in Resources */,
 				3B15E27F250E0C7600BC7E69 /* Assets.xcassets in Resources */,
+				3B7D32622514F2BB002FD929 /* SF-Pro-Display-Regular.otf in Resources */,
 				3B15E27D250E0C7300BC7E69 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,10 +158,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B15E27A250E0C7300BC7E69 /* ViewController1.swift in Sources */,
+				3B15E27A250E0C7300BC7E69 /* ProfileViewController.swift in Sources */,
 				3B15E276250E0C7300BC7E69 /* AppDelegate.swift in Sources */,
 				3B15E28C250E107300BC7E69 /* SwitchLogs.swift in Sources */,
-				3B15E28A250E0D0500BC7E69 /* ViewController2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,7 +236,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -274,7 +290,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
