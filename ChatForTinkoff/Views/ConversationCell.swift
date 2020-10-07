@@ -64,8 +64,13 @@ class ConversationCell: UITableViewCell, ConfigurableView {
         }
         
         if model.isOnline {
-            contentView.backgroundColor = #colorLiteral(red: 1, green: 0.9529411765, blue: 0.8039215686, alpha: 1)
-        }
+            contentView.backgroundColor = Theme.currentTheme.conversationListOnline
+            nameLabel.textColor = Theme.currentTheme.textColor
+            messageLabel.textColor = Theme.currentTheme.textColor
+        } else {
+            contentView.backgroundColor = Theme.currentTheme.conversationListHistory
+            nameLabel.textColor = Theme.currentTheme.textColor
+            messageLabel.textColor = Theme.currentTheme.textColor        }
         if model.hasUnreadMessages {
             messageLabel.font = UIFont.systemFont(ofSize: 13, weight: .bold)
         }

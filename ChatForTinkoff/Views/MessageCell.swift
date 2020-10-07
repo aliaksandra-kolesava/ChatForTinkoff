@@ -14,8 +14,8 @@ class MessageCell: UITableViewCell, ConfigurableView {
     
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var messageBubble: UIView!
-    @IBOutlet weak var incomeMessage: UIView!
-    @IBOutlet weak var outcomeMessage: UIView!
+    @IBOutlet weak var incomingMessage: UIView!
+    @IBOutlet weak var outgoingMessage: UIView!
     
     
     override func awakeFromNib() {
@@ -32,16 +32,20 @@ class MessageCell: UITableViewCell, ConfigurableView {
     
     func configure(with model: MessageCellModel) {
         messageLabel.text = model.text
+        contentView.backgroundColor = Theme.currentTheme.backgroundColor
+        
         
         if model.sender == "1@gmail.com" {
-            incomeMessage.isHidden = true
-            outcomeMessage.isHidden  = false
-            messageBubble.backgroundColor = #colorLiteral(red: 0.8580739776, green: 0.8290178988, blue: 0.8094866488, alpha: 1)
+            incomingMessage.isHidden = true
+            outgoingMessage.isHidden  = false
+            messageBubble.backgroundColor = Theme.currentTheme.incomingMessage
+            messageLabel.textColor = Theme.currentTheme.incomingMessagesTextColor
         }
         else {
-            incomeMessage.isHidden = false
-            outcomeMessage.isHidden = true
-            messageBubble.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+            incomingMessage.isHidden = false
+            outgoingMessage.isHidden = true
+            messageBubble.backgroundColor = Theme.currentTheme.outgoingMessage
+            messageLabel.textColor = Theme.currentTheme.outgoingMessagesTextColor
         }
     }
 }

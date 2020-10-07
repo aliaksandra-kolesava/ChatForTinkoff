@@ -26,6 +26,11 @@ class ConversationViewController: UIViewController {
             self.messagesTableView.scrollToRow(at: indexPath, at: .top, animated: false)
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+    }
 }
 
 //MARK: - UITableViewDataSource

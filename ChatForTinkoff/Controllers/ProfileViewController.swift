@@ -47,6 +47,7 @@ class ProfileViewController: UIViewController {
         
 //        print(editButton.frame)
         imagePicker.delegate = self
+        changeTheme()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -157,6 +158,18 @@ class ProfileViewController: UIViewController {
         sheet.addAction(cancelEdition)
         present(sheet, animated: true, completion: nil)
     }
+    
+    func changeTheme() {
+         navigationController?.navigationBar.barTintColor = Theme.currentTheme.backgroundColor
+         navigationController?.navigationBar.tintColor = Theme.currentTheme.textColor
+         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.currentTheme.textColor]
+         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.currentTheme.textColor]
+        view.backgroundColor = Theme.currentTheme.backgroundColor
+        profileName.textColor = Theme.currentTheme.myProfileTextColor
+        aboutYourself.textColor = Theme.currentTheme.myProfileTextColor
+        saveButton.backgroundColor = Theme.currentTheme.myProfileSaveButton
+        
+     }
     
 }
 

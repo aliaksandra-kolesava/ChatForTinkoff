@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -28,7 +29,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="HKw-gB-8OP">
-                                <rect key="frame" x="0.0" y="96" width="375" height="571"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableView>
@@ -68,8 +69,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DaF-6d-KLS">
                                 <rect key="frame" x="0.0" y="587" width="375" height="80"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="JHh-FR-Zcu">
-                                        <rect key="frame" x="12.5" y="8" width="350" height="34"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JHh-FR-Zcu">
+                                        <rect key="frame" x="16" y="8" width="343" height="34"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIM-dt-EzJ">
                                                 <rect key="frame" x="0.0" y="7.5" width="19" height="19"/>
@@ -79,17 +80,16 @@
                                                 </constraints>
                                                 <state key="normal" image="plus"/>
                                             </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KnV-67-Jb9">
-                                                <rect key="frame" x="35" y="0.0" width="280" height="34"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KnV-67-Jb9">
+                                                <rect key="frame" x="27" y="0.0" width="289" height="34"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="280" id="CgD-OY-fkZ"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="EOa-pu-Avw"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FfM-me-Ugy">
-                                                <rect key="frame" x="331" y="7.5" width="19" height="19"/>
+                                                <rect key="frame" x="324" y="7.5" width="19" height="19"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="19" id="H86-Je-Gm0"/>
                                                     <constraint firstAttribute="width" constant="19" id="kka-De-W6W"/>
@@ -101,8 +101,12 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="JHh-FR-Zcu" secondAttribute="bottom" constant="38" id="TEV-2c-qoD"/>
+                                    <constraint firstAttribute="trailing" secondItem="JHh-FR-Zcu" secondAttribute="trailing" constant="16" id="ZCQ-Ay-p3g"/>
                                     <constraint firstItem="JHh-FR-Zcu" firstAttribute="centerX" secondItem="DaF-6d-KLS" secondAttribute="centerX" id="cbF-Uh-Hz6"/>
+                                    <constraint firstItem="JHh-FR-Zcu" firstAttribute="leading" secondItem="DaF-6d-KLS" secondAttribute="leading" constant="16" id="h1S-nZ-caW"/>
                                     <constraint firstItem="JHh-FR-Zcu" firstAttribute="centerY" secondItem="DaF-6d-KLS" secondAttribute="centerY" constant="-15" id="nSS-d7-4Xr"/>
+                                    <constraint firstItem="JHh-FR-Zcu" firstAttribute="top" secondItem="DaF-6d-KLS" secondAttribute="top" constant="8" id="rYi-8K-gKB"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -245,11 +249,10 @@
         <!--Navigation Controller-->
         <scene sceneID="c0x-xd-Fqd">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HiR-Xy-FT2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="I41-Vg-w0d" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="wLy-FF-ahY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wLy-FF-ahY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -260,6 +263,7 @@
                         <segue destination="EzF-JX-eGg" kind="relationship" relationship="rootViewController" id="F8F-rP-Jp1"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HiR-Xy-FT2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-655.20000000000005" y="107.49625187406298"/>
         </scene>
