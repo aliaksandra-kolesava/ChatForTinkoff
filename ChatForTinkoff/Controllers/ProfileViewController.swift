@@ -22,6 +22,8 @@ class ProfileViewController: UIViewController {
     var imagePicker = UIImagePickerController()
     var letterName: String = ""
     var letterSurname: String = ""
+    var name: String? = "Marina Dudarenko"
+    var text = "UX/UI designer, web-designer Moscow, Russia"
     
     
     required init?(coder: NSCoder) {
@@ -30,20 +32,28 @@ class ProfileViewController: UIViewController {
         //кнопка еще не инициализирована, поэтому ее значение frame = nil
     }
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         switchLogs.forProfileViewController(method: "\(#function)")
         editingProfile()
-        profileName.text = "Marina Dudarenko"
-        firstLetterName.text = initialsName(name: profileName.text ?? "No name")
+        profileName.text = name
+        
+        if profileName.text != nil {
+            firstLetterName.text = initialsName(name: profileName.text ?? "")
 
-        if initialsSurname(name: profileName.text ?? "No surname") != "" {
-            firstLetterSurname.text = initialsSurname(name: profileName.text ?? "No surname")
+        if initialsSurname(name: profileName.text ?? "") != "" {
+            firstLetterSurname.text = initialsSurname(name: profileName.text ?? "")
         } else {
             firstLetterSurname.isHidden = true
         }
-        aboutYourself.text = "UX/UI designer, web-designer Moscow, Russia"
+        } else {
+            firstLetterName.text = ""
+            firstLetterSurname.text = ""
+        }
+        aboutYourself.text = text
         
 //        print(editButton.frame)
         imagePicker.delegate = self
