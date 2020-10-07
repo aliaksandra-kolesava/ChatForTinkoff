@@ -22,17 +22,51 @@ class ConversationsListViewController: UIViewController {
         
         conversationList.dataSource = self
         conversationList.delegate  = self
-        
+                    
         conversationList.register(UINib(nibName: K.ConversationList.cellNibName, bundle: nil), forCellReuseIdentifier: K.ConversationList.cellIdentifier)
         
+        setupTheme()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     func navigationBarItems() {
         title = "Tinkoff Chat"
+
         var profileImage = #imageLiteral(resourceName: "user")
         profileImage = profileImage.withRenderingMode(.alwaysOriginal)
-        let profileButton = UIBarButtonItem(image: profileImage, style: .done , target: self, action: #selector(self.profileImageIsTapped))
+        let profileButton = UIBarButtonItem(image: profileImage, style: .plain , target: self, action: #selector(profileImageIsTapped))
         navigationItem.rightBarButtonItem = profileButton
+        
+        let settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings-black") , style: .plain, target: self, action: #selector(settingsButtonIsTapped))
+        navigationItem.setLeftBarButton(settingsButton, animated: true)
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    @objc func settingsButtonIsTapped() {
+       
+        let themesStoryboard: UIStoryboard = UIStoryboard(name: K.ThemesViewController.themeStoryBoard, bundle: nil)
+        guard let themesViewController = themesStoryboard.instantiateViewController(withIdentifier: K.ThemesViewController.themesViewControllerId) as? ThemesViewController else { return }
+        
+//       themesViewController.themesPickerDelegate = self
+        themesViewController.themesClosure = { [weak self] in
+            self?.setupTheme() }
+        
+       navigationController?.pushViewController(themesViewController, animated: false)
+       themesViewController.title = "Settings"
+
     }
     
     @objc func profileImageIsTapped() {
@@ -40,6 +74,20 @@ class ConversationsListViewController: UIViewController {
         let profileViewController = storyboard.instantiateViewController(withIdentifier: K.NavigationProfileView.navigationProfileView)
         self.present(profileViewController, animated: true)
     }
+    
+    func setupTheme() {
+           conversationList.backgroundColor = Theme.currentTheme.backgroundColor
+           conversationList.tintColor = .white
+           conversationList.reloadData()
+                          
+           view.backgroundColor = Theme.currentTheme.backgroundColor
+                          
+           navigationController?.navigationBar.barTintColor = Theme.currentTheme.backgroundColor
+           navigationController?.navigationBar.tintColor = Theme.currentTheme.textColor
+           navigationController?.navigationBar.barStyle = Theme.currentTheme.barStyleColor
+           navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.currentTheme.textColor]
+           navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.currentTheme.textColor]
+       }
 }
 
 //MARK: - UITableViewDataSource
@@ -85,7 +133,7 @@ extension ConversationsListViewController: UITableViewDelegate  {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: K.StoryBoardName.mainStoryBoard, bundle: nil)
-        let conversationViewController = mainStoryboard.instantiateViewController(withIdentifier: K.Conversation.conversationViewControllerId) as! ConversationViewController
+        guard let conversationViewController = mainStoryboard.instantiateViewController(withIdentifier: K.Conversation.conversationViewControllerId) as? ConversationViewController else { return }
         navigationController?.pushViewController(conversationViewController, animated: false)
         
         if indexPath.section == 0 {
@@ -98,5 +146,15 @@ extension ConversationsListViewController: UITableViewDelegate  {
             conversationViewController.title = cellIsHistory[indexPath.row].name
         
         }
+    }
+}
+
+//MARK: - ThemesPickerDelegate
+
+extension ConversationsListViewController: ThemesPickerDelegate {
+    func changeTheme(_ themesViewController: ThemesViewController) {
+        
+        setupTheme()
+        
     }
 }

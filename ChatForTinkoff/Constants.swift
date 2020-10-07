@@ -29,4 +29,9 @@ struct K {
     class NavigationProfileView {
         static let navigationProfileView = "NavigationControllerProfile"
     }
+    
+    class ThemesViewController {
+        static let themeStoryBoard = "Themes"
+        static let themesViewControllerId = "ThemesViewController"
+    }
 }
