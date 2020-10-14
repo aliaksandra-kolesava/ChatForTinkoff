@@ -44,12 +44,10 @@ class ConversationsListViewController: UIViewController {
     func navigationBarItems() {
         title = "Tinkoff Chat"
 
-        var profileImage = #imageLiteral(resourceName: "user")
-        profileImage = profileImage.withRenderingMode(.alwaysOriginal)
-        let profileButton = UIBarButtonItem(image: profileImage, style: .plain , target: self, action: #selector(profileImageIsTapped))
+        let profileButton = UIBarButtonItem(image: UIImage(imageLiteralResourceName: "user"), style: .plain , target: self, action: #selector(profileImageIsTapped))
         navigationItem.rightBarButtonItem = profileButton
-        
-        let settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings-black") , style: .plain, target: self, action: #selector(settingsButtonIsTapped))
+
+        let settingsButton = UIBarButtonItem(image: UIImage(imageLiteralResourceName: "settings-black") , style: .plain, target: self, action: #selector(settingsButtonIsTapped))
         navigationItem.setLeftBarButton(settingsButton, animated: true)
         
         navigationController?.navigationBar.prefersLargeTitles = true

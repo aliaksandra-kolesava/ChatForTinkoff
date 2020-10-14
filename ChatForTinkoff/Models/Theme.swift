@@ -20,8 +20,11 @@ class Theme {
         }
     }
     
-    static func updateTheme(_ theme: ThemeColors) {
-        UserDefaults.standard.setValue(theme.rawValue, forKey: "chosenTheme")
-
+    static func updateTheme(_ theme: ThemeColors, completion: (() -> Void)?) {
+        
+        DispatchQueue.global(qos: .default).async {
+             UserDefaults.standard.setValue(theme.rawValue, forKey: "chosenTheme")
+             completion?()
+        }
     }
 }

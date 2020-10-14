@@ -55,12 +55,14 @@ class ThemesViewController: UIViewController {
     
     func changeThemeOn(_ theme: ThemeColors) {
     
-            Theme.updateTheme(theme)
-            themesPickerDelegate?.changeTheme(self)
-            navigationItemsTheme()
-            changeOtherAttributesTheme(theme)
-            themesClosure?()
-        
+        Theme.updateTheme(theme) {
+            DispatchQueue.main.async {
+                self.themesPickerDelegate?.changeTheme(self)
+                self.navigationItemsTheme()
+                self.changeOtherAttributesTheme(theme)
+                self.themesClosure?()
+            }
+        }
     }
     
     func changeOtherAttributesTheme(_ theme: ThemeColors) {

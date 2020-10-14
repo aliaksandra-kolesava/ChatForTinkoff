@@ -13,6 +13,11 @@
 		3B15E27F250E0C7600BC7E69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B15E27E250E0C7600BC7E69 /* Assets.xcassets */; };
 		3B15E282250E0C7600BC7E69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B15E280250E0C7600BC7E69 /* LaunchScreen.storyboard */; };
 		3B15E28C250E107300BC7E69 /* SwitchLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15E28B250E107300BC7E69 /* SwitchLogs.swift */; };
+		3B65B76625347866004B760E /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B76525347866004B760E /* GCDDataManager.swift */; };
+		3B65B7682534789F004B760E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B7672534789F004B760E /* DataManager.swift */; };
+		3B65B76A253478B1004B760E /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B769253478B1004B760E /* OperationDataManager.swift */; };
+		3B65B76C25347DA9004B760E /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B76B25347DA9004B760E /* Files.swift */; };
+		3B65B76E2534AB93004B760E /* ProfileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B76D2534AB93004B760E /* ProfileInfo.swift */; };
 		3B6D691A252B7EE600EAE76F /* ThemesPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D6919252B7EE600EAE76F /* ThemesPickerDelegate.swift */; };
 		3B6D691C252BA38000EAE76F /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D691B252BA38000EAE76F /* ThemeColors.swift */; };
 		3B6D691E252C77FF00EAE76F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D691D252C77FF00EAE76F /* Theme.swift */; };
@@ -43,6 +48,11 @@
 		3B15E281250E0C7600BC7E69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B15E283250E0C7600BC7E69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B15E28B250E107300BC7E69 /* SwitchLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchLogs.swift; sourceTree = "<group>"; };
+		3B65B76525347866004B760E /* GCDDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
+		3B65B7672534789F004B760E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		3B65B769253478B1004B760E /* OperationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
+		3B65B76B25347DA9004B760E /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
+		3B65B76D2534AB93004B760E /* ProfileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfo.swift; sourceTree = "<group>"; };
 		3B6D6919252B7EE600EAE76F /* ThemesPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesPickerDelegate.swift; sourceTree = "<group>"; };
 		3B6D691B252BA38000EAE76F /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
 		3B6D691D252C77FF00EAE76F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -95,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				3B15E275250E0C7300BC7E69 /* AppDelegate.swift */,
+				3B65B76425347843004B760E /* Managers */,
 				3B7D3275251E062F002FD929 /* Models */,
 				3B7D3274251E0615002FD929 /* Views */,
 				3B7D3276251E063F002FD929 /* Controllers */,
@@ -106,6 +117,17 @@
 				3B15E283250E0C7600BC7E69 /* Info.plist */,
 			);
 			path = ChatForTinkoff;
+			sourceTree = "<group>";
+		};
+		3B65B76425347843004B760E /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				3B65B76525347866004B760E /* GCDDataManager.swift */,
+				3B65B7672534789F004B760E /* DataManager.swift */,
+				3B65B769253478B1004B760E /* OperationDataManager.swift */,
+				3B65B76B25347DA9004B760E /* Files.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		3B7D32632514F45B002FD929 /* Fonts */ = {
@@ -141,6 +163,7 @@
 				3B6D6919252B7EE600EAE76F /* ThemesPickerDelegate.swift */,
 				3B6D691B252BA38000EAE76F /* ThemeColors.swift */,
 				3B6D691D252C77FF00EAE76F /* Theme.swift */,
+				3B65B76D2534AB93004B760E /* ProfileInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -233,20 +256,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B65B76E2534AB93004B760E /* ProfileInfo.swift in Sources */,
 				3B15E27A250E0C7300BC7E69 /* ProfileViewController.swift in Sources */,
 				3B7D328425232BC1002FD929 /* MessageCellModel.swift in Sources */,
 				3B7D327E25221D06002FD929 /* ConversationsExamples.swift in Sources */,
 				3B7D32922529E1BE002FD929 /* ThemesViewController.swift in Sources */,
 				3B7D328225226BA9002FD929 /* ConversationViewController.swift in Sources */,
+				3B65B76625347866004B760E /* GCDDataManager.swift in Sources */,
 				3B7D3271251DF43B002FD929 /* ConversationsListViewController.swift in Sources */,
+				3B65B7682534789F004B760E /* DataManager.swift in Sources */,
 				3B7D328725233752002FD929 /* MessageCell.swift in Sources */,
 				3B15E276250E0C7300BC7E69 /* AppDelegate.swift in Sources */,
 				3B7D326F251DF02D002FD929 /* ConversationCellModel.swift in Sources */,
 				3B15E28C250E107300BC7E69 /* SwitchLogs.swift in Sources */,
 				3B6D691A252B7EE600EAE76F /* ThemesPickerDelegate.swift in Sources */,
 				3B6D691E252C77FF00EAE76F /* Theme.swift in Sources */,
+				3B65B76A253478B1004B760E /* OperationDataManager.swift in Sources */,
 				3B7D3273251DF6D0002FD929 /* Constants.swift in Sources */,
 				3B7D3279251E06B0002FD929 /* ConversationCell.swift in Sources */,
+				3B65B76C25347DA9004B760E /* Files.swift in Sources */,
 				3B6D691C252BA38000EAE76F /* ThemeColors.swift in Sources */,
 				3B7D327C25221097002FD929 /* ConfigurableView.swift in Sources */,
 			);

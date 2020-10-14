@@ -34,4 +34,10 @@ struct K {
         static let themeStoryBoard = "Themes"
         static let themesViewControllerId = "ThemesViewController"
     }
+    
+    class ProfileInfoKeys {
+        static let nameData = "nameData"
+        static let aboutYourselfData = "aboutYourselfData"
+        static let imageData = "imageData"
+    }
 }
