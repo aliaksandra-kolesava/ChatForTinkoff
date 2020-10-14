@@ -33,6 +33,7 @@ class ProfileViewController: UIViewController {
     var text = "UX/UI designer, web-designer Moscow, Russia"
     
     var gcdDataManager = GCDDataManager()
+    var operationDataManager = OperationDataManager()
     var profileInfo: ProfileInfo? = nil
     
     var activeField: UITextField?
@@ -48,9 +49,6 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let filePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-//        print(filePath)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoard), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
@@ -88,13 +86,14 @@ class ProfileViewController: UIViewController {
                   UIActivityIndicatorView.Style.whiteLarge
               view.addSubview(activityIndicator)
         
+//        readDataFile(dataManager: operationDataManager)
         readDataFile(dataManager: gcdDataManager)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        profilePhoto.layer.cornerRadius = profilePhoto.bounds.size.height / 2
         switchLogs.forProfileViewController(method: "\(#function)")
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -168,12 +167,10 @@ class ProfileViewController: UIViewController {
             }
             
             if self.profilePhoto.image == nil {
-                self.profilePhoto.image = #imageLiteral(resourceName: "profilePhoto(e4e82b)-1")
+                self.profilePhoto.image = UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1")
             }
-            if self.profilePhoto.image != #imageLiteral(resourceName: "profilePhoto(e4e82b)-1") {
+            if self.profilePhoto.image != UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1") {
                 self.profilePhoto.contentMode = .scaleAspectFill
-//                self.firstLetterName.isHidden = true
-//                self.firstLetterSurname.isHidden = true
             }
         }
         
@@ -182,7 +179,7 @@ class ProfileViewController: UIViewController {
     func writeDataFile(dataManager: DataManager) {
         let textName = nameTextField.text ?? ""
         let textAboutYourself = aboutTextField.text ?? ""
-        let image = profilePhoto.image ?? #imageLiteral(resourceName: "profilePhoto(e4e82b)-1")
+        let image = profilePhoto.image ?? UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1")
         
         let newProfile = ProfileInfo(name: textName, aboutYourself: textAboutYourself, profileImage: image)
         
@@ -259,9 +256,7 @@ class ProfileViewController: UIViewController {
         buttonGCD.isHidden = true
         buttonOperation.isHidden = true
         editProfilePhotoButton.isHidden = true
-        
-        print(profilePhoto.bounds.size.height)
-        print(profilePhoto.bounds.size.width)
+    
         editButton.layer.cornerRadius = editButton.bounds.size.height / 3
 
         editProfilePhotoButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
@@ -271,7 +266,7 @@ class ProfileViewController: UIViewController {
         firstLetterName.font = UIFont.systemFont(ofSize: 120, weight: .regular)
         firstLetterSurname.font = UIFont.systemFont(ofSize: 120, weight: .regular)
         
-        profilePhoto.image = #imageLiteral(resourceName: "profilePhoto(e4e82b)-1")
+        profilePhoto.image = UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1")
         
         buttonGCD.layer.cornerRadius = buttonGCD.bounds.size.height / 3
         buttonOperation.layer.cornerRadius = buttonOperation.bounds.size.height / 3
@@ -324,12 +319,11 @@ class ProfileViewController: UIViewController {
         }
         
         let removePhoto = UIAlertAction(title: "Remove Photo", style: .destructive) { (action) in
-            self.profilePhoto.image = #imageLiteral(resourceName: "profilePhoto(e4e82b)-1")
+            self.profilePhoto.image = UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1")
             self.firstLetterName.isHidden = false
             self.firstLetterSurname.isHidden = false
             self.buttonGCD.isEnabled = true
             self.buttonOperation.isEnabled = true
-            
         }
         
         let cancelEdition = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -381,6 +375,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func buttonOperationIsTapped(_ sender: UIButton) {
+        writeDataFile(dataManager: operationDataManager)
     }
     
     //MARK: - Alert Functions
