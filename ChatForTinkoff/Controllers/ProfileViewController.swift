@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var profilePhoto: UIImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var aboutYourself: UILabel!
@@ -50,6 +51,9 @@ class ProfileViewController: UIViewController {
         
 //        let filePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
 //        print(filePath)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
 
         switchLogs.forProfileViewController(method: "\(#function)")
         editingProfile()
@@ -89,19 +93,29 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+//        profilePhoto.layer.cornerRadius = profilePhoto.bounds.size.height / 2
         switchLogs.forProfileViewController(method: "\(#function)")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
 //        print(editButton.frame)
         //значения не совпадают, потому что в методе viewDidAppear экран уже загрузился и значения frame меняются на более точные в зависимости от выбранного утсройства и применения Auto LayOut, в то время как в viewDidLoad пишутся значения указанные при верстки в storyboard
         switchLogs.forProfileViewController(method: "\(#function)")
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        profilePhoto.layer.cornerRadius = profilePhoto.bounds.size.height / 2
+        let fontProfileName = profilePhoto.bounds.size.height / 10
+        let fontAboutYourself = profilePhoto.bounds.size.height / 15
+        
+        profileName.font = UIFont.systemFont(ofSize: fontProfileName, weight: .bold)
+        aboutYourself.font = UIFont.systemFont(ofSize: fontAboutYourself, weight: .regular)
+
         switchLogs.forProfileViewController(method: "\(#function)")
     }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         switchLogs.forProfileViewController(method: "\(#function)")
@@ -120,6 +134,8 @@ class ProfileViewController: UIViewController {
     @IBAction func closeButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
+    
+    //MARK: - Read and Write Data Functions
     
     func readDataFile(dataManager: DataManager) {
         dataManager.readFile(file: Files.files.fileWithData) {
@@ -149,8 +165,6 @@ class ProfileViewController: UIViewController {
                     self.firstLetterName.text = ""
                     self.firstLetterSurname.text = ""
                        }
-//                print(profileInfo.name)
-                
             }
             
             if self.profilePhoto.image == nil {
@@ -186,13 +200,13 @@ class ProfileViewController: UIViewController {
                             
                             if completed {
                                 self.profileInfo = newProfile
-                                self.showCompletedAlert(title: "Editing was successful",
+                                self.editingSuccessfulAlert(title: "Editing was successful",
                                                         message: "The changes are saved!") {
                                                             self.readDataFile(dataManager: dataManager)
                                 }
 
                             } else{
-                                self.showErrorAlert(message: "Error", repeatedBlock: {
+                                self.errorAlert(message: "Error", repeatedBlock: {
                                     self.writeDataFile(dataManager: dataManager)
                                 }, okBlock: {
                                     self.editButton.isHidden = false
@@ -211,14 +225,32 @@ class ProfileViewController: UIViewController {
         editButton.isHidden = false
         buttonGCD.isHidden = true
         buttonOperation.isHidden = true
+        editProfilePhotoButton.isHidden = true
         
         nameTextField.isHidden = true
         profileName.isHidden = false
         
-//        editButton.isHidden = true
         aboutYourself.isHidden = false
         aboutTextField.isHidden = true
     }
+    
+    //MARK: - Function keyBoard
+    
+    @objc func keyBoard(notification: Notification) {
+           
+           if let userInfo = notification.userInfo {
+           
+               guard let keyboardScreenEndFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+           let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+           
+           if notification.name == UIResponder.keyboardWillHideNotification {
+               scrollView.contentInset = UIEdgeInsets.zero
+           } else {
+               scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
+           }
+           scrollView.scrollIndicatorInsets = scrollView.contentInset
+           }
+       }
     
     
     //MARK: - The Initial Edition Profile
@@ -228,15 +260,14 @@ class ProfileViewController: UIViewController {
         buttonOperation.isHidden = true
         editProfilePhotoButton.isHidden = true
         
-        profilePhoto.layer.cornerRadius = profilePhoto.bounds.size.width / 2
+        print(profilePhoto.bounds.size.height)
+        print(profilePhoto.bounds.size.width)
         editButton.layer.cornerRadius = editButton.bounds.size.height / 3
-        
-        profileName.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+
         editProfilePhotoButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         editButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         buttonGCD.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         buttonOperation.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        aboutYourself.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         firstLetterName.font = UIFont.systemFont(ofSize: 120, weight: .regular)
         firstLetterSurname.font = UIFont.systemFont(ofSize: 120, weight: .regular)
         
@@ -340,8 +371,6 @@ class ProfileViewController: UIViewController {
         profileName.isHidden = true
         nameTextField.text = profileName.text
         
-        editProfilePhotoButton.isHidden = false
-        
         aboutYourself.isHidden = true
         aboutTextField.isHidden = false
         aboutTextField.text = aboutYourself.text
@@ -356,7 +385,7 @@ class ProfileViewController: UIViewController {
     
     //MARK: - Alert Functions
     
-    func showErrorAlert(message: String,  repeatedBlock: @escaping (() -> Void), okBlock: @escaping (() -> Void)) {
+    func errorAlert(message: String,  repeatedBlock: @escaping (() -> Void), okBlock: @escaping (() -> Void)) {
            let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
            
            let okAction = UIAlertAction(title: "OK", style: .default) { action in
@@ -365,15 +394,15 @@ class ProfileViewController: UIViewController {
            
            alert.addAction(okAction)
            
-           let repeateAction = UIAlertAction(title: "Повторить", style: .default) { action in
+           let repeatAction = UIAlertAction(title: "Повторить", style: .default) { action in
                repeatedBlock()
            }
-           alert.addAction(repeateAction)
+           alert.addAction(repeatAction)
            
            self.present(alert, animated: true, completion: nil)
        }
        
-       func showCompletedAlert(title: String = "", message: String, okBlock: @escaping (() -> Void)) {
+       func editingSuccessfulAlert(title: String = "", message: String, okBlock: @escaping (() -> Void)) {
            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
            let okAction = UIAlertAction(title: "OK", style: .default) {
                action in okBlock()
@@ -431,5 +460,7 @@ extension ProfileViewController: UITextFieldDelegate {
            activeField = nil
        }
 }
+
+
 
 

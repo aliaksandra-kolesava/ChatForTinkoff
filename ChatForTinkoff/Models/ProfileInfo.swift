@@ -26,9 +26,7 @@ class ProfileInfo: NSObject, NSCoding {
         guard let imageData = aDecoder.decodeObject(forKey: K.ProfileInfoKeys.imageData) as? Data,
             let name = aDecoder.decodeObject(forKey: K.ProfileInfoKeys.nameData) as? String,
             let aboutYourself = aDecoder.decodeObject(forKey: K.ProfileInfoKeys.aboutYourselfData) as? String,
-               let profileImage = UIImage(data: imageData) else {
-                   return nil
-           }
+            let profileImage = UIImage(data: imageData) else { return nil }
 
         self.init(name: name, aboutYourself: aboutYourself, profileImage: profileImage)
        }
