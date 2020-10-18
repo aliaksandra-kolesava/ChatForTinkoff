@@ -12,7 +12,6 @@ class ConversationCell: UITableViewCell, ConfigurableView {
     
     typealias ConfigurationModel = ConversationCellModel
     
-    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
@@ -33,13 +32,12 @@ class ConversationCell: UITableViewCell, ConfigurableView {
     }
     
     func configure(with model: ConversationCellModel) {
-        nameLabel.text  = model.name
+        nameLabel.text = model.name
         
         if model.message == "" {
             messageLabel.text = "No messages yet"
             messageLabel.font = UIFont.italicSystemFont(ofSize: 13)
-        }
-        else {
+        } else {
             messageLabel.text = model.message
         }
         
@@ -48,8 +46,7 @@ class ConversationCell: UITableViewCell, ConfigurableView {
             formatter.dateFormat = "HH:mm"
             if model.message == "" {
                 dateLabel.text = ""
-            }
-            else {
+            } else {
             dateLabel.text = formatter.string(from: model.date)
             }
         } else {
@@ -57,8 +54,7 @@ class ConversationCell: UITableViewCell, ConfigurableView {
             formatter.dateFormat = "dd MMM"
             if model.message == "" {
                 dateLabel.text = ""
-            }
-            else {
+            } else {
             dateLabel.text = formatter.string(from: model.date)
             }
         }

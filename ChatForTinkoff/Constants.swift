@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct K {
+struct Key {
     
     class ConversationList {
     static let cellIdentifier = "ConversationCellList"

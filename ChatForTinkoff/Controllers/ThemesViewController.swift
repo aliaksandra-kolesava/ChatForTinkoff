@@ -23,7 +23,6 @@ class ThemesViewController: UIViewController {
     
     var themesClosure: (() -> Void)?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         classic.font = UIFont.systemFont(ofSize: 19, weight: .semibold)
@@ -102,5 +101,3 @@ class ThemesViewController: UIViewController {
         navigationController?.navigationBar.barStyle = Theme.currentTheme.barStyleColor
     }
 }
-
-

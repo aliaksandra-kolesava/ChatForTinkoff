@@ -28,7 +28,7 @@ class Files {
     }
     
     func writeFile(file: String, data: Data) -> Bool {
-        let previousData =  readFile(file: file)
+        let previousData = readFile(file: file)
         
         if previousData == data {
             return true

@@ -80,7 +80,6 @@ enum ThemeColors: Int {
         }
     }
     
-    
     var myProfileSaveButton: UIColor {
         switch self {
         case .classic:

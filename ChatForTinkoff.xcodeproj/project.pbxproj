@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		3B15E27F250E0C7600BC7E69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B15E27E250E0C7600BC7E69 /* Assets.xcassets */; };
 		3B15E282250E0C7600BC7E69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B15E280250E0C7600BC7E69 /* LaunchScreen.storyboard */; };
 		3B15E28C250E107300BC7E69 /* SwitchLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15E28B250E107300BC7E69 /* SwitchLogs.swift */; };
+		3B5EFD73253C5E3700E19AA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B5EFD72253C5E3700E19AA1 /* GoogleService-Info.plist */; };
 		3B65B76625347866004B760E /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B76525347866004B760E /* GCDDataManager.swift */; };
 		3B65B7682534789F004B760E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B7672534789F004B760E /* DataManager.swift */; };
 		3B65B76A253478B1004B760E /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B769253478B1004B760E /* OperationDataManager.swift */; };
@@ -37,6 +38,7 @@
 		3B7D328825233752002FD929 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D328625233752002FD929 /* MessageCell.xib */; };
 		3B7D32902529E0C9002FD929 /* Themes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D328F2529E0C8002FD929 /* Themes.storyboard */; };
 		3B7D32922529E1BE002FD929 /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D32912529E1BE002FD929 /* ThemesViewController.swift */; };
+		C81996D5350CCB89B39E8D5B /* Pods_ChatForTinkoff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C38F21D33D194EF7369F0D3D /* Pods_ChatForTinkoff.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,7 @@
 		3B15E281250E0C7600BC7E69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B15E283250E0C7600BC7E69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B15E28B250E107300BC7E69 /* SwitchLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchLogs.swift; sourceTree = "<group>"; };
+		3B5EFD72253C5E3700E19AA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3B65B76525347866004B760E /* GCDDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
 		3B65B7672534789F004B760E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		3B65B769253478B1004B760E /* OperationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
@@ -72,6 +75,9 @@
 		3B7D328625233752002FD929 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		3B7D328F2529E0C8002FD929 /* Themes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Themes.storyboard; sourceTree = "<group>"; };
 		3B7D32912529E1BE002FD929 /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
+		9D5B0A40E019E6795C4D3E46 /* Pods-ChatForTinkoff.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatForTinkoff.release.xcconfig"; path = "Target Support Files/Pods-ChatForTinkoff/Pods-ChatForTinkoff.release.xcconfig"; sourceTree = "<group>"; };
+		C38F21D33D194EF7369F0D3D /* Pods_ChatForTinkoff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatForTinkoff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8C554D28ECAF252CE784E6F /* Pods-ChatForTinkoff.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatForTinkoff.debug.xcconfig"; path = "Target Support Files/Pods-ChatForTinkoff/Pods-ChatForTinkoff.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C81996D5350CCB89B39E8D5B /* Pods_ChatForTinkoff.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +97,8 @@
 			children = (
 				3B15E273250E0C7300BC7E69 /* Products */,
 				3B15E274250E0C7300BC7E69 /* ChatForTinkoff */,
+				9159A1FCF42D4D1F47A78179 /* Pods */,
+				B6B1F50741A21EDB33CF421B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +124,7 @@
 				3B7D3272251DF6D0002FD929 /* Constants.swift */,
 				3B7D32632514F45B002FD929 /* Fonts */,
 				3B15E283250E0C7600BC7E69 /* Info.plist */,
+				3B5EFD72253C5E3700E19AA1 /* GoogleService-Info.plist */,
 			);
 			path = ChatForTinkoff;
 			sourceTree = "<group>";
@@ -179,6 +189,23 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		9159A1FCF42D4D1F47A78179 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C8C554D28ECAF252CE784E6F /* Pods-ChatForTinkoff.debug.xcconfig */,
+				9D5B0A40E019E6795C4D3E46 /* Pods-ChatForTinkoff.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B6B1F50741A21EDB33CF421B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C38F21D33D194EF7369F0D3D /* Pods_ChatForTinkoff.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -186,9 +213,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B15E286250E0C7600BC7E69 /* Build configuration list for PBXNativeTarget "ChatForTinkoff" */;
 			buildPhases = (
+				7B252D30F92E6275E41341C0 /* [CP] Check Pods Manifest.lock */,
 				3B15E26E250E0C7300BC7E69 /* Sources */,
 				3B15E26F250E0C7300BC7E69 /* Frameworks */,
 				3B15E270250E0C7300BC7E69 /* Resources */,
+				D02682CF8CA43BA43A876448 /* [CP] Embed Pods Frameworks */,
+				3B5EFD74253C62FC00E19AA1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -244,12 +274,72 @@
 				3B15E27F250E0C7600BC7E69 /* Assets.xcassets in Resources */,
 				3B7D327A251E06B0002FD929 /* ConversationCell.xib in Resources */,
 				3B7D328825233752002FD929 /* MessageCell.xib in Resources */,
+				3B5EFD73253C5E3700E19AA1 /* GoogleService-Info.plist in Resources */,
 				3B7D32622514F2BB002FD929 /* SF-Pro-Display-Regular.otf in Resources */,
 				3B15E27D250E0C7300BC7E69 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3B5EFD74253C62FC00E19AA1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		7B252D30F92E6275E41341C0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChatForTinkoff-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D02682CF8CA43BA43A876448 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChatForTinkoff/Pods-ChatForTinkoff-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChatForTinkoff/Pods-ChatForTinkoff-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChatForTinkoff/Pods-ChatForTinkoff-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3B15E26E250E0C7300BC7E69 /* Sources */ = {
@@ -418,6 +508,7 @@
 		};
 		3B15E287250E0C7600BC7E69 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8C554D28ECAF252CE784E6F /* Pods-ChatForTinkoff.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -427,7 +518,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aliaksandrakolesava.ChatForTinkoff;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -436,6 +527,7 @@
 		};
 		3B15E288250E0C7600BC7E69 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D5B0A40E019E6795C4D3E46 /* Pods-ChatForTinkoff.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -445,7 +537,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aliaksandrakolesava.ChatForTinkoff;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

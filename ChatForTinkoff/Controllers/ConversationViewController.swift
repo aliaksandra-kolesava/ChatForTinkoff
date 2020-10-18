@@ -19,7 +19,7 @@ class ConversationViewController: UIViewController {
         
         messagesTableView.dataSource = self
         
-        messagesTableView.register(UINib(nibName: K.Conversation.cellNibName, bundle: nil), forCellReuseIdentifier: K.Conversation.cellIdentifier)
+        messagesTableView.register(UINib(nibName: Key.Conversation.cellNibName, bundle: nil), forCellReuseIdentifier: Key.Conversation.cellIdentifier)
         
         DispatchQueue.main.async {
             let indexPath = IndexPath(row: self.messagesExamples.messages.count - 1, section: 0)
@@ -33,7 +33,7 @@ class ConversationViewController: UIViewController {
     }
 }
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 
 extension ConversationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,7 +43,7 @@ extension ConversationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let message = messagesExamples.messages[indexPath.row]
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: K.Conversation.cellIdentifier, for: indexPath) as? MessageCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Key.Conversation.cellIdentifier, for: indexPath) as? MessageCell else { return UITableViewCell() }
         cell.configure(with: message)
         return cell
     }

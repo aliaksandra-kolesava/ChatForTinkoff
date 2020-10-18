@@ -21,9 +21,9 @@ class ConversationsListViewController: UIViewController {
         navigationBarItems()
         
         conversationList.dataSource = self
-        conversationList.delegate  = self
+        conversationList.delegate = self
                     
-        conversationList.register(UINib(nibName: K.ConversationList.cellNibName, bundle: nil), forCellReuseIdentifier: K.ConversationList.cellIdentifier)
+        conversationList.register(UINib(nibName: Key.ConversationList.cellNibName, bundle: nil), forCellReuseIdentifier: Key.ConversationList.cellIdentifier)
         
         setupTheme()
         
@@ -35,7 +35,6 @@ class ConversationsListViewController: UIViewController {
 
     }
     
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -44,10 +43,10 @@ class ConversationsListViewController: UIViewController {
     func navigationBarItems() {
         title = "Tinkoff Chat"
 
-        let profileButton = UIBarButtonItem(image: UIImage(imageLiteralResourceName: "user"), style: .plain , target: self, action: #selector(profileImageIsTapped))
+        let profileButton = UIBarButtonItem(image: UIImage(imageLiteralResourceName: "user"), style: .plain, target: self, action: #selector(profileImageIsTapped))
         navigationItem.rightBarButtonItem = profileButton
 
-        let settingsButton = UIBarButtonItem(image: UIImage(imageLiteralResourceName: "settings-black") , style: .plain, target: self, action: #selector(settingsButtonIsTapped))
+        let settingsButton = UIBarButtonItem(image: UIImage(imageLiteralResourceName: "settings-black"), style: .plain, target: self, action: #selector(settingsButtonIsTapped))
         navigationItem.setLeftBarButton(settingsButton, animated: true)
         
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -55,8 +54,10 @@ class ConversationsListViewController: UIViewController {
     
     @objc func settingsButtonIsTapped() {
        
-        let themesStoryboard: UIStoryboard = UIStoryboard(name: K.ThemesViewController.themeStoryBoard, bundle: nil)
-        guard let themesViewController = themesStoryboard.instantiateViewController(withIdentifier: K.ThemesViewController.themesViewControllerId) as? ThemesViewController else { return }
+        let themesStoryboard: UIStoryboard = UIStoryboard(name: Key.ThemesViewController.themeStoryBoard, bundle: nil)
+        // swiftlint:disable line_length
+        guard let themesViewController = themesStoryboard.instantiateViewController(withIdentifier: Key.ThemesViewController.themesViewControllerId) as? ThemesViewController else { return }
+        // swiftlint:enable line_length
         
 //       themesViewController.themesPickerDelegate = self
         themesViewController.themesClosure = { [weak self] in
@@ -68,8 +69,8 @@ class ConversationsListViewController: UIViewController {
     }
     
     @objc func profileImageIsTapped() {
-        let storyboard = UIStoryboard(name: K.StoryBoardName.mainStoryBoard, bundle: nil)
-        let profileViewController = storyboard.instantiateViewController(withIdentifier: K.NavigationProfileView.navigationProfileView)
+        let storyboard = UIStoryboard(name: Key.StoryBoardName.mainStoryBoard, bundle: nil)
+        let profileViewController = storyboard.instantiateViewController(withIdentifier: Key.NavigationProfileView.navigationProfileView)
         self.present(profileViewController, animated: true)
     }
     
@@ -88,14 +89,14 @@ class ConversationsListViewController: UIViewController {
        }
 }
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 
 extension ConversationsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return conversationsExamples.conversationCellModel.filter() {$0.isOnline}.count
+            return conversationsExamples.conversationCellModel.filter {$0.isOnline}.count
         } else {
-            return conversationsExamples.conversationCellModel.filter() {!$0.isOnline && $0.message != ""}.count
+            return conversationsExamples.conversationCellModel.filter {!$0.isOnline && $0.message != ""}.count
         }
     }
     
@@ -109,45 +110,47 @@ extension ConversationsListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: K.ConversationList.cellIdentifier, for: indexPath) as? ConversationCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Key.ConversationList.cellIdentifier, for: indexPath) as? ConversationCell else { return UITableViewCell() }
         
         if indexPath.section == 0 {
-            let sortedByDate = conversationsExamples.conversationCellModel.sorted() { $0.date > $1.date }
-            let cellIsOnline = sortedByDate.filter() {$0.isOnline}
+            let sortedByDate = conversationsExamples.conversationCellModel.sorted { $0.date > $1.date }
+            let cellIsOnline = sortedByDate.filter {$0.isOnline}
             cell.configure(with: cellIsOnline[indexPath.row])
             return cell
         } else {
-            let sortedByDate = conversationsExamples.conversationCellModel.sorted() { $0.date > $1.date }
-            let cellIsHistory = sortedByDate.filter() {!$0.isOnline && $0.message != ""}
+            let sortedByDate = conversationsExamples.conversationCellModel.sorted { $0.date > $1.date }
+            let cellIsHistory = sortedByDate.filter {!$0.isOnline && $0.message != ""}
             cell.configure(with: cellIsHistory[indexPath.row])
             return cell
         }
     }
 }
 
-//MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate
 
-extension ConversationsListViewController: UITableViewDelegate  {
+extension ConversationsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: K.StoryBoardName.mainStoryBoard, bundle: nil)
-        guard let conversationViewController = mainStoryboard.instantiateViewController(withIdentifier: K.Conversation.conversationViewControllerId) as? ConversationViewController else { return }
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: Key.StoryBoardName.mainStoryBoard, bundle: nil)
+        // swiftlint:disable line_length
+        guard let conversationViewController = mainStoryboard.instantiateViewController(withIdentifier: Key.Conversation.conversationViewControllerId) as? ConversationViewController else { return }
+        //swiftlint:enable line_length
         navigationController?.pushViewController(conversationViewController, animated: false)
         
         if indexPath.section == 0 {
-            let sortedByDate = conversationsExamples.conversationCellModel.sorted() { $0.date > $1.date }
-            let cellIsOnline = sortedByDate.filter() {$0.isOnline}
+            let sortedByDate = conversationsExamples.conversationCellModel.sorted { $0.date > $1.date }
+            let cellIsOnline = sortedByDate.filter {$0.isOnline}
             conversationViewController.title = cellIsOnline[indexPath.row].name
         } else {
-            let sortedByDate = conversationsExamples.conversationCellModel.sorted() { $0.date > $1.date }
-            let cellIsHistory = sortedByDate.filter() {!$0.isOnline && $0.message != ""}
+            let sortedByDate = conversationsExamples.conversationCellModel.sorted { $0.date > $1.date }
+            let cellIsHistory = sortedByDate.filter {!$0.isOnline && $0.message != ""}
             conversationViewController.title = cellIsHistory[indexPath.row].name
         
         }
     }
 }
 
-//MARK: - ThemesPickerDelegate
+// MARK: - ThemesPickerDelegate
 
 extension ConversationsListViewController: ThemesPickerDelegate {
     func changeTheme(_ themesViewController: ThemesViewController) {

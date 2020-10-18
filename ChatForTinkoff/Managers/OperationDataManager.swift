@@ -1,4 +1,4 @@
- //
+//
 //  OperationDataManager.swift
 //  ChatForTinkoff
 //
@@ -59,7 +59,6 @@ import Foundation
         operationQueue.addOperation(operationRead)
     }
     
-    
     func writeFile(file: String, data: Data, callback: @escaping (Bool) -> Void) {
         let operationWrite = OperationWrite(file: file, data: data)
         
@@ -71,7 +70,5 @@ import Foundation
         
         operationQueue.addOperation(operationWrite)
     }
-    
-    
     
  }

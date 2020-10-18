@@ -34,18 +34,15 @@ class ProfileViewController: UIViewController {
     
     var gcdDataManager = GCDDataManager()
     var operationDataManager = OperationDataManager()
-    var profileInfo: ProfileInfo? = nil
+    var profileInfo: ProfileInfo?
     
     var activeField: UITextField?
-    
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         //print(editButton.frame)
         //кнопка еще не инициализирована, поэтому ее значение frame = nil
     }
-    
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,8 +75,7 @@ class ProfileViewController: UIViewController {
         imagePicker.delegate = self
         changeTheme()
         
-        
-        activityIndicator.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0);
+        activityIndicator.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0)
               activityIndicator.center = view.center
               activityIndicator.hidesWhenStopped = true
               activityIndicator.style =
@@ -99,8 +95,6 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-//        print(editButton.frame)
-        //значения не совпадают, потому что в методе viewDidAppear экран уже загрузился и значения frame меняются на более точные в зависимости от выбранного утсройства и применения Auto LayOut, в то время как в viewDidLoad пишутся значения указанные при верстки в storyboard
         switchLogs.forProfileViewController(method: "\(#function)")
     }
     override func viewWillLayoutSubviews() {
@@ -134,11 +128,10 @@ class ProfileViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    //MARK: - Read and Write Data Functions
+    // MARK: - Read and Write Data Functions
     
     func readDataFile(dataManager: DataManager) {
-        dataManager.readFile(file: Files.files.fileWithData) {
-            data in
+        dataManager.readFile(file: Files.files.fileWithData) { data in
             
             self.finishedEditing()
 
@@ -190,8 +183,7 @@ class ProfileViewController: UIViewController {
             buttonGCD.isEnabled = false
             buttonOperation.isEnabled = false
             
-            dataManager.writeFile(file: Files.files.fileWithData, data: newData){
-                            completed in
+            dataManager.writeFile(file: Files.files.fileWithData, data: newData) { completed in
                 
                 self.activityIndicator.stopAnimating()
                             
@@ -202,7 +194,7 @@ class ProfileViewController: UIViewController {
                                                             self.readDataFile(dataManager: dataManager)
                                 }
 
-                            } else{
+                            } else {
                                 self.errorAlert(message: "Error", repeatedBlock: {
                                     self.writeDataFile(dataManager: dataManager)
                                 }, okBlock: {
@@ -218,7 +210,7 @@ class ProfileViewController: UIViewController {
         
     }
     
-    func finishedEditing(){
+    func finishedEditing() {
         editButton.isHidden = false
         buttonGCD.isHidden = true
         buttonOperation.isHidden = true
@@ -231,7 +223,7 @@ class ProfileViewController: UIViewController {
         aboutTextField.isHidden = true
     }
     
-    //MARK: - Function keyBoard
+    // MARK: - Function keyBoard
     
     @objc func keyBoard(notification: Notification) {
            
@@ -249,8 +241,7 @@ class ProfileViewController: UIViewController {
            }
        }
     
-    
-    //MARK: - The Initial Edition Profile
+    // MARK: - The Initial Edition Profile
     
     func editingProfile() {
         buttonGCD.isHidden = true
@@ -273,7 +264,7 @@ class ProfileViewController: UIViewController {
         
     }
     
-    //MARK: - Functions for Initials
+    // MARK: - Functions for Initials
     
     func initialsName(name: String) -> String {
         let firstLetter = name[name.startIndex]
@@ -293,20 +284,19 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    
-    //MARK: - Edit Profile Photo Button Is Tapped
+    // MARK: - Edit Profile Photo Button Is Tapped
     
     @IBAction func editProfilePhotoButtonTapped(_ sender: UIButton) {
         let sheet = UIAlertController(title: "Choose Your Profile Photo", message: "", preferredStyle: .actionSheet)
         
-        let fromLibrary = UIAlertAction(title: "Choose Photo", style: .default) { (action) in
+        let fromLibrary = UIAlertAction(title: "Choose Photo", style: .default) { (_) in
             self.imagePicker.sourceType = .photoLibrary
             self.present(self.imagePicker, animated: true, completion: nil)
             self.buttonGCD.isEnabled = true
             self.buttonOperation.isEnabled = true
         }
         
-        let makePhoto = UIAlertAction(title: "Take Photo", style: .default) { (action) in
+        let makePhoto = UIAlertAction(title: "Take Photo", style: .default) { (_) in
             
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 self.imagePicker.sourceType = .camera
@@ -318,7 +308,7 @@ class ProfileViewController: UIViewController {
             }
         }
         
-        let removePhoto = UIAlertAction(title: "Remove Photo", style: .destructive) { (action) in
+        let removePhoto = UIAlertAction(title: "Remove Photo", style: .destructive) { (_) in
             self.profilePhoto.image = UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1")
             self.firstLetterName.isHidden = false
             self.firstLetterSurname.isHidden = false
@@ -335,7 +325,7 @@ class ProfileViewController: UIViewController {
         present(sheet, animated: true, completion: nil)
     }
     
-    //MARK: - Changing Theme
+    // MARK: - Changing Theme
     
     func changeTheme() {
          navigationController?.navigationBar.barTintColor = Theme.currentTheme.backgroundColor
@@ -349,7 +339,7 @@ class ProfileViewController: UIViewController {
         
      }
     
-    //MARK: - Edit Button Is Tapped
+    // MARK: - Edit Button Is Tapped
     
     @IBAction func editButtonIsTapped(_ sender: UIButton) {
         
@@ -378,18 +368,18 @@ class ProfileViewController: UIViewController {
         writeDataFile(dataManager: operationDataManager)
     }
     
-    //MARK: - Alert Functions
+    // MARK: - Alert Functions
     
-    func errorAlert(message: String,  repeatedBlock: @escaping (() -> Void), okBlock: @escaping (() -> Void)) {
+    func errorAlert(message: String, repeatedBlock: @escaping (() -> Void), okBlock: @escaping (() -> Void)) {
            let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
            
-           let okAction = UIAlertAction(title: "OK", style: .default) { action in
+           let okAction = UIAlertAction(title: "OK", style: .default) { _ in
                okBlock()
            }
            
            alert.addAction(okAction)
            
-           let repeatAction = UIAlertAction(title: "Повторить", style: .default) { action in
+           let repeatAction = UIAlertAction(title: "Повторить", style: .default) { _ in
                repeatedBlock()
            }
            alert.addAction(repeatAction)
@@ -399,8 +389,7 @@ class ProfileViewController: UIViewController {
        
        func editingSuccessfulAlert(title: String = "", message: String, okBlock: @escaping (() -> Void)) {
            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-           let okAction = UIAlertAction(title: "OK", style: .default) {
-               action in okBlock()
+           let okAction = UIAlertAction(title: "OK", style: .default) { _ in okBlock()
            }
            alert.addAction(okAction)
            
@@ -408,11 +397,11 @@ class ProfileViewController: UIViewController {
        }
 }
 
-//MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             profilePhoto.image = image
@@ -429,7 +418,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
 }
 
-//MARK: - UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 
 extension ProfileViewController: UITextFieldDelegate {
     
@@ -455,7 +444,3 @@ extension ProfileViewController: UITextFieldDelegate {
            activeField = nil
        }
 }
-
-
-
-
