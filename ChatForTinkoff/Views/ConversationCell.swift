@@ -7,11 +7,11 @@
 //
 
 import UIKit
+import Firebase
 
 class ConversationCell: UITableViewCell, ConfigurableView {
     
-    typealias ConfigurationModel = ConversationCellModel
-    
+    typealias ConfigurationModel = Channel
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -32,48 +32,42 @@ class ConversationCell: UITableViewCell, ConfigurableView {
         // Configure the view for the selected state
     }
     
-    func configure(with model: ConversationCellModel) {
-        nameLabel.text  = model.name
+    func configure(with model: Channel) {
+        nameLabel.text = model.name
+        contentView.backgroundColor = Theme.currentTheme.conversationListColor
+        nameLabel.textColor = Theme.currentTheme.textColor
+        messageLabel.textColor = Theme.currentTheme.textColor
         
-        if model.message == "" {
+        if model.lastMessage == nil || model.lastMessage == "" {
             messageLabel.text = "No messages yet"
             messageLabel.font = UIFont.italicSystemFont(ofSize: 13)
-        }
-        else {
-            messageLabel.text = model.message
+        } else {
+            messageLabel.text = model.lastMessage
         }
         
-        if Calendar.current.isDateInToday(model.date) {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "HH:mm"
-            if model.message == "" {
-                dateLabel.text = ""
-            }
-            else {
-            dateLabel.text = formatter.string(from: model.date)
-            }
-        } else {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd MMM"
-            if model.message == "" {
-                dateLabel.text = ""
-            }
-            else {
-            dateLabel.text = formatter.string(from: model.date)
+        if let lastActivity = model.lastActivity {
+            if Calendar.current.isDateInToday(lastActivity) {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "HH:mm"
+                if model.lastMessage == nil || model.lastMessage == "" {
+                    dateLabel.text = ""
+                } else {
+                    dateLabel.text = formatter.string(from: lastActivity)
+                }
+            } else {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "dd MMM"
+                if model.lastMessage == nil || model.lastMessage == "" {
+                    dateLabel.text = ""
+                } else {
+                    dateLabel.text = formatter.string(from: lastActivity)
+                }
             }
         }
-        
-        if model.isOnline {
-            contentView.backgroundColor = Theme.currentTheme.conversationListOnline
-            nameLabel.textColor = Theme.currentTheme.textColor
-            messageLabel.textColor = Theme.currentTheme.textColor
-        } else {
-            contentView.backgroundColor = Theme.currentTheme.conversationListHistory
-            nameLabel.textColor = Theme.currentTheme.textColor
-            messageLabel.textColor = Theme.currentTheme.textColor        }
-        if model.hasUnreadMessages {
-            messageLabel.font = UIFont.systemFont(ofSize: 13, weight: .bold)
-        }
+            // ВНИМАНИЕ ВНИМАЕНИЕ ВНИМАНИЕ
+//        else {
+//            dateLabel.isHidden = true
+//        }
     }
     
     override func prepareForReuse() {

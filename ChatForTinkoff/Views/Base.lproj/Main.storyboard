@@ -72,29 +72,21 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JHh-FR-Zcu">
                                         <rect key="frame" x="16" y="8" width="343" height="34"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIM-dt-EzJ">
-                                                <rect key="frame" x="0.0" y="7.5" width="19" height="19"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="19" id="i8D-vs-WbK"/>
-                                                    <constraint firstAttribute="height" constant="19" id="q9C-z5-QgT"/>
-                                                </constraints>
-                                                <state key="normal" image="plus"/>
-                                            </button>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KnV-67-Jb9">
-                                                <rect key="frame" x="27" y="0.0" width="289" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="294" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="EOa-pu-Avw"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FfM-me-Ugy">
-                                                <rect key="frame" x="324" y="7.5" width="19" height="19"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="19" id="H86-Je-Gm0"/>
-                                                    <constraint firstAttribute="width" constant="19" id="kka-De-W6W"/>
-                                                </constraints>
-                                                <state key="normal" image="right-arrow"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FfM-me-Ugy">
+                                                <rect key="frame" x="302" y="0.5" width="41" height="33"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                                <state key="normal" title="Send"/>
+                                                <connections>
+                                                    <action selector="messageButton:" destination="hDE-Iq-X7u" eventType="touchUpInside" id="QYV-vo-5qF"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -125,7 +117,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Conversation" id="zbD-7R-UyF"/>
                     <connections>
+                        <outlet property="messageTextField" destination="KnV-67-Jb9" id="GnS-y7-Xcn"/>
                         <outlet property="messagesTableView" destination="3pE-vQ-C2w" id="D4j-bi-2LA"/>
+                        <outlet property="sendButton" destination="FfM-me-Ugy" id="XOr-4F-Aks"/>
+                        <outlet property="textfieldView" destination="DaF-6d-KLS" id="zed-Wr-Qu9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UXK-DY-zaD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -404,8 +399,4 @@
             <point key="canvasLocation" x="1696.8" y="-79.610194902548727"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="plus" width="512" height="512"/>
-        <image name="right-arrow" width="512" height="512"/>
-    </resources>
 </document>

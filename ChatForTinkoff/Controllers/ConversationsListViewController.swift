@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import Firebase
 
 class ConversationsListViewController: UIViewController {
     
     @IBOutlet weak var conversationList: UITableView!
     
-    let headTitles = ["Online", "History"]
-    let conversationsExamples = ConversationsExamples()
+    let headTitles = ["Channels"]
+    var channels: [Channel] = []
+    
+    private lazy var db = Firestore.firestore()
+    private lazy var reference = db.collection("channels")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,12 +25,44 @@ class ConversationsListViewController: UIViewController {
         navigationBarItems()
         
         conversationList.dataSource = self
-        conversationList.delegate  = self
+        conversationList.delegate = self
                     
-        conversationList.register(UINib(nibName: K.ConversationList.cellNibName, bundle: nil), forCellReuseIdentifier: K.ConversationList.cellIdentifier)
+        conversationList.register(UINib(nibName: Key.ConversationList.cellNibName, bundle: nil), forCellReuseIdentifier: Key.ConversationList.cellIdentifier)
         
         setupTheme()
+        loadChannels()
         
+    }
+    
+    func loadChannels() {
+        reference.order(by: Key.FStore.lastActivity).addSnapshotListener { [weak self] querySnapshot, error in
+            self?.channels = []
+            
+            if let e = error {
+                print("There was an issue retrieving data from Firestore. \(e)")
+            } else {
+                if let snapshotDocuments = querySnapshot?.documents {
+                    for doc in snapshotDocuments {
+                        let data = doc.data()
+                    
+                        let channelTimestamp = data[Key.FStore.lastActivity] as? Timestamp ??
+                            Timestamp(date: Date(timeIntervalSince1970: 0))
+                        let channelLastActivity = channelTimestamp.dateValue()
+                        
+                        let channelIdentifier = doc.documentID
+                        let channelLastMessage = data[Key.FStore.lastMessage] as? String
+                        if let channelName = data[Key.FStore.name] as? String {
+                            let newChannel = Channel(identifier: channelIdentifier, name: channelName, lastMessage: channelLastMessage, lastActivity: channelLastActivity)
+                            self?.channels.append(newChannel)
+                            
+                            DispatchQueue.main.async {
+                                self?.conversationList.reloadData()
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,7 +70,6 @@ class ConversationsListViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
 
     }
-    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -44,19 +79,49 @@ class ConversationsListViewController: UIViewController {
     func navigationBarItems() {
         title = "Tinkoff Chat"
 
-        let profileButton = UIBarButtonItem(image: UIImage(imageLiteralResourceName: "user"), style: .plain , target: self, action: #selector(profileImageIsTapped))
-        navigationItem.rightBarButtonItem = profileButton
+        let profileButton = UIBarButtonItem(image: UIImage(imageLiteralResourceName: "user"), style: .plain, target: self, action: #selector(profileImageIsTapped))
+        let addChannelButton = UIBarButtonItem(image: UIImage(imageLiteralResourceName: "plus-1"), style: .plain, target: self, action: #selector(addChannelIsTapped))
 
-        let settingsButton = UIBarButtonItem(image: UIImage(imageLiteralResourceName: "settings-black") , style: .plain, target: self, action: #selector(settingsButtonIsTapped))
+        navigationItem.rightBarButtonItems = [addChannelButton, profileButton]
+
+        let settingsButton = UIBarButtonItem(image: UIImage(imageLiteralResourceName: "settings-black"), style: .plain, target: self, action: #selector(settingsButtonIsTapped))
         navigationItem.setLeftBarButton(settingsButton, animated: true)
         
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
+    @objc func addChannelIsTapped() {
+        
+        var textField = UITextField()
+        
+        let alert = UIAlertController(title: "Add New Channel", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Add", style: .default) { (_) in
+            if let chName = textField.text {
+                self.reference.addDocument(data: [Key.FStore.name: chName, Key.FStore.lastMessage: "", Key.FStore.lastActivity: ""]) { (error) in
+                if let e = error {
+                    print("There was an issue saving data to firestore, \(e)")
+                } else {
+                    print("Successfully saved data.")
+                    }
+            }
+        }
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Create new channel"
+            textField = alertTextField
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(action)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
     @objc func settingsButtonIsTapped() {
        
-        let themesStoryboard: UIStoryboard = UIStoryboard(name: K.ThemesViewController.themeStoryBoard, bundle: nil)
-        guard let themesViewController = themesStoryboard.instantiateViewController(withIdentifier: K.ThemesViewController.themesViewControllerId) as? ThemesViewController else { return }
+        let themesStoryboard: UIStoryboard = UIStoryboard(name: Key.ThemesViewController.themeStoryBoard, bundle: nil)
+        guard let themesViewController = themesStoryboard.instantiateViewController(withIdentifier: Key.ThemesViewController.themesVCId) as? ThemesViewController else { return }
         
 //       themesViewController.themesPickerDelegate = self
         themesViewController.themesClosure = { [weak self] in
@@ -68,8 +133,8 @@ class ConversationsListViewController: UIViewController {
     }
     
     @objc func profileImageIsTapped() {
-        let storyboard = UIStoryboard(name: K.StoryBoardName.mainStoryBoard, bundle: nil)
-        let profileViewController = storyboard.instantiateViewController(withIdentifier: K.NavigationProfileView.navigationProfileView)
+        let storyboard = UIStoryboard(name: Key.StoryBoardName.mainStoryBoard, bundle: nil)
+        let profileViewController = storyboard.instantiateViewController(withIdentifier: Key.NavigationProfileView.navigationProfileView)
         self.present(profileViewController, animated: true)
     }
     
@@ -88,15 +153,11 @@ class ConversationsListViewController: UIViewController {
        }
 }
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 
 extension ConversationsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return conversationsExamples.conversationCellModel.filter() {$0.isOnline}.count
-        } else {
-            return conversationsExamples.conversationCellModel.filter() {!$0.isOnline && $0.message != ""}.count
-        }
+        return channels.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -109,45 +170,31 @@ extension ConversationsListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: K.ConversationList.cellIdentifier, for: indexPath) as? ConversationCell else { return UITableViewCell() }
-        
-        if indexPath.section == 0 {
-            let sortedByDate = conversationsExamples.conversationCellModel.sorted() { $0.date > $1.date }
-            let cellIsOnline = sortedByDate.filter() {$0.isOnline}
-            cell.configure(with: cellIsOnline[indexPath.row])
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Key.ConversationList.cellIdentifier, for: indexPath) as? ConversationCell else { return UITableViewCell() }
+
+            cell.configure(with: channels[indexPath.row])
             return cell
-        } else {
-            let sortedByDate = conversationsExamples.conversationCellModel.sorted() { $0.date > $1.date }
-            let cellIsHistory = sortedByDate.filter() {!$0.isOnline && $0.message != ""}
-            cell.configure(with: cellIsHistory[indexPath.row])
-            return cell
-        }
     }
 }
 
-//MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate
 
-extension ConversationsListViewController: UITableViewDelegate  {
+extension ConversationsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: K.StoryBoardName.mainStoryBoard, bundle: nil)
-        guard let conversationViewController = mainStoryboard.instantiateViewController(withIdentifier: K.Conversation.conversationViewControllerId) as? ConversationViewController else { return }
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: Key.StoryBoardName.mainStoryBoard, bundle: nil)
+        
+        guard let conversationViewController = mainStoryboard.instantiateViewController(withIdentifier: Key.Conversation.conversationVCId) as? ConversationViewController
+        else { return }
+        
         navigationController?.pushViewController(conversationViewController, animated: false)
         
-        if indexPath.section == 0 {
-            let sortedByDate = conversationsExamples.conversationCellModel.sorted() { $0.date > $1.date }
-            let cellIsOnline = sortedByDate.filter() {$0.isOnline}
-            conversationViewController.title = cellIsOnline[indexPath.row].name
-        } else {
-            let sortedByDate = conversationsExamples.conversationCellModel.sorted() { $0.date > $1.date }
-            let cellIsHistory = sortedByDate.filter() {!$0.isOnline && $0.message != ""}
-            conversationViewController.title = cellIsHistory[indexPath.row].name
-        
-        }
+        conversationViewController.title = channels[indexPath.row].name
+        conversationViewController.identifier = channels[indexPath.row].identifier
     }
 }
 
-//MARK: - ThemesPickerDelegate
+// MARK: - ThemesPickerDelegate
 
 extension ConversationsListViewController: ThemesPickerDelegate {
     func changeTheme(_ themesViewController: ThemesViewController) {

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "right-arrow.pdf",
+      "filename" : "plus.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "right-arrow@2x.pdf",
+      "filename" : "plus@2x.pdf",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "right-arrow@3x.pdf",
+      "filename" : "plus@3x.pdf",
       "idiom" : "universal",
       "scale" : "3x"
     }

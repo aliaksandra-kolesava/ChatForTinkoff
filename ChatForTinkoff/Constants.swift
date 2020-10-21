@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct K {
+struct Key {
     
     class ConversationList {
     static let cellIdentifier = "ConversationCellList"
@@ -19,7 +19,7 @@ struct K {
     class Conversation {
         static let cellIdentifier = "ReusableCell"
         static let cellNibName = "MessageCell"
-        static let conversationViewControllerId = "ConversationViewController"
+        static let conversationVCId = "ConversationViewController"
     }
     
     class StoryBoardName {
@@ -32,12 +32,26 @@ struct K {
     
     class ThemesViewController {
         static let themeStoryBoard = "Themes"
-        static let themesViewControllerId = "ThemesViewController"
+        static let themesVCId = "ThemesViewController"
     }
     
     class ProfileInfoKeys {
         static let nameData = "nameData"
         static let aboutYourselfData = "aboutYourselfData"
         static let imageData = "imageData"
+    }
+    
+    class FStore {
+        static let channels = "channels"
+        
+        static let identifier = "identifier"
+        static let name = "name"
+        static let lastMessage = "lastMessage"
+        static let lastActivity = "lastActivity"
+        
+        static let content = "content"
+        static let created = "created"
+        static let senderId = "senderId"
+        static let senderName = "senderName"
     }
 }

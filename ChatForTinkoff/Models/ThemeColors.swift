@@ -80,7 +80,6 @@ enum ThemeColors: Int {
         }
     }
     
-    
     var myProfileSaveButton: UIColor {
         switch self {
         case .classic:
@@ -114,17 +113,7 @@ enum ThemeColors: Int {
         }
     }
     
-    var conversationListOnline: UIColor {
-        switch self {
-        case .classic:
-            return #colorLiteral(red: 1, green: 0.9529411765, blue: 0.8039215686, alpha: 1)
-        case .day:
-            return #colorLiteral(red: 1, green: 0.9529411765, blue: 0.8039215686, alpha: 1)
-        case .night:
-            return #colorLiteral(red: 0.1803921569, green: 0.1803921569, blue: 0.1803921569, alpha: 1)
-        }
-    }
-    var conversationListHistory: UIColor {
+    var conversationListColor: UIColor {
         switch self {
         case .classic:
             return .white
