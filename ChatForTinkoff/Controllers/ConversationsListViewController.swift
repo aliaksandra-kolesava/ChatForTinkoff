@@ -47,7 +47,7 @@ class ConversationsListViewController: UIViewController {
                     
                         let channelTimestamp = data[Key.FStore.lastActivity] as? Timestamp ??
                             Timestamp(date: Date(timeIntervalSince1970: 0))
-                        let   channelLastActivity = channelTimestamp.dateValue()
+                        let channelLastActivity = channelTimestamp.dateValue()
                         
                         let channelIdentifier = doc.documentID
                         let channelLastMessage = data[Key.FStore.lastMessage] as? String
