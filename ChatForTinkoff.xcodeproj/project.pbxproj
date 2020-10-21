@@ -14,6 +14,8 @@
 		3B15E282250E0C7600BC7E69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B15E280250E0C7600BC7E69 /* LaunchScreen.storyboard */; };
 		3B15E28C250E107300BC7E69 /* SwitchLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15E28B250E107300BC7E69 /* SwitchLogs.swift */; };
 		3B5EFD73253C5E3700E19AA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B5EFD72253C5E3700E19AA1 /* GoogleService-Info.plist */; };
+		3B5EFD76253D908700E19AA1 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5EFD75253D908700E19AA1 /* Channel.swift */; };
+		3B5EFD78253D912000E19AA1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5EFD77253D912000E19AA1 /* Message.swift */; };
 		3B65B76625347866004B760E /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B76525347866004B760E /* GCDDataManager.swift */; };
 		3B65B7682534789F004B760E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B7672534789F004B760E /* DataManager.swift */; };
 		3B65B76A253478B1004B760E /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B769253478B1004B760E /* OperationDataManager.swift */; };
@@ -25,15 +27,12 @@
 		3B7D32622514F2BB002FD929 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D32612514F2BB002FD929 /* SF-Pro-Display-Regular.otf */; };
 		3B7D326525175913002FD929 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D326425175913002FD929 /* SF-Pro-Text-Regular.otf */; };
 		3B7D326725175CA6002FD929 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D326625175CA6002FD929 /* Roboto-Regular.ttf */; };
-		3B7D326F251DF02D002FD929 /* ConversationCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D326E251DF02D002FD929 /* ConversationCellModel.swift */; };
 		3B7D3271251DF43B002FD929 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D3270251DF43A002FD929 /* ConversationsListViewController.swift */; };
 		3B7D3273251DF6D0002FD929 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D3272251DF6D0002FD929 /* Constants.swift */; };
 		3B7D3279251E06B0002FD929 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D3277251E06B0002FD929 /* ConversationCell.swift */; };
 		3B7D327A251E06B0002FD929 /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D3278251E06B0002FD929 /* ConversationCell.xib */; };
 		3B7D327C25221097002FD929 /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D327B25221096002FD929 /* ConfigurableView.swift */; };
-		3B7D327E25221D06002FD929 /* ConversationsExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D327D25221D06002FD929 /* ConversationsExamples.swift */; };
 		3B7D328225226BA9002FD929 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D328125226BA9002FD929 /* ConversationViewController.swift */; };
-		3B7D328425232BC1002FD929 /* MessageCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D328325232BC1002FD929 /* MessageCellModel.swift */; };
 		3B7D328725233752002FD929 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D328525233752002FD929 /* MessageCell.swift */; };
 		3B7D328825233752002FD929 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D328625233752002FD929 /* MessageCell.xib */; };
 		3B7D32902529E0C9002FD929 /* Themes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D328F2529E0C8002FD929 /* Themes.storyboard */; };
@@ -51,6 +50,8 @@
 		3B15E283250E0C7600BC7E69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B15E28B250E107300BC7E69 /* SwitchLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchLogs.swift; sourceTree = "<group>"; };
 		3B5EFD72253C5E3700E19AA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3B5EFD75253D908700E19AA1 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		3B5EFD77253D912000E19AA1 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		3B65B76525347866004B760E /* GCDDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
 		3B65B7672534789F004B760E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		3B65B769253478B1004B760E /* OperationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
@@ -62,15 +63,12 @@
 		3B7D32612514F2BB002FD929 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		3B7D326425175913002FD929 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		3B7D326625175CA6002FD929 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
-		3B7D326E251DF02D002FD929 /* ConversationCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCellModel.swift; sourceTree = "<group>"; };
 		3B7D3270251DF43A002FD929 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		3B7D3272251DF6D0002FD929 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3B7D3277251E06B0002FD929 /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		3B7D3278251E06B0002FD929 /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
 		3B7D327B25221096002FD929 /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
-		3B7D327D25221D06002FD929 /* ConversationsExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsExamples.swift; sourceTree = "<group>"; };
 		3B7D328125226BA9002FD929 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
-		3B7D328325232BC1002FD929 /* MessageCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellModel.swift; sourceTree = "<group>"; };
 		3B7D328525233752002FD929 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		3B7D328625233752002FD929 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		3B7D328F2529E0C8002FD929 /* Themes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Themes.storyboard; sourceTree = "<group>"; };
@@ -166,14 +164,13 @@
 		3B7D3275251E062F002FD929 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3B7D326E251DF02D002FD929 /* ConversationCellModel.swift */,
 				3B7D327B25221096002FD929 /* ConfigurableView.swift */,
-				3B7D327D25221D06002FD929 /* ConversationsExamples.swift */,
-				3B7D328325232BC1002FD929 /* MessageCellModel.swift */,
 				3B6D6919252B7EE600EAE76F /* ThemesPickerDelegate.swift */,
 				3B6D691B252BA38000EAE76F /* ThemeColors.swift */,
 				3B6D691D252C77FF00EAE76F /* Theme.swift */,
 				3B65B76D2534AB93004B760E /* ProfileInfo.swift */,
+				3B5EFD75253D908700E19AA1 /* Channel.swift */,
+				3B5EFD77253D912000E19AA1 /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -348,8 +345,6 @@
 			files = (
 				3B65B76E2534AB93004B760E /* ProfileInfo.swift in Sources */,
 				3B15E27A250E0C7300BC7E69 /* ProfileViewController.swift in Sources */,
-				3B7D328425232BC1002FD929 /* MessageCellModel.swift in Sources */,
-				3B7D327E25221D06002FD929 /* ConversationsExamples.swift in Sources */,
 				3B7D32922529E1BE002FD929 /* ThemesViewController.swift in Sources */,
 				3B7D328225226BA9002FD929 /* ConversationViewController.swift in Sources */,
 				3B65B76625347866004B760E /* GCDDataManager.swift in Sources */,
@@ -357,11 +352,12 @@
 				3B65B7682534789F004B760E /* DataManager.swift in Sources */,
 				3B7D328725233752002FD929 /* MessageCell.swift in Sources */,
 				3B15E276250E0C7300BC7E69 /* AppDelegate.swift in Sources */,
-				3B7D326F251DF02D002FD929 /* ConversationCellModel.swift in Sources */,
 				3B15E28C250E107300BC7E69 /* SwitchLogs.swift in Sources */,
+				3B5EFD76253D908700E19AA1 /* Channel.swift in Sources */,
 				3B6D691A252B7EE600EAE76F /* ThemesPickerDelegate.swift in Sources */,
 				3B6D691E252C77FF00EAE76F /* Theme.swift in Sources */,
 				3B65B76A253478B1004B760E /* OperationDataManager.swift in Sources */,
+				3B5EFD78253D912000E19AA1 /* Message.swift in Sources */,
 				3B7D3273251DF6D0002FD929 /* Constants.swift in Sources */,
 				3B7D3279251E06B0002FD929 /* ConversationCell.swift in Sources */,
 				3B65B76C25347DA9004B760E /* Files.swift in Sources */,
