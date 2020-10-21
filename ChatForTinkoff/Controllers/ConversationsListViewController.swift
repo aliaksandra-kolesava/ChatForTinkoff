@@ -158,7 +158,6 @@ class ConversationsListViewController: UIViewController {
 extension ConversationsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return channels.count
-//            return conversationsExamples.conversationCellModel.filter {$0.isOnline}.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
