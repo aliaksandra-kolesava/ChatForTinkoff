@@ -175,11 +175,11 @@ class ProfileViewController: UIViewController {
         let image = profilePhoto.image ?? UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1")
         
         let newProfile = ProfileInfo(name: textName, aboutYourself: textAboutYourself, profileImage: image)
+        self.activityIndicator.startAnimating()
         
         do {
             let newData = try NSKeyedArchiver.archivedData(withRootObject: newProfile, requiringSecureCoding: false)
             
-            self.activityIndicator.startAnimating()
             buttonGCD.isEnabled = false
             buttonOperation.isEnabled = false
             

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class ConversationViewController: UIViewController {
     
@@ -17,6 +18,14 @@ class ConversationViewController: UIViewController {
     @IBOutlet weak var sendButton: UIButton!
     
     var messageCells: [Message] = []
+    var channel: Channel?
+    var mesArr: [Message_db] = []
+    
+//    var channelDB: Channel_db? {
+//        didSet {
+//            CoreDataStack.shared.amountOfMessages(channelsIdentifier: identifier ?? "")
+//        }
+//    }
     
     var identifier: String?
     
@@ -39,7 +48,7 @@ class ConversationViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
-
+    
     @objc func keyboardWillChange(notification: Notification) {
         
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
@@ -48,7 +57,7 @@ class ConversationViewController: UIViewController {
         
         if notification.name == UIResponder.keyboardWillShowNotification ||
             notification.name == UIResponder.keyboardWillChangeFrameNotification {
-        view.frame.origin.y = -keyboardRect.height
+            view.frame.origin.y = -keyboardRect.height
         } else {
             view.frame.origin.y = 0
         }
@@ -80,7 +89,7 @@ class ConversationViewController: UIViewController {
                             let mesSenderId = messageData[Key.FStore.senderId] as? String,
                             let mesSenderName = messageData[Key.FStore.senderName] as? String {
                             
-                            let newMes = Message(content: mesContent, created: mesCreated, senderId: mesSenderId, senderName: mesSenderName)
+                            let newMes = Message(identifier: self.identifier ?? "", content: mesContent, created: mesCreated, senderId: mesSenderId, senderName: mesSenderName)
                             self.messageCells.append(newMes)
                             
                             DispatchQueue.main.async {
@@ -90,11 +99,32 @@ class ConversationViewController: UIViewController {
                             }
                         }
                     }
+                    if let channelNonOpt = self.channel {
+                        self.makeRequest(messagesArray: self.messageCells, channel: channelNonOpt)
+                    }
                 }
             }
         }
     }
     
+    func makeRequest(messagesArray: [Message], channel: Channel) {
+        CoreDataStack.shared.performSave { context in
+            
+            messagesArray.forEach { message in
+                let newMessage = Message_db(context: context)
+                newMessage.content = message.content
+                newMessage.created = message.created
+                newMessage.senderId = message.senderId
+                newMessage.senderName = message.senderName
+                newMessage.identifier = message.identifier
+                
+                mesArr.append(newMessage)
+            }
+            CoreDataStack.shared.messagesInCurrentChannel(channelsIdentifier: identifier ?? "")
+            CoreDataStack.shared.amountOfMessages()
+        }
+    }
+
     @IBAction func messageButton(_ sender: UIButton) {
         if let messageContent = messageTextField.text, let messageSenderId = UIDevice.current.identifierForVendor?.uuidString {
             reference.document(identifier ?? "").collection("messages").addDocument(data: [
