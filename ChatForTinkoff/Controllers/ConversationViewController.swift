@@ -98,6 +98,7 @@ class ConversationViewController: UIViewController {
     }
     
     func makeRequest(with request: NSFetchRequest<Channel_db> = Channel_db.fetchRequest(), messagesArray: [Message]) {
+        CoreDataStack.shared.clearDataInCurrentChannel(channelsIdentifier: identifier ?? "")
         CoreDataStack.shared.performSave { (context) in
             let array = try? context.fetch(request)
             if let channelDB = array?.first {
@@ -115,10 +116,10 @@ class ConversationViewController: UIViewController {
                     channelDB.addToMessages_db(message)
                 }
             }
-             CoreDataStack.shared.messagesInCurrentChannel(channelsIdentifier: identifier ?? "")
-             CoreDataStack.shared.amountOfMessages()
-             CoreDataStack.shared.contentOfMessages(channelsIdentifier: identifier ?? "")
         }
+        CoreDataStack.shared.messagesInCurrentChannel(channelsIdentifier: identifier ?? "")
+        CoreDataStack.shared.amountOfMessages()
+        CoreDataStack.shared.contentOfMessages(channelsIdentifier: identifier ?? "")
     }
 
     @IBAction func messageButton(_ sender: UIButton) {

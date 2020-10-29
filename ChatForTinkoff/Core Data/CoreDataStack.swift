@@ -183,14 +183,18 @@ class CoreDataStack {
         }
     }
     
-    func deleteStore() {
-        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-        do {
-            try coordinator.destroyPersistentStore(at: storeUrl,
-                                                   ofType: NSSQLiteStoreType,
-                                                   options: nil)
-        } catch {
-            fatalError(error.localizedDescription)
+    func clearDataInCurrentChannel(with request: NSFetchRequest<Message_db> = Message_db.fetchRequest(), channelsIdentifier: String) {
+        mainContext.perform {
+            let predicate = NSPredicate(format: "identifier = %@", channelsIdentifier)
+            request.predicate = predicate
+            do {
+                let messages = try self.mainContext.fetch(request)
+                messages.forEach { message in
+                    self.mainContext.delete(message)
+                }
+            } catch {
+                fatalError(error.localizedDescription)
+            }
         }
     }
 }
