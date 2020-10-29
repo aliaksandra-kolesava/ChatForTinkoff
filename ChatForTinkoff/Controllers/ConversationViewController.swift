@@ -18,14 +18,6 @@ class ConversationViewController: UIViewController {
     @IBOutlet weak var sendButton: UIButton!
     
     var messageCells: [Message] = []
-    var channel: Channel?
-    var mesArr: [Message_db] = []
-    
-//    var channelDB: Channel_db? {
-//        didSet {
-//            CoreDataStack.shared.amountOfMessages(channelsIdentifier: identifier ?? "")
-//        }
-//    }
     
     var identifier: String?
     
@@ -99,29 +91,33 @@ class ConversationViewController: UIViewController {
                             }
                         }
                     }
-                    if let channelNonOpt = self.channel {
-                        self.makeRequest(messagesArray: self.messageCells, channel: channelNonOpt)
-                    }
+                    self.makeRequest(messagesArray: self.messageCells)
                 }
             }
         }
     }
     
-    func makeRequest(messagesArray: [Message], channel: Channel) {
-        CoreDataStack.shared.performSave { context in
-            
-            messagesArray.forEach { message in
-                let newMessage = Message_db(context: context)
-                newMessage.content = message.content
-                newMessage.created = message.created
-                newMessage.senderId = message.senderId
-                newMessage.senderName = message.senderName
-                newMessage.identifier = message.identifier
-                
-                mesArr.append(newMessage)
+    func makeRequest(with request: NSFetchRequest<Channel_db> = Channel_db.fetchRequest(), messagesArray: [Message]) {
+        CoreDataStack.shared.performSave { (context) in
+            let array = try? context.fetch(request)
+            if let channelDB = array?.first {
+                var mes_db: [Message_db] = []
+                messagesArray.forEach { message in
+                    let newMessage = Message_db(context: context)
+                    newMessage.content = message.content
+                    newMessage.created = message.created
+                    newMessage.senderId = message.senderId
+                    newMessage.senderName = message.senderName
+                    newMessage.identifier = message.identifier
+                    mes_db.append(newMessage)
+                }
+                mes_db.forEach { message in
+                    channelDB.addToMessages_db(message)
+                }
             }
-            CoreDataStack.shared.messagesInCurrentChannel(channelsIdentifier: identifier ?? "")
-            CoreDataStack.shared.amountOfMessages()
+             CoreDataStack.shared.messagesInCurrentChannel(channelsIdentifier: identifier ?? "")
+             CoreDataStack.shared.amountOfMessages()
+             CoreDataStack.shared.contentOfMessages(channelsIdentifier: identifier ?? "")
         }
     }
 

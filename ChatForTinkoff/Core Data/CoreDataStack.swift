@@ -131,6 +131,19 @@ class CoreDataStack {
         }
     }
     
+    func nameOfChannels() {
+        mainContext.perform {
+            do {
+                let name = try self.mainContext.fetch(Channel_db.fetchRequest()) as? [Channel_db] ?? []
+                name.forEach {
+                    print($0.name ?? "")
+                }
+            } catch {
+                fatalError(error.localizedDescription)
+            }
+        }
+    }
+    
     func messagesInCurrentChannel(with request: NSFetchRequest<Message_db> = Message_db.fetchRequest(), channelsIdentifier: String) {
           mainContext.perform {
             let predicate = NSPredicate(format: "identifier = %@", channelsIdentifier)
@@ -138,6 +151,21 @@ class CoreDataStack {
             do {
                 let count = try self.mainContext.count(for: request)
                 print("\(count) messages in this channel")
+            } catch {
+                fatalError(error.localizedDescription)
+            }
+        }
+    }
+    
+    func contentOfMessages(with request: NSFetchRequest<Message_db> = Message_db.fetchRequest(), channelsIdentifier: String) {
+        mainContext.perform {
+            let predicate = NSPredicate(format: "identifier = %@", channelsIdentifier)
+            request.predicate = predicate
+            do {
+                let content = try self.mainContext.fetch(request)
+                content.forEach {
+                    print($0.content ?? "")
+                }
             } catch {
                 fatalError(error.localizedDescription)
             }

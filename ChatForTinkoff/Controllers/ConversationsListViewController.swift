@@ -15,7 +15,6 @@ class ConversationsListViewController: UIViewController {
     
     let headTitles = ["Channels"]
     var channels: [Channel] = []
-    var channels_db: [Channel_db] = []
     
     private lazy var db = Firestore.firestore()
     private lazy var reference = db.collection("channels")
@@ -25,7 +24,7 @@ class ConversationsListViewController: UIViewController {
         super.viewDidLoad()
         
         navigationBarItems()
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+//        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
         conversationList.dataSource = self
         conversationList.delegate = self
@@ -78,9 +77,9 @@ class ConversationsListViewController: UIViewController {
                     newChannel.name = channel.name
                     newChannel.lastMessage = channel.lastMessage
                     newChannel.lastActivity = channel.lastActivity
-                    channels_db.append(newChannel)
                 }
                 CoreDataStack.shared.amountOfChannels()
+                CoreDataStack.shared.nameOfChannels()
         }
     }
     
@@ -210,8 +209,6 @@ extension ConversationsListViewController: UITableViewDelegate {
         
         conversationViewController.title = channels[indexPath.row].name
         conversationViewController.identifier = channels[indexPath.row].identifier
-        conversationViewController.channel = channels[indexPath.row]
-//        conversationViewController.channelDB = channels_db[indexPath.row]
         
     }
 }
