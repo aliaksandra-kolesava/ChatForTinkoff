@@ -77,6 +77,7 @@ class CoreDataStack {
             block(context)
             if context.hasChanges {
                 do {
+                    try context.obtainPermanentIDs(for: Array(context.insertedObjects))
                     try performSave(in: context)
                 } catch {
                     assertionFailure(error.localizedDescription)
@@ -119,82 +120,12 @@ class CoreDataStack {
         }
     }
     
-    func amountOfChannels() {
-          mainContext.perform {
-            do {
-                let count = try self.mainContext.count(for: Channel_db.fetchRequest())
-                print("\(count) channels")
-            
-            } catch {
-                fatalError(error.localizedDescription)
-            }
-        }
-    }
-    
-    func nameOfChannels() {
-        mainContext.perform {
-            do {
-                let name = try self.mainContext.fetch(Channel_db.fetchRequest()) as? [Channel_db] ?? []
-                name.forEach {
-                    print($0.name ?? "")
-                }
-            } catch {
-                fatalError(error.localizedDescription)
-            }
-        }
-    }
-    
-    func messagesInCurrentChannel(with request: NSFetchRequest<Message_db> = Message_db.fetchRequest(), channelsIdentifier: String) {
-          mainContext.perform {
-            let predicate = NSPredicate(format: "identifier = %@", channelsIdentifier)
-            request.predicate = predicate
-            do {
-                let count = try self.mainContext.count(for: request)
-                print("\(count) messages in this channel")
-            } catch {
-                fatalError(error.localizedDescription)
-            }
-        }
-    }
-    
-    func contentOfMessages(with request: NSFetchRequest<Message_db> = Message_db.fetchRequest(), channelsIdentifier: String) {
-        mainContext.perform {
-            let predicate = NSPredicate(format: "identifier = %@", channelsIdentifier)
-            request.predicate = predicate
-            do {
-                let content = try self.mainContext.fetch(request)
-                content.forEach {
-                    print($0.content ?? "")
-                }
-            } catch {
-                fatalError(error.localizedDescription)
-            }
-        }
-    }
-    
-    func amountOfMessages(with request: NSFetchRequest<Message_db> = Message_db.fetchRequest()) {
-        mainContext.perform {
-            do {
-                let count = try self.mainContext.count(for: request)
-                print("\(count) messages in Data Base now")
-            } catch {
-                fatalError(error.localizedDescription)
-            }
-        }
-    }
-    
-    func clearDataInCurrentChannel(with request: NSFetchRequest<Message_db> = Message_db.fetchRequest(), channelsIdentifier: String) {
-        mainContext.perform {
-            let predicate = NSPredicate(format: "identifier = %@", channelsIdentifier)
-            request.predicate = predicate
-            do {
-                let messages = try self.mainContext.fetch(request)
-                messages.forEach { message in
-                    self.mainContext.delete(message)
-                }
-            } catch {
-                fatalError(error.localizedDescription)
-            }
+    func deleteChannel(channel: Channel_db) {
+        mainContext.delete(channel)
+        do {
+            try mainContext.save()
+        } catch {
+            fatalError(error.localizedDescription)
         }
     }
 }

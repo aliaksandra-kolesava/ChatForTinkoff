@@ -11,7 +11,7 @@ import Firebase
 
 class ConversationCell: UITableViewCell, ConfigurableView {
     
-    typealias ConfigurationModel = Channel
+    typealias ConfigurationModel = Channel_db
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -32,7 +32,7 @@ class ConversationCell: UITableViewCell, ConfigurableView {
         // Configure the view for the selected state
     }
     
-    func configure(with model: Channel) {
+    func configure(with model: Channel_db) {
         nameLabel.text = model.name
         contentView.backgroundColor = Theme.currentTheme.conversationListColor
         nameLabel.textColor = Theme.currentTheme.textColor

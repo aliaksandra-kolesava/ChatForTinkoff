@@ -11,7 +11,7 @@ import Firebase
 
 class MessageCell: UITableViewCell, ConfigurableView {
     
-    typealias ConfigurationModel = Message
+    typealias ConfigurationModel = Message_db
     
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var messageBubble: UIView!
@@ -32,14 +32,14 @@ class MessageCell: UITableViewCell, ConfigurableView {
         // Configure the view for the selected state
     }
     
-    func configure(with model: Message) {
+    func configure(with model: Message_db) {
         messageLabel.text = model.content
         senderNameLabel.text = model.senderName
         contentView.backgroundColor = Theme.currentTheme.backgroundColor
         
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        createdLabel.text = formatter.string(from: model.created)
+        createdLabel.text = formatter.string(from: model.created ?? Date())
         
         if model.senderId == UIDevice.current.identifierForVendor?.uuidString ?? "" {
            incomingMessage.isHidden = true
