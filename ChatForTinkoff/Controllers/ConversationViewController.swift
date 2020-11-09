@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class ConversationViewController: UIViewController {
     
@@ -39,7 +40,7 @@ class ConversationViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
-
+    
     @objc func keyboardWillChange(notification: Notification) {
         
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
@@ -48,7 +49,7 @@ class ConversationViewController: UIViewController {
         
         if notification.name == UIResponder.keyboardWillShowNotification ||
             notification.name == UIResponder.keyboardWillChangeFrameNotification {
-        view.frame.origin.y = -keyboardRect.height
+            view.frame.origin.y = -keyboardRect.height
         } else {
             view.frame.origin.y = 0
         }
@@ -80,7 +81,7 @@ class ConversationViewController: UIViewController {
                             let mesSenderId = messageData[Key.FStore.senderId] as? String,
                             let mesSenderName = messageData[Key.FStore.senderName] as? String {
                             
-                            let newMes = Message(content: mesContent, created: mesCreated, senderId: mesSenderId, senderName: mesSenderName)
+                            let newMes = Message(identifier: self.identifier ?? "", content: mesContent, created: mesCreated, senderId: mesSenderId, senderName: mesSenderName)
                             self.messageCells.append(newMes)
                             
                             DispatchQueue.main.async {
@@ -90,11 +91,37 @@ class ConversationViewController: UIViewController {
                             }
                         }
                     }
+                    self.makeRequest(messagesArray: self.messageCells)
                 }
             }
         }
     }
     
+    func makeRequest(with request: NSFetchRequest<Channel_db> = Channel_db.fetchRequest(), messagesArray: [Message]) {
+        CoreDataStack.shared.clearDataInCurrentChannel(channelsIdentifier: identifier ?? "")
+        CoreDataStack.shared.performSave { (context) in
+            let array = try? context.fetch(request)
+            if let channelDB = array?.first {
+                var mes_db: [Message_db] = []
+                messagesArray.forEach { message in
+                    let newMessage = Message_db(context: context)
+                    newMessage.content = message.content
+                    newMessage.created = message.created
+                    newMessage.senderId = message.senderId
+                    newMessage.senderName = message.senderName
+                    newMessage.identifier = message.identifier
+                    mes_db.append(newMessage)
+                }
+                mes_db.forEach { message in
+                    channelDB.addToMessages_db(message)
+                }
+            }
+        }
+        CoreDataStack.shared.messagesInCurrentChannel(channelsIdentifier: identifier ?? "")
+        CoreDataStack.shared.amountOfMessages()
+        CoreDataStack.shared.contentOfMessages(channelsIdentifier: identifier ?? "")
+    }
+
     @IBAction func messageButton(_ sender: UIButton) {
         if let messageContent = messageTextField.text, let messageSenderId = UIDevice.current.identifierForVendor?.uuidString {
             reference.document(identifier ?? "").collection("messages").addDocument(data: [

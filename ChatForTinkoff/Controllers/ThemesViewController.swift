@@ -67,30 +67,24 @@ class ThemesViewController: UIViewController {
     func changeOtherAttributesTheme(_ theme: ThemeColors) {
         switch theme {
         case .classic:
-            classicImage.layer.cornerRadius = Theme.currentTheme.cornerRadiusThemeButton
-            classicImage.layer.borderColor = Theme.currentTheme.borderColorThemeButton
-            classicImage.layer.borderWidth = Theme.currentTheme.borderWidthThemeButton
-            classicImage.clipsToBounds = Theme.currentTheme.clipsToBoundThemeButton
-            dayImage.layer.borderWidth = Theme.currentTheme.borderWidthThemeOtherButtons
-            nightImage.layer.borderWidth = Theme.currentTheme.borderWidthThemeOtherButtons
+            changeAttributesTheme(currentTheme: classicImage, anotherTheme1: dayImage, anotherTheme2: nightImage)
             
         case .day:
-            dayImage.layer.cornerRadius = Theme.currentTheme.cornerRadiusThemeButton
-            dayImage.layer.borderColor = Theme.currentTheme.borderColorThemeButton
-            dayImage.layer.borderWidth = Theme.currentTheme.borderWidthThemeButton
-            dayImage.clipsToBounds = Theme.currentTheme.clipsToBoundThemeButton
-            classicImage.layer.borderWidth = Theme.currentTheme.borderWidthThemeOtherButtons
-            nightImage.layer.borderWidth = Theme.currentTheme.borderWidthThemeOtherButtons
+          changeAttributesTheme(currentTheme: dayImage, anotherTheme1: classicImage, anotherTheme2: nightImage)
             
         case .night:
-            nightImage.layer.cornerRadius = Theme.currentTheme.cornerRadiusThemeButton
-            nightImage.layer.borderColor = Theme.currentTheme.borderColorThemeButton
-            nightImage.layer.borderWidth = Theme.currentTheme.borderWidthThemeButton
-            nightImage.clipsToBounds = true
-            classicImage.layer.borderWidth = Theme.currentTheme.borderWidthThemeOtherButtons
-            dayImage.layer.borderWidth = Theme.currentTheme.borderWidthThemeOtherButtons
+       changeAttributesTheme(currentTheme: nightImage, anotherTheme1: dayImage, anotherTheme2: classicImage)
     
         }
+    }
+    
+    func changeAttributesTheme(currentTheme: UIImageView, anotherTheme1: UIImageView, anotherTheme2: UIImageView) {
+        currentTheme.layer.cornerRadius = Theme.currentTheme.cornerRadiusThemeButton
+        currentTheme.layer.borderColor = Theme.currentTheme.borderColorThemeButton
+        currentTheme.layer.borderWidth = Theme.currentTheme.borderWidthThemeButton
+        currentTheme.clipsToBounds = Theme.currentTheme.clipsToBoundThemeButton
+        anotherTheme1.layer.borderWidth = Theme.currentTheme.borderWidthThemeOtherButtons
+        anotherTheme2.layer.borderWidth = Theme.currentTheme.borderWidthThemeOtherButtons
     }
     
     func navigationItemsTheme() {

@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         switchLogs.forAppDelegate(from: "Not Running", to: "Inactive", method: "\(#function)")
  
         FirebaseApp.configure()
+        CoreDataStack.shared.enableObservers()
+
         return true
     }
     func applicationWillResignActive(_ application: UIApplication) {
