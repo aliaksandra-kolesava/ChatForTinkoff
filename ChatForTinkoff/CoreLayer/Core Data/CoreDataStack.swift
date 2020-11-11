@@ -9,7 +9,13 @@
 import Foundation
 import CoreData
 
-class CoreDataStack {
+protocol CoreDataStackProtocol {
+    var mainContext: NSManagedObjectContext { get }
+    func performSave(_ block: (NSManagedObjectContext) -> Void)
+    func deleteChannel(channel: Channel_db)
+}
+
+class CoreDataStack: CoreDataStackProtocol {
     var didUpdateDataBase: ((CoreDataStack) -> Void)?
     static let shared = CoreDataStack()
     

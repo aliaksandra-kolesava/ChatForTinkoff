@@ -33,7 +33,7 @@ class ThemesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        changeThemeOn(Theme.currentTheme)
+        changeThemeOn(ThemeManager.currentTheme)
         
     }
     
@@ -54,7 +54,7 @@ class ThemesViewController: UIViewController {
     
     func changeThemeOn(_ theme: ThemeColors) {
     
-        Theme.updateTheme(theme) {
+        ThemeManager.updateTheme(theme) {
             DispatchQueue.main.async {
                 self.themesPickerDelegate?.changeTheme(self)
                 self.navigationItemsTheme()
@@ -79,19 +79,19 @@ class ThemesViewController: UIViewController {
     }
     
     func changeAttributesTheme(currentTheme: UIImageView, anotherTheme1: UIImageView, anotherTheme2: UIImageView) {
-        currentTheme.layer.cornerRadius = Theme.currentTheme.cornerRadiusThemeButton
-        currentTheme.layer.borderColor = Theme.currentTheme.borderColorThemeButton
-        currentTheme.layer.borderWidth = Theme.currentTheme.borderWidthThemeButton
-        currentTheme.clipsToBounds = Theme.currentTheme.clipsToBoundThemeButton
-        anotherTheme1.layer.borderWidth = Theme.currentTheme.borderWidthThemeOtherButtons
-        anotherTheme2.layer.borderWidth = Theme.currentTheme.borderWidthThemeOtherButtons
+        currentTheme.layer.cornerRadius = ThemeManager.currentTheme.cornerRadiusThemeButton
+        currentTheme.layer.borderColor = ThemeManager.currentTheme.borderColorThemeButton
+        currentTheme.layer.borderWidth = ThemeManager.currentTheme.borderWidthThemeButton
+        currentTheme.clipsToBounds = ThemeManager.currentTheme.clipsToBoundThemeButton
+        anotherTheme1.layer.borderWidth = ThemeManager.currentTheme.borderWidthThemeOtherButtons
+        anotherTheme2.layer.borderWidth = ThemeManager.currentTheme.borderWidthThemeOtherButtons
     }
     
     func navigationItemsTheme() {
-        navigationController?.navigationBar.barTintColor = Theme.currentTheme.backgroundColor
-        navigationController?.navigationBar.tintColor = Theme.currentTheme.textColor
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.currentTheme.textColor]
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.currentTheme.textColor]
-        navigationController?.navigationBar.barStyle = Theme.currentTheme.barStyleColor
+        navigationController?.navigationBar.barTintColor = ThemeManager.currentTheme.backgroundColor
+        navigationController?.navigationBar.tintColor = ThemeManager.currentTheme.textColor
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme.textColor]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme.textColor]
+        navigationController?.navigationBar.barStyle = ThemeManager.currentTheme.barStyleColor
     }
 }

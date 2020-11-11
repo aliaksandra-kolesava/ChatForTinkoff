@@ -44,7 +44,7 @@ import Foundation
     }
  }
  
- class OperationDataManager: DataManager {
+ class OperationDataManager: DataManagerProtocol {
     
     let operationQueue = OperationQueue()
     

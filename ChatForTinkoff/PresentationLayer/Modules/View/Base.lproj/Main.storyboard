@@ -23,7 +23,7 @@
         <!--Tinkoff Chat-->
         <scene sceneID="Uvy-sA-Iei">
             <objects>
-                <viewController id="EzF-JX-eGg" customClass="ConversationsListViewController" customModule="ChatForTinkoff" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConversationListViewController" id="EzF-JX-eGg" customClass="ConversationsListViewController" customModule="ChatForTinkoff" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kz8-sB-wAe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -363,7 +363,7 @@
         <!--Navigation Controller-->
         <scene sceneID="c0x-xd-Fqd">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="I41-Vg-w0d" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="I41-Vg-w0d" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wLy-FF-ahY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

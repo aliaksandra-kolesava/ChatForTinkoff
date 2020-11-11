@@ -8,7 +8,12 @@
 
 import Foundation
 
-class Files {
+protocol FilesProtocol {
+    func readFile(file: String) -> Data?
+    func writeFile(file: String, data: Data) -> Bool
+}
+
+class Files: FilesProtocol {
     
     static let files = Files()
     

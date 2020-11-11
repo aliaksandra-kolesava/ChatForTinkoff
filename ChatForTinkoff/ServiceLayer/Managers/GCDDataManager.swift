@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GCDDataManager: DataManager {
+class GCDDataManager: DataManagerProtocol {
     
     let queue = DispatchQueue.global(qos: .utility)
     

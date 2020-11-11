@@ -20,6 +20,8 @@ class ConversationViewController: UIViewController {
     var identifier: String?
     var channel_db: Channel_db?
     
+    var conversationsModel: ConversationsModelProtocol?
+    
     lazy var fetchResultController: NSFetchedResultsController<Message_db>? = {
         let fetchRequest = NSFetchRequest<Message_db>(entityName: "Message_db")
         let sortedChannels = NSSortDescriptor(key: "created", ascending: false)
@@ -29,8 +31,9 @@ class ConversationViewController: UIViewController {
         let predicate = NSPredicate(format: "channel_db.identifier = %@", channel_db.identifier ?? "")
         fetchRequest.predicate = predicate
         fetchRequest.fetchBatchSize = 20
+        guard let contextMain = conversationsModel?.contextMain() else { return NSFetchedResultsController() }
         let fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest,
-                                                               managedObjectContext: CoreDataStack.shared.mainContext,
+                                                               managedObjectContext: contextMain,
                                                                sectionNameKeyPath: nil,
                                                                cacheName: nil)
         fetchResultController.delegate = self
@@ -75,61 +78,10 @@ class ConversationViewController: UIViewController {
     
     func themeChange() {
         
-        messageTextField.backgroundColor = Theme.currentTheme.conversationListColor
-        messageTextField.textColor = Theme.currentTheme.textColor
-        messagesTableView.backgroundColor = Theme.currentTheme.backgroundColor
-        textfieldView.backgroundColor = Theme.currentTheme.myProfileSaveButton
-    }
-    
-    func loadMessages() {
-        reference.document(identifier ?? "").collection("messages").addSnapshotListener { (querySnapshot, error) in
-            
-            if let e = error {
-                print("There was an issue retrieving data from Firestore. \(e)")
-            } else {
-                querySnapshot?.documentChanges.forEach { diff in
-                    switch diff.type {
-                    case .added:
-                        let messageData = diff.document.data()
-                        let messageCreated = messageData[Key.FStore.created] as? Timestamp ?? Timestamp(date: Date(timeIntervalSince1970: 0))
-                        let mesCreated = messageCreated.dateValue()
-                        
-                        if let mesContent = messageData[Key.FStore.content] as? String,
-                            let mesSenderId = messageData[Key.FStore.senderId] as? String,
-                            let mesSenderName = messageData[Key.FStore.senderName] as? String {
-                            
-                            let newMes = Message(identifier: self.identifier ?? "", content: mesContent, created: mesCreated, senderId: mesSenderId, senderName: mesSenderName)
-                            let messageIdentifier = diff.document.documentID
-                            let arrayChannel: NSFetchRequest<Channel_db> = Channel_db.fetchRequest()
-                            let arrayMessage: NSFetchRequest<Message_db> = Message_db.fetchRequest()
-
-                            arrayMessage.predicate = NSPredicate(format: "identifier = %@", messageIdentifier)
-                            arrayChannel.predicate = NSPredicate(format: "identifier = %@", self.identifier ?? "")
-                            
-                            CoreDataStack.shared.performSave { (context) in
-                                let channelFetch = try? context.fetch(arrayChannel)
-                                let messageFetch = try? context.fetch(arrayMessage)
-                                if let channelDB = channelFetch?.first,
-                                messageFetch?.first == nil {
-                                    let newMessage_db = Message_db(context: context)
-                                    newMessage_db.content = newMes.content
-                                    newMessage_db.created = newMes.created
-                                    newMessage_db.identifier = messageIdentifier
-                                    newMessage_db.senderId = newMes.senderId
-                                    newMessage_db.senderName = newMes.senderName
-                                    channelDB.addToMessages_db(newMessage_db)
-                                    
-                                }
-                            }
-                        }
-                    case .modified:
-                        break
-                    case .removed:
-                        break
-                    }
-                }
-            }
-        }
+        messageTextField.backgroundColor = ThemeManager.currentTheme.conversationListColor
+        messageTextField.textColor = ThemeManager.currentTheme.textColor
+        messagesTableView.backgroundColor = ThemeManager.currentTheme.backgroundColor
+        textfieldView.backgroundColor = ThemeManager.currentTheme.myProfileSaveButton
     }
 
     func fetchAllMessages() {
@@ -140,26 +92,12 @@ class ConversationViewController: UIViewController {
         } catch {
             print(error)
         }
-        loadMessages()
+        conversationsModel?.loadMessages(identifier: identifier ?? "")
     }
     
     @IBAction func messageButton(_ sender: UIButton) {
         if let messageContent = messageTextField.text, let messageSenderId = UIDevice.current.identifierForVendor?.uuidString {
-            reference.document(identifier ?? "").collection("messages").addDocument(data: [
-                Key.FStore.content: messageContent,
-                Key.FStore.created: Timestamp(date: Date()),
-                Key.FStore.senderId: messageSenderId,
-                Key.FStore.senderName: mySenderName]) { (error) in
-                    if let e = error {
-                        print("There was an issue saving data to firestore, \(e)")
-                    } else {
-                        print("Successfully saved data.")
-                        
-                        DispatchQueue.main.async {
-                            self.messageTextField.text = ""
-                        }
-                    }
-            }
+            conversationsModel?.addMessage(identifier: identifier ?? "", messageContent: messageContent, messageSenderId: messageSenderId, mySenderName: mySenderName)
         }
     }
 }
@@ -228,4 +166,17 @@ extension ConversationViewController: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         messagesTableView.endUpdates()
     }
+}
+
+extension ConversationViewController: ConversationsProtocol {
+    func clearTextfield() {
+        DispatchQueue.main.async {
+            self.messageTextField.text = ""
+        }
+    }
+    
+    func complitedLoading() {
+        print("Loading Data complited successfully")
+    }
+    
 }

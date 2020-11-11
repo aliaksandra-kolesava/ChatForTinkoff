@@ -34,9 +34,9 @@ class ConversationCell: UITableViewCell, ConfigurableView {
     
     func configure(with model: Channel_db) {
         nameLabel.text = model.name
-        contentView.backgroundColor = Theme.currentTheme.conversationListColor
-        nameLabel.textColor = Theme.currentTheme.textColor
-        messageLabel.textColor = Theme.currentTheme.textColor
+        contentView.backgroundColor = ThemeManager.currentTheme.conversationListColor
+        nameLabel.textColor = ThemeManager.currentTheme.textColor
+        messageLabel.textColor = ThemeManager.currentTheme.textColor
         
         if model.lastMessage == nil || model.lastMessage == "" {
             messageLabel.text = "No messages yet"

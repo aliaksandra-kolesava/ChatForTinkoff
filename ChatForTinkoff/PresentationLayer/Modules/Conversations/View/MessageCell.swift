@@ -35,7 +35,7 @@ class MessageCell: UITableViewCell, ConfigurableView {
     func configure(with model: Message_db) {
         messageLabel.text = model.content
         senderNameLabel.text = model.senderName
-        contentView.backgroundColor = Theme.currentTheme.backgroundColor
+        contentView.backgroundColor = ThemeManager.currentTheme.backgroundColor
         
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
@@ -45,18 +45,18 @@ class MessageCell: UITableViewCell, ConfigurableView {
            incomingMessage.isHidden = true
             outgoingMessage.isHidden = false
             senderNameLabel.isHidden = true
-            messageBubble.backgroundColor = Theme.currentTheme.incomingMessage
-            messageLabel.textColor = Theme.currentTheme.incomingMessagesTextColor
-            createdLabel.textColor = Theme.currentTheme.incomingMessagesTextColor
+            messageBubble.backgroundColor = ThemeManager.currentTheme.incomingMessage
+            messageLabel.textColor = ThemeManager.currentTheme.incomingMessagesTextColor
+            createdLabel.textColor = ThemeManager.currentTheme.incomingMessagesTextColor
             
         } else {
             incomingMessage.isHidden = false
             outgoingMessage.isHidden = true
             senderNameLabel.isHidden = false
-            messageBubble.backgroundColor = Theme.currentTheme.outgoingMessage
-            messageLabel.textColor = Theme.currentTheme.outgoingMessagesTextColor
-            senderNameLabel.textColor = Theme.currentTheme.outgoingMessagesTextColor
-            createdLabel.textColor = Theme.currentTheme.outgoingMessagesTextColor
+            messageBubble.backgroundColor = ThemeManager.currentTheme.outgoingMessage
+            messageLabel.textColor = ThemeManager.currentTheme.outgoingMessagesTextColor
+            senderNameLabel.textColor = ThemeManager.currentTheme.outgoingMessagesTextColor
+            createdLabel.textColor = ThemeManager.currentTheme.outgoingMessagesTextColor
         }
     }
 }

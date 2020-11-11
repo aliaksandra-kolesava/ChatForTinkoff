@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol DataManager {
+protocol DataManagerProtocol {
     func readFile(file: String, callback: @escaping (Data?) -> Void)
     func writeFile(file: String, data: Data, callback: @escaping (Bool) -> Void)
 }

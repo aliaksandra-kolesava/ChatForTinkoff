@@ -8,8 +8,13 @@
 
 import Foundation
 import UIKit
+//
+//protocol ThemeManagerProtocol {
+//    var currentTheme: ThemeColors { get }
+//    func updateTheme(_ theme: ThemeColors, completion: (() -> Void))
+//}
 
-class Theme {
+class ThemeManager {
     
     static var currentTheme: ThemeColors {
 

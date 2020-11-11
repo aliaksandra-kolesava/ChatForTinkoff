@@ -16,21 +16,22 @@ class ConversationsListViewController: UIViewController {
     
     let headTitles = ["Channels"]
     
+    var conversationListModel: ConversationListProtocol?
+    var presentationAssembly: PresentationAssemblyProtocol?
+    
     lazy var fetchResultController: NSFetchedResultsController<Channel_db> = {
         let fetchRequest = NSFetchRequest<Channel_db>(entityName: "Channel_db")
         let sortedChannels = NSSortDescriptor(key: "lastActivity", ascending: false)
         fetchRequest.sortDescriptors = [sortedChannels]
         fetchRequest.fetchBatchSize = 20
+        guard let context = conversationListModel?.contextMain() else { return NSFetchedResultsController<Channel_db>() }
         let fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest,
-                                                               managedObjectContext: CoreDataStack.shared.mainContext,
+                                                               managedObjectContext: context,
                                                                sectionNameKeyPath: nil,
                                                                cacheName: nil)
         fetchResultController.delegate = self
         return fetchResultController
     }()
-    
-    private lazy var db = Firestore.firestore()
-    private lazy var reference = db.collection("channels")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,89 +49,15 @@ class ConversationsListViewController: UIViewController {
         
     }
     
-    func loadChannels() {
-        reference.order(by: Key.FStore.lastActivity).addSnapshotListener { querySnapshot, error in
-            
-            if let e = error {
-                print("There was an issue retrieving data from Firestore. \(e)")
-            } else {
-                querySnapshot?.documentChanges.forEach { diff in
-                    
-                    let data = diff.document.data()
-                    let channelTimestamp = data[Key.FStore.lastActivity] as? Timestamp ??
-                        Timestamp(date: Date(timeIntervalSince1970: 0))
-                    let channelLastActivity = channelTimestamp.dateValue()
-                    let channelIdentifier = diff.document.documentID
-                    let channelLastMessage = data[Key.FStore.lastMessage] as? String
-                    if let channelName = data[Key.FStore.name] as? String {
-                        switch diff.type {
-                        case .added:
-                            let channelFetch: NSFetchRequest<Channel_db> = Channel_db.fetchRequest()
-                            channelFetch.predicate = NSPredicate(format: "identifier = %@", channelIdentifier)
-                            CoreDataStack.shared.performSave { (context) in
-                                let array = try? context.fetch(channelFetch)
-                                let newChannel = array?.first
-                                if newChannel == nil {
-                                    _ = Channel_db(name: channelName,
-                                                   lastMessage: channelLastMessage,
-                                                   lastActivity: channelLastActivity,
-                                                   identifier: channelIdentifier,
-                                                   in: context)
-                                } else {
-                                    if let channel = array?.first {
-                                        if channel.value(forKey: "name") as? String != channelName {
-                                            channel.setValue(channelName, forKey: "name")
-                                        }
-                                        if channel.value(forKey: "lastMessage") as? String != channelLastMessage {
-                                            channel.setValue(channelLastMessage, forKey: "lastMessage")
-                                        }
-                                        if channel.value(forKey: "lastActivity") as? Date != channelLastActivity {
-                                            channel.setValue(channelLastActivity, forKey: "lastActivity")
-                                        }
-                                    }
-                                }
-                            }
-                        case .modified:
-                            let channelFetch: NSFetchRequest<Channel_db> = Channel_db.fetchRequest()
-                            channelFetch.predicate = NSPredicate(format: "identifier = %@", channelIdentifier)
-                            CoreDataStack.shared.performSave { (context) in
-                                let array = try? context.fetch(channelFetch)
-                                if let channel = array?.first {
-                                    if channel.value(forKey: "name") as? String != channelName {
-                                        channel.setValue(channelName, forKey: "name")
-                                    }
-                                    if channel.value(forKey: "lastMessage") as? String != channelLastMessage {
-                                        channel.setValue(channelLastMessage, forKey: "lastMessage")
-                                    }
-                                    if channel.value(forKey: "lastActivity") as? Date != channelLastActivity {
-                                        channel.setValue(channelLastActivity, forKey: "lastActivity")
-                                    }
-                                }
-                            }
-                        case .removed:
-                            let context = CoreDataStack.shared.mainContext
-                            let channelFetch: NSFetchRequest<Channel_db> = Channel_db.fetchRequest()
-                            channelFetch.predicate = NSPredicate(format: "identifier = %@", channelIdentifier)
-                            let array = try? context.fetch(channelFetch)
-                            if let channel = array?.first {
-                                CoreDataStack.shared.deleteChannel(channel: channel)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
     func fetchAllChannels() {
         fetchResultController.delegate = self
         do {
             try fetchResultController.performFetch()
             conversationList.reloadData()
         } catch {
-            print(error)
+            print("\(error) smth wrong")
         }
-        loadChannels()
+        conversationListModel?.loadAllChannels()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -165,13 +92,7 @@ class ConversationsListViewController: UIViewController {
         let alert = UIAlertController(title: "Add New Channel", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add", style: .default) { (_) in
             if let chName = textField.text {
-                self.reference.addDocument(data: [Key.FStore.name: chName, Key.FStore.lastMessage: "", Key.FStore.lastActivity: ""]) { (error) in
-                    if let e = error {
-                        print("There was an issue saving data to firestore, \(e)")
-                    } else {
-                        print("Successfully saved data.")
-                    }
-                }
+                self.conversationListModel?.createNewChannel(chName: chName)
             }
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -208,17 +129,17 @@ class ConversationsListViewController: UIViewController {
     }
     
     func setupTheme() {
-        conversationList.backgroundColor = Theme.currentTheme.backgroundColor
+        conversationList.backgroundColor = ThemeManager.currentTheme.backgroundColor
         conversationList.tintColor = .white
         conversationList.reloadData()
         
-        view.backgroundColor = Theme.currentTheme.backgroundColor
+        view.backgroundColor = ThemeManager.currentTheme.backgroundColor
         
-        navigationController?.navigationBar.barTintColor = Theme.currentTheme.backgroundColor
-        navigationController?.navigationBar.tintColor = Theme.currentTheme.textColor
-        navigationController?.navigationBar.barStyle = Theme.currentTheme.barStyleColor
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.currentTheme.textColor]
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.currentTheme.textColor]
+        navigationController?.navigationBar.barTintColor = ThemeManager.currentTheme.backgroundColor
+        navigationController?.navigationBar.tintColor = ThemeManager.currentTheme.textColor
+        navigationController?.navigationBar.barStyle = ThemeManager.currentTheme.barStyleColor
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme.textColor]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme.textColor]
     }
 }
 
@@ -261,10 +182,7 @@ extension ConversationsListViewController: UITableViewDataSource {
 extension ConversationsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: Key.StoryBoardName.mainStoryBoard, bundle: nil)
-        
-        guard let conversationViewController = mainStoryboard.instantiateViewController(withIdentifier: Key.Conversation.conversationVCId) as? ConversationViewController
-            else { return }
+        guard let conversationViewController = presentationAssembly?.conversationViewController() else { return }
         
         navigationController?.pushViewController(conversationViewController, animated: true)
         let frc = fetchResultController.object(at: indexPath)
@@ -278,13 +196,7 @@ extension ConversationsListViewController: UITableViewDelegate {
         if editingStyle == .delete {
             let channel = fetchResultController.object(at: indexPath)
             guard let id = channel.identifier else { return }
-            reference.document(id).delete { (error) in
-                if let error = error {
-                    print("Channel can't be deleted \(error.localizedDescription)")
-                } else {
-                    CoreDataStack.shared.deleteChannel(channel: channel)
-                }
-            }
+            conversationListModel?.deleteCurrentChannel(id: id, channel: channel)
         }
     }
     
@@ -342,5 +254,11 @@ extension ConversationsListViewController: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         conversationList?.endUpdates()
+    }
+}
+
+extension ConversationsListViewController: ConversationListDelegate {
+    func completedLoad() {
+        print("Loading Data complited successfully")
     }
 }

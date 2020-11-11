@@ -16,9 +16,7 @@ enum ThemeColors: Int {
     
     var backgroundColor: UIColor {
         switch self {
-        case .classic:
-            return .white
-        case .day:
+        case .classic, .day:
             return .white
         case .night:
             return .black
@@ -27,9 +25,7 @@ enum ThemeColors: Int {
     
     var textColor: UIColor {
         switch self {
-        case .classic:
-            return .black
-        case .day:
+        case .classic, .day:
             return .black
         case .night:
             return .white
@@ -60,9 +56,7 @@ enum ThemeColors: Int {
     
     var outgoingMessagesTextColor: UIColor {
         switch self {
-        case .classic:
-            return .black
-        case .day:
+        case .classic, .day:
             return .black
         case .night:
             return .white
@@ -73,18 +67,14 @@ enum ThemeColors: Int {
         switch self {
         case .classic:
             return .black
-        case .day:
-            return .white
-        case .night:
+        case .day, .night:
             return .white
         }
     }
     
     var myProfileSaveButton: UIColor {
         switch self {
-        case .classic:
-            return #colorLiteral(red: 0.9647058824, green: 0.9647058824, blue: 0.9647058824, alpha: 1)
-        case .day:
+        case .classic, .day:
             return #colorLiteral(red: 0.9647058824, green: 0.9647058824, blue: 0.9647058824, alpha: 1)
         case .night:
             return #colorLiteral(red: 0.1058823529, green: 0.1058823529, blue: 0.1058823529, alpha: 1)
@@ -93,9 +83,7 @@ enum ThemeColors: Int {
     
     var myProfileTextColor: UIColor {
         switch self {
-        case .classic:
-            return .black
-        case .day:
+        case .classic, .day:
             return .black
         case .night:
             return .white
@@ -104,9 +92,7 @@ enum ThemeColors: Int {
     
     var settingsButtonColor: UIColor {
         switch self {
-        case .classic:
-            return .black
-        case .day:
+        case .classic, .day:
             return .black
         case .night:
             return .white
@@ -115,9 +101,7 @@ enum ThemeColors: Int {
     
     var conversationListColor: UIColor {
         switch self {
-        case .classic:
-            return .white
-        case .day:
+        case .classic, .day:
             return .white
         case .night:
             return #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
@@ -126,9 +110,7 @@ enum ThemeColors: Int {
     
     var barStyleColor: UIBarStyle {
         switch self {
-        case .classic:
-            return .default
-        case .day:
+        case .classic, .day:
             return .default
         case .night:
             return .black
@@ -137,52 +119,32 @@ enum ThemeColors: Int {
     
     var cornerRadiusThemeButton: CGFloat {
         switch self {
-        case .classic:
-            return 14
-        case .day:
-            return 14
-        case .night:
+        case .classic, .day, .night:
             return 14
         }
     }
-        var borderColorThemeButton: CGColor {
-            switch self {
-            case .classic:
-                return #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
-            case .day:
-                return #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
-            case .night:
-                return #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
-            }
+    var borderColorThemeButton: CGColor {
+        switch self {
+        case .classic, .day, .night:
+            return #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
         }
-        var borderWidthThemeButton: CGFloat {
-            switch self {
-            case .classic:
-                return 5
-            case .day:
-                return 5
-            case .night:
-                return 5
-            }
+    }
+    var borderWidthThemeButton: CGFloat {
+        switch self {
+        case .classic, .day, .night:
+            return 5
         }
-        var clipsToBoundThemeButton: Bool {
-            switch self {
-            case .classic:
-                return true
-            case .day:
-                return true
-            case .night:
-                return true
-            }
+    }
+    var clipsToBoundThemeButton: Bool {
+        switch self {
+        case .classic, .day, .night:
+            return true
         }
-        var borderWidthThemeOtherButtons: CGFloat {
-            switch self {
-            case .classic:
-                return 0
-            case .day:
-                return 0
-            case .night:
-                return 0
-            }
+    }
+    var borderWidthThemeOtherButtons: CGFloat {
+        switch self {
+        case .classic, .day, .night:
+            return 0
         }
+    }
 }

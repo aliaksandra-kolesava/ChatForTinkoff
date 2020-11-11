@@ -130,7 +130,7 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Read and Write Data Functions
     
-    func readDataFile(dataManager: DataManager) {
+    func readDataFile(dataManager: DataManagerProtocol) {
         dataManager.readFile(file: Files.files.fileWithData) { data in
             
             self.finishedEditing()
@@ -169,7 +169,7 @@ class ProfileViewController: UIViewController {
         
     }
     
-    func writeDataFile(dataManager: DataManager) {
+    func writeDataFile(dataManager: DataManagerProtocol) {
         let textName = nameTextField.text ?? ""
         let textAboutYourself = aboutTextField.text ?? ""
         let image = profilePhoto.image ?? UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1")
@@ -328,14 +328,14 @@ class ProfileViewController: UIViewController {
     // MARK: - Changing Theme
     
     func changeTheme() {
-         navigationController?.navigationBar.barTintColor = Theme.currentTheme.backgroundColor
-         navigationController?.navigationBar.tintColor = Theme.currentTheme.textColor
-         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.currentTheme.textColor]
-         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.currentTheme.textColor]
-        view.backgroundColor = Theme.currentTheme.backgroundColor
-        profileName.textColor = Theme.currentTheme.myProfileTextColor
-        aboutYourself.textColor = Theme.currentTheme.myProfileTextColor
-        editButton.backgroundColor = Theme.currentTheme.myProfileSaveButton
+         navigationController?.navigationBar.barTintColor = ThemeManager.currentTheme.backgroundColor
+         navigationController?.navigationBar.tintColor = ThemeManager.currentTheme.textColor
+         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme.textColor]
+         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme.textColor]
+        view.backgroundColor = ThemeManager.currentTheme.backgroundColor
+        profileName.textColor = ThemeManager.currentTheme.myProfileTextColor
+        aboutYourself.textColor = ThemeManager.currentTheme.myProfileTextColor
+        editButton.backgroundColor = ThemeManager.currentTheme.myProfileSaveButton
         
      }
     
