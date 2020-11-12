@@ -42,32 +42,30 @@ class ConversationViewController: UIViewController {
     
     let mySenderName = "Aliaksandra Kolesava"
     
-    private lazy var db = Firestore.firestore()
-    private lazy var reference = db.collection("channels")
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        messagesTableView.dataSource = self
-        
-        messagesTableView.register(UINib(nibName: Key.Conversation.cellNibName, bundle: nil), forCellReuseIdentifier: Key.Conversation.cellIdentifier)
-        messagesTableView?.transform = CGAffineTransform(scaleX: 1, y: -1)
-        
+        tableViewSetup()
         themeChange()
         fetchAllMessages()
-        
+        addKeyboardObservers()
+    }
+    
+    func tableViewSetup() {
+        messagesTableView.dataSource = self
+        messagesTableView.register(UINib(nibName: Key.Conversation.cellNibName, bundle: nil), forCellReuseIdentifier: Key.Conversation.cellIdentifier)
+        messagesTableView?.transform = CGAffineTransform(scaleX: 1, y: -1)
+    }
+    
+    func addKeyboardObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        
     }
     
     @objc func keyboardWillChange(notification: Notification) {
-        
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
         }
-        
         if notification.name == UIResponder.keyboardWillShowNotification ||
             notification.name == UIResponder.keyboardWillChangeFrameNotification {
             view.frame.origin.y = -keyboardRect.height
@@ -77,13 +75,12 @@ class ConversationViewController: UIViewController {
     }
     
     func themeChange() {
-        
         messageTextField.backgroundColor = ThemeManager.currentTheme.conversationListColor
         messageTextField.textColor = ThemeManager.currentTheme.textColor
         messagesTableView.backgroundColor = ThemeManager.currentTheme.backgroundColor
         textfieldView.backgroundColor = ThemeManager.currentTheme.myProfileSaveButton
     }
-
+    
     func fetchAllMessages() {
         fetchResultController?.delegate = self
         
@@ -174,9 +171,4 @@ extension ConversationViewController: ConversationsProtocol {
             self.messageTextField.text = ""
         }
     }
-    
-    func complitedLoading() {
-        print("Loading Data complited successfully")
-    }
-    
 }

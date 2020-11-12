@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let controller = rootAssembly.presentationAssembly.mainNavigationViewController()
+//        controller.pushViewController(rootAssembly.presentationAssembly.conversationListViewController(), animated: false)
         window?.rootViewController = controller
         window?.makeKeyAndVisible()
 //        CoreDataStack.shared.enableObservers()

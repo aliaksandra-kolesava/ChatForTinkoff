@@ -32,6 +32,8 @@
 		3B68B675255AB31600FD1998 /* RootAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B674255AB31600FD1998 /* RootAssembly.swift */; };
 		3B68B677255AB45600FD1998 /* PresentationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B676255AB45600FD1998 /* PresentationAssembly.swift */; };
 		3B68B679255AF28700FD1998 /* ConversationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B678255AF28700FD1998 /* ConversationsModel.swift */; };
+		3B68B67B255C086700FD1998 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B67A255C086700FD1998 /* AlertManager.swift */; };
+		3B68B680255D23E400FD1998 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B67F255D23E400FD1998 /* ProfileModel.swift */; };
 		3B6D691A252B7EE600EAE76F /* ThemesPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D6919252B7EE600EAE76F /* ThemesPickerDelegate.swift */; };
 		3B6D691C252BA38000EAE76F /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D691B252BA38000EAE76F /* ThemeColors.swift */; };
 		3B6D691E252C77FF00EAE76F /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D691D252C77FF00EAE76F /* ThemeManager.swift */; };
@@ -79,6 +81,8 @@
 		3B68B674255AB31600FD1998 /* RootAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
 		3B68B676255AB45600FD1998 /* PresentationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationAssembly.swift; sourceTree = "<group>"; };
 		3B68B678255AF28700FD1998 /* ConversationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsModel.swift; sourceTree = "<group>"; };
+		3B68B67A255C086700FD1998 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		3B68B67F255D23E400FD1998 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		3B6D6919252B7EE600EAE76F /* ThemesPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesPickerDelegate.swift; sourceTree = "<group>"; };
 		3B6D691B252BA38000EAE76F /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
 		3B6D691D252C77FF00EAE76F /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
@@ -296,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				3B65B76D2534AB93004B760E /* ProfileInfo.swift */,
+				3B68B67F255D23E400FD1998 /* ProfileModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -349,10 +354,10 @@
 			children = (
 				3B65B76525347866004B760E /* GCDDataManager.swift */,
 				3B65B769253478B1004B760E /* OperationDataManager.swift */,
-				3B65B76B25347DA9004B760E /* Files.swift */,
 				3B6D691D252C77FF00EAE76F /* ThemeManager.swift */,
 				3B68B66C2559A18900FD1998 /* CoreDataManager.swift */,
 				3B68B66E255A8A1C00FD1998 /* FirebaseManager.swift */,
+				3B68B67A255C086700FD1998 /* AlertManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -369,6 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				3B68B667255967C200FD1998 /* Assembly */,
+				3B68B67E255D21D600FD1998 /* Profile Data */,
 				3B5EFD7C2545854C00E19AA1 /* Core Data */,
 			);
 			path = CoreLayer;
@@ -391,6 +397,14 @@
 				3B7D3272251DF6D0002FD929 /* Constants.swift */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		3B68B67E255D21D600FD1998 /* Profile Data */ = {
+			isa = PBXGroup;
+			children = (
+				3B65B76B25347DA9004B760E /* Files.swift */,
+			);
+			path = "Profile Data";
 			sourceTree = "<group>";
 		};
 		3B7D32632514F45B002FD929 /* Fonts */ = {
@@ -563,6 +577,7 @@
 				3B68B66F255A8A1C00FD1998 /* FirebaseManager.swift in Sources */,
 				3B65B76E2534AB93004B760E /* ProfileInfo.swift in Sources */,
 				3B15E27A250E0C7300BC7E69 /* ProfileViewController.swift in Sources */,
+				3B68B680255D23E400FD1998 /* ProfileModel.swift in Sources */,
 				3B68B677255AB45600FD1998 /* PresentationAssembly.swift in Sources */,
 				3B7D32922529E1BE002FD929 /* ThemesViewController.swift in Sources */,
 				3B7D328225226BA9002FD929 /* ConversationViewController.swift in Sources */,
@@ -578,6 +593,7 @@
 				3B15E276250E0C7300BC7E69 /* AppDelegate.swift in Sources */,
 				3B15E28C250E107300BC7E69 /* SwitchLogs.swift in Sources */,
 				3B5EFD76253D908700E19AA1 /* Channel.swift in Sources */,
+				3B68B67B255C086700FD1998 /* AlertManager.swift in Sources */,
 				3B6D691A252B7EE600EAE76F /* ThemesPickerDelegate.swift in Sources */,
 				3B6D691E252C77FF00EAE76F /* ThemeManager.swift in Sources */,
 				3B65B76A253478B1004B760E /* OperationDataManager.swift in Sources */,

@@ -30,7 +30,7 @@ class CoreDataManager: CoreDataManagerProtocol {
     func addChannel(channelIdentifier: String, channelName: String, channelLastMessage: String?, channelLastActivity: Date?) {
         let channelFetch: NSFetchRequest<Channel_db> = Channel_db.fetchRequest()
         channelFetch.predicate = NSPredicate(format: "identifier = %@", channelIdentifier)
-        self.coreDataStack.performSave { (context) in
+        coreDataStack.performSave { (context) in
             let array = try? context.fetch(channelFetch)
             let newChannel = array?.first
             if newChannel == nil {
@@ -48,7 +48,7 @@ class CoreDataManager: CoreDataManagerProtocol {
     func modifyChannel(channelIdentifier: String, channelName: String, channelLastMessage: String?, channelLastActivity: Date?) {
         let channelFetch: NSFetchRequest<Channel_db> = Channel_db.fetchRequest()
         channelFetch.predicate = NSPredicate(format: "identifier = %@", channelIdentifier)
-        self.coreDataStack.performSave { (context) in
+        coreDataStack.performSave { (context) in
             let array = try? context.fetch(channelFetch)
             if let channel = array?.first {
                 if channel.value(forKey: "name") as? String != channelName {
@@ -66,11 +66,17 @@ class CoreDataManager: CoreDataManagerProtocol {
     
     func removeChannel(channelIdentifier: String) {
         let channelFetch: NSFetchRequest<Channel_db> = Channel_db.fetchRequest()
-        let context = coreDataStack.mainContext
         channelFetch.predicate = NSPredicate(format: "identifier = %@", channelIdentifier)
-        let array = try? context.fetch(channelFetch)
-        if let channel = array?.first {
-            coreDataStack.deleteChannel(channel: channel)
+        coreDataStack.performSave { (context) in
+            let array = try? context.fetch(channelFetch)
+            if let channel = array?.first {
+                context.delete(channel)
+                do {
+                    try context.save()
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
     
@@ -81,7 +87,7 @@ class CoreDataManager: CoreDataManagerProtocol {
         arrayMessage.predicate = NSPredicate(format: "identifier = %@", messageIdentifier)
         arrayChannel.predicate = NSPredicate(format: "identifier = %@", channelIdentifier ?? "")
         
-        self.coreDataStack.performSave { (context) in
+        coreDataStack.performSave { (context) in
             let channelFetch = try? context.fetch(arrayChannel)
             let messageFetch = try? context.fetch(arrayMessage)
             if let channelDB = channelFetch?.first,
@@ -93,7 +99,6 @@ class CoreDataManager: CoreDataManagerProtocol {
                 newMessage_db.senderId = newMes.senderId
                 newMessage_db.senderName = newMes.senderName
                 channelDB.addToMessages_db(newMessage_db)
-                
             }
         }
     }

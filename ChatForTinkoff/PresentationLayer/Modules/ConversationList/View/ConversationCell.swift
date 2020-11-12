@@ -64,10 +64,6 @@ class ConversationCell: UITableViewCell, ConfigurableView {
                 }
             }
         }
-            // ВНИМАНИЕ ВНИМАЕНИЕ ВНИМАНИЕ
-//        else {
-//            dateLabel.isHidden = true
-//        }
     }
     
     override func prepareForReuse() {

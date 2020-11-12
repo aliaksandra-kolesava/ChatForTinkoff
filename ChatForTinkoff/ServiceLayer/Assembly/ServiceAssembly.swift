@@ -11,6 +11,10 @@ import Foundation
 protocol ServiceAssemblyProtocol {
     var coreDataManager: CoreDataManagerProtocol { get }
     var firebaseManager: FirebaseManagerProtocol { get }
+    
+    var gcdDataManager: DataManagerProtocol { get }
+    var operationDataManager: DataManagerProtocol { get }
+//    var alertManager: AlertProtocol { get }
 //    var themeManager: ThemeManagerProtocol { get }
 //    var files: FilesProtocol { get }
 //    var operationDataManager: DataManagerProtocol { get }
@@ -27,6 +31,9 @@ class ServiceAssembly: ServiceAssemblyProtocol {
     
     lazy var coreDataManager: CoreDataManagerProtocol = CoreDataManager(coreDataStack: coreAssembly.coreDataStack)
     lazy var firebaseManager: FirebaseManagerProtocol = FirebaseManager(coreDataStack: coreAssembly.coreDataStack, coreDataManager: coreDataManager)
+    lazy var gcdDataManager: DataManagerProtocol = GCDDataManager(files: coreAssembly.files)
+    lazy var operationDataManager: DataManagerProtocol = OperationDataManager(files: coreAssembly.files)
+//    lazy var alertManager: AlertProtocol = AlertManager()
 //    lazy var themeManager: ThemeManagerProtocol = ThemeManager()
 //    lazy var files: FilesProtocol = Files()
 //    lazy var operationDataManager: DataManagerProtocol = OperationDataManager()

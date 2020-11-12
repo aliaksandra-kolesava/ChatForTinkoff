@@ -27,15 +27,14 @@ class ConversationListModel: ConversationListProtocol {
     
     let firebaseDataManager: FirebaseManagerProtocol
     let coreDataManager: CoreDataManagerProtocol
+    
     init(firebaseDataManager: FirebaseManagerProtocol, coreDataManager: CoreDataManagerProtocol) {
         self.firebaseDataManager = firebaseDataManager
         self.coreDataManager = coreDataManager
     }
     
     func loadAllChannels() {
-        firebaseDataManager.loadChannels {
-            self.delegate?.completedLoad()
-        }
+        firebaseDataManager.loadChannels()
     }
     
     func createNewChannel(chName: String) {

@@ -9,12 +9,21 @@
 import Foundation
 
 class GCDDataManager: DataManagerProtocol {
+  
+    let files: FilesProtocol
+    init(files: FilesProtocol) {
+        self.files = files
+    }
     
     let queue = DispatchQueue.global(qos: .utility)
     
+    func fileWithData() -> String {
+        return files.fileWithData()
+    }
+    
     func readFile(file: String, callback: @escaping (Data?) -> Void) {
         queue.async {
-            let data = Files.files.readFile(file: file)
+            let data = self.files.readFile(file: file)
             
             DispatchQueue.main.async {
                 callback(data)
@@ -24,7 +33,7 @@ class GCDDataManager: DataManagerProtocol {
     
     func writeFile(file: String, data: Data, callback: @escaping (Bool) -> Void) {
         queue.async {
-            let result = Files.files.writeFile(file: file, data: data)
+            let result = self.files.writeFile(file: file, data: data)
             
             DispatchQueue.main.async {
                 callback(result)

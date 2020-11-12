@@ -12,9 +12,9 @@ import CoreData
 
 protocol FirebaseManagerProtocol {
     func createChannel(chName: String)
-    func loadChannels(completion: @escaping () -> Void)
+    func loadChannels()
     func deleteChannel(id: String, channel: Channel_db)
-    func loadMessages(identifier: String?, completion: @escaping () -> Void)
+    func loadMessages(identifier: String?)
     func addMessage(identifier: String?, messageContent: String, messageSenderId: String, mySenderName: String, completion: @escaping () -> Void)
     
 }
@@ -42,8 +42,8 @@ class FirebaseManager: FirebaseManagerProtocol {
         }
     }
     
-    func loadChannels(completion: @escaping () -> Void) {
-        DispatchQueue.global(qos: .default).async {
+    func loadChannels() {
+        DispatchQueue.global().async {
             self.reference.order(by: Key.FStore.lastActivity).addSnapshotListener { querySnapshot, error in
                 
                 if let e = error {
@@ -72,7 +72,6 @@ class FirebaseManager: FirebaseManagerProtocol {
                             case .removed:
                                 self.coreDataManager.removeChannel(channelIdentifier: channelIdentifier)
                             }
-                            completion()
                         }
                     }
                 }
@@ -85,13 +84,13 @@ class FirebaseManager: FirebaseManagerProtocol {
             if let error = error {
                 print("Channel can't be deleted \(error.localizedDescription)")
             } else {
-                self.coreDataStack.deleteChannel(channel: channel)
+                self.coreDataManager.removeChannel(channelIdentifier: id)
             }
         }
     }
     
-    func loadMessages(identifier: String?, completion: @escaping () -> Void) {
-        DispatchQueue.global(qos: .default).async {
+    func loadMessages(identifier: String?) {
+        DispatchQueue.global().async {
             self.reference.document(identifier ?? "").collection("messages").addSnapshotListener { (querySnapshot, error) in
                 
                 if let e = error {
@@ -117,7 +116,7 @@ class FirebaseManager: FirebaseManagerProtocol {
                         case .removed:
                             break
                         }
-                        completion()
+//                        completion()
                     }
                 }
             }
@@ -125,7 +124,8 @@ class FirebaseManager: FirebaseManagerProtocol {
     }
     
     func addMessage(identifier: String?, messageContent: String, messageSenderId: String, mySenderName: String, completion: @escaping () -> Void) {
-        reference.document(identifier ?? "").collection("messages").addDocument(data: [
+        DispatchQueue.global().async {
+            self.reference.document(identifier ?? "").collection("messages").addDocument(data: [
             Key.FStore.content: messageContent,
             Key.FStore.created: Timestamp(date: Date()),
             Key.FStore.senderId: messageSenderId,
@@ -137,6 +137,7 @@ class FirebaseManager: FirebaseManagerProtocol {
                     
                     completion()
                 }
+            }
         }
     }
 }

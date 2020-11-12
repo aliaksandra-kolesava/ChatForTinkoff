@@ -11,15 +11,21 @@ import Foundation
 protocol FilesProtocol {
     func readFile(file: String) -> Data?
     func writeFile(file: String, data: Data) -> Bool
+    func fileWithData() -> String
 }
 
 class Files: FilesProtocol {
+//    var filesWithData: String
     
     static let files = Files()
     
-    let fileWithData: String = "fileWithData.plist"
+//    var fileWithData: String = "fileWithData.plist"
     
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+    
+    func fileWithData() -> String {
+        return "fileWithData.plist"
+    }
     
     func readFile(file: String) -> Data? {
         guard let fileURL = dataFilePath?.appendingPathComponent(file) else { return(nil) }

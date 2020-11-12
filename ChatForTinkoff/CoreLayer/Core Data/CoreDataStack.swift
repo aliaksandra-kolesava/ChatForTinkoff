@@ -12,7 +12,6 @@ import CoreData
 protocol CoreDataStackProtocol {
     var mainContext: NSManagedObjectContext { get }
     func performSave(_ block: (NSManagedObjectContext) -> Void)
-    func deleteChannel(channel: Channel_db)
 }
 
 class CoreDataStack: CoreDataStackProtocol {
@@ -93,9 +92,16 @@ class CoreDataStack: CoreDataStackProtocol {
     }
     
     private func performSave(in context: NSManagedObjectContext) throws {
-        try context.save()
-        if let parent = context.parent {
-            try performSave(in: parent)
+        context.perform {
+//              print(Thread.isMainThread)
+            do {
+                try context.save()
+                if let parent = context.parent {
+                    try self.performSave(in: parent)
+                }
+            } catch {
+                assertionFailure(error.localizedDescription)
+            }
         }
     }
     
@@ -123,15 +129,6 @@ class CoreDataStack: CoreDataStackProtocol {
         if let deletes = userInfo[NSDeletedObjectsKey] as? Set<NSManagedObject>,
             deletes.count > 0 {
             print("Удалено объектов: ", deletes.count)
-        }
-    }
-    
-    func deleteChannel(channel: Channel_db) {
-        mainContext.delete(channel)
-        do {
-            try mainContext.save()
-        } catch {
-            fatalError(error.localizedDescription)
         }
     }
 }

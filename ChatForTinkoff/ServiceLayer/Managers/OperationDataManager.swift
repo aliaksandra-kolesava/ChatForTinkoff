@@ -12,13 +12,16 @@ import Foundation
     var file: String
     var data: Data?
     
-    init(file: String) {
+    let files: FilesProtocol
+    
+    init(file: String, files: FilesProtocol) {
         self.file = file
+        self.files = files
     }
     
     override func main() {
         if isCancelled { return }
-        let data = Files.files.readFile(file: file)
+        let data = files.readFile(file: file)
         if isCancelled { return }
         self.data = data
     }
@@ -29,16 +32,19 @@ import Foundation
     let data: Data
     var result: Bool = false
     
-    init(file: String, data: Data) {
+    let files: FilesProtocol
+    
+    init(file: String, data: Data, files: FilesProtocol) {
         self.file = file
         self.data = data
+        self.files = files
         
         super.init()
     }
     
     override func main() {
         if isCancelled { return }
-        let result = Files.files.writeFile(file: file, data: data)
+        let result = files.writeFile(file: file, data: data)
         if isCancelled { return }
         self.result = result
     }
@@ -47,9 +53,18 @@ import Foundation
  class OperationDataManager: DataManagerProtocol {
     
     let operationQueue = OperationQueue()
+    let files: FilesProtocol
+    
+    init(files: FilesProtocol) {
+        self.files = files
+    }
+    
+    func fileWithData() -> String {
+        return files.fileWithData()
+    }
     
     func readFile(file: String, callback: @escaping (Data?) -> Void) {
-        let operationRead = OperationRead(file: file)
+        let operationRead = OperationRead(file: file, files: files)
         
         operationRead.completionBlock = {
             OperationQueue.main.addOperation {
@@ -60,7 +75,7 @@ import Foundation
     }
     
     func writeFile(file: String, data: Data, callback: @escaping (Bool) -> Void) {
-        let operationWrite = OperationWrite(file: file, data: data)
+        let operationWrite = OperationWrite(file: file, data: data, files: files)
         
         operationWrite.completionBlock = {
             OperationQueue.main.addOperation {

@@ -10,8 +10,10 @@ import Foundation
 
 protocol CoreAssemblyProtocol {
     var coreDataStack: CoreDataStackProtocol { get }
+    var files: FilesProtocol { get }
 }
 
 class CoreAssembly: CoreAssemblyProtocol {
     var coreDataStack: CoreDataStackProtocol = CoreDataStack.shared
+    var files: FilesProtocol = Files.files
 }

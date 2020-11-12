@@ -16,6 +16,8 @@ class ConversationsListViewController: UIViewController {
     
     let headTitles = ["Channels"]
     
+    var alertManager = AlertManager()
+    
     var conversationListModel: ConversationListProtocol?
     var presentationAssembly: PresentationAssemblyProtocol?
     
@@ -35,27 +37,26 @@ class ConversationsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationBarItems()
-        //        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        
+        tableViewSetup()
+        setupTheme()
+        fetchAllChannels()
+    }
+    
+    func tableViewSetup() {
         conversationList.dataSource = self
         conversationList.delegate = self
         
         conversationList.register(UINib(nibName: Key.ConversationList.cellNibName, bundle: nil), forCellReuseIdentifier: Key.ConversationList.cellIdentifier)
-        
-        setupTheme()
-        fetchAllChannels()
-        
     }
     
     func fetchAllChannels() {
         fetchResultController.delegate = self
+            self.conversationList.reloadData()
         do {
             try fetchResultController.performFetch()
-            conversationList.reloadData()
         } catch {
-            print("\(error) smth wrong")
+            print(error.localizedDescription)
         }
         conversationListModel?.loadAllChannels()
     }
@@ -86,45 +87,23 @@ class ConversationsListViewController: UIViewController {
     }
     
     @objc func addChannelIsTapped() {
-        
-        var textField = UITextField()
-        
-        let alert = UIAlertController(title: "Add New Channel", message: "", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Add", style: .default) { (_) in
-            if let chName = textField.text {
-                self.conversationListModel?.createNewChannel(chName: chName)
-            }
+        alertManager.addChannelAlert { (chName) in
+            self.conversationListModel?.createNewChannel(chName: chName)
         }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Create new channel"
-            textField = alertTextField
-        }
-        
-        alert.addAction(cancel)
-        alert.addAction(action)
-        
-        present(alert, animated: true, completion: nil)
     }
     
     @objc func settingsButtonIsTapped() {
-        
-        let themesStoryboard: UIStoryboard = UIStoryboard(name: Key.ThemesViewController.themeStoryBoard, bundle: nil)
-        guard let themesViewController = themesStoryboard.instantiateViewController(withIdentifier: Key.ThemesViewController.themesVCId) as? ThemesViewController
-            else { return }
-        
+        guard let themesViewController = presentationAssembly?.themeViewController() else { return }
         //       themesViewController.themesPickerDelegate = self
         themesViewController.themesClosure = { [weak self] in
             self?.setupTheme() }
-        
         navigationController?.pushViewController(themesViewController, animated: false)
         themesViewController.title = "Settings"
         
     }
     
     @objc func profileImageIsTapped() {
-        let storyboard = UIStoryboard(name: Key.StoryBoardName.mainStoryBoard, bundle: nil)
-        let profileViewController = storyboard.instantiateViewController(withIdentifier: Key.NavigationProfileView.navigationProfileView)
+        guard let profileViewController = presentationAssembly?.profileNavigationViewController() else { return }
         self.present(profileViewController, animated: true)
     }
     
@@ -189,7 +168,6 @@ extension ConversationsListViewController: UITableViewDelegate {
         conversationViewController.title = frc.name
         conversationViewController.identifier = frc.identifier
         conversationViewController.channel_db = frc
-        
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -209,9 +187,7 @@ extension ConversationsListViewController: UITableViewDelegate {
 
 extension ConversationsListViewController: ThemesPickerDelegate {
     func changeTheme(_ themesViewController: ThemesViewController) {
-        
         setupTheme()
-        
     }
 }
 
@@ -257,8 +233,8 @@ extension ConversationsListViewController: NSFetchedResultsControllerDelegate {
     }
 }
 
-extension ConversationsListViewController: ConversationListDelegate {
-    func completedLoad() {
-        print("Loading Data complited successfully")
-    }
-}
+//extension ConversationsListViewController: ConversationListDelegate {
+//    func completedLoad() {
+//        print("Loading Data complited successfully")
+//    }
+//}

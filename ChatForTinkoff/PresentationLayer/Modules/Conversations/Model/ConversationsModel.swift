@@ -17,7 +17,6 @@ protocol ConversationsModelProtocol: class {
 }
 
 protocol ConversationsProtocol: class {
-    func complitedLoading()
     func clearTextfield()
 }
 
@@ -33,9 +32,7 @@ class ConversationsModel: ConversationsModelProtocol {
     }
     
     func loadMessages(identifier: String?) {
-        firebaseDataManager.loadMessages(identifier: identifier) {
-            self.delegate?.complitedLoading()
-        }
+        firebaseDataManager.loadMessages(identifier: identifier)
     }
     
     func addMessage(identifier: String?, messageContent: String, messageSenderId: String, mySenderName: String) {
