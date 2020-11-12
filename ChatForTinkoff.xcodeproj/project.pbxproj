@@ -20,13 +20,23 @@
 		3B5EFD7E2545857500E19AA1 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5EFD7D2545857500E19AA1 /* CoreDataStack.swift */; };
 		3B5EFD802545C7AC00E19AA1 /* ObjectsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5EFD7F2545C7AB00E19AA1 /* ObjectsExtensions.swift */; };
 		3B65B76625347866004B760E /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B76525347866004B760E /* GCDDataManager.swift */; };
-		3B65B7682534789F004B760E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B7672534789F004B760E /* DataManager.swift */; };
+		3B65B7682534789F004B760E /* DataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B7672534789F004B760E /* DataManagerProtocol.swift */; };
 		3B65B76A253478B1004B760E /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B769253478B1004B760E /* OperationDataManager.swift */; };
 		3B65B76C25347DA9004B760E /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B76B25347DA9004B760E /* Files.swift */; };
 		3B65B76E2534AB93004B760E /* ProfileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B76D2534AB93004B760E /* ProfileInfo.swift */; };
+		3B68B66B25599D6600FD1998 /* CoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B66A25599D6600FD1998 /* CoreAssembly.swift */; };
+		3B68B66D2559A18900FD1998 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B66C2559A18900FD1998 /* CoreDataManager.swift */; };
+		3B68B66F255A8A1C00FD1998 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B66E255A8A1C00FD1998 /* FirebaseManager.swift */; };
+		3B68B671255A8D5500FD1998 /* ServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B670255A8D5500FD1998 /* ServiceAssembly.swift */; };
+		3B68B673255A9DD400FD1998 /* ConversationListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B672255A9DD400FD1998 /* ConversationListModel.swift */; };
+		3B68B675255AB31600FD1998 /* RootAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B674255AB31600FD1998 /* RootAssembly.swift */; };
+		3B68B677255AB45600FD1998 /* PresentationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B676255AB45600FD1998 /* PresentationAssembly.swift */; };
+		3B68B679255AF28700FD1998 /* ConversationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B678255AF28700FD1998 /* ConversationsModel.swift */; };
+		3B68B67B255C086700FD1998 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B67A255C086700FD1998 /* AlertManager.swift */; };
+		3B68B680255D23E400FD1998 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B67F255D23E400FD1998 /* ProfileModel.swift */; };
 		3B6D691A252B7EE600EAE76F /* ThemesPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D6919252B7EE600EAE76F /* ThemesPickerDelegate.swift */; };
 		3B6D691C252BA38000EAE76F /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D691B252BA38000EAE76F /* ThemeColors.swift */; };
-		3B6D691E252C77FF00EAE76F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D691D252C77FF00EAE76F /* Theme.swift */; };
+		3B6D691E252C77FF00EAE76F /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D691D252C77FF00EAE76F /* ThemeManager.swift */; };
 		3B7D32622514F2BB002FD929 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D32612514F2BB002FD929 /* SF-Pro-Display-Regular.otf */; };
 		3B7D326525175913002FD929 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D326425175913002FD929 /* SF-Pro-Text-Regular.otf */; };
 		3B7D326725175CA6002FD929 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B7D326625175CA6002FD929 /* Roboto-Regular.ttf */; };
@@ -59,13 +69,23 @@
 		3B5EFD7D2545857500E19AA1 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		3B5EFD7F2545C7AB00E19AA1 /* ObjectsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectsExtensions.swift; sourceTree = "<group>"; };
 		3B65B76525347866004B760E /* GCDDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
-		3B65B7672534789F004B760E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		3B65B7672534789F004B760E /* DataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerProtocol.swift; sourceTree = "<group>"; };
 		3B65B769253478B1004B760E /* OperationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
 		3B65B76B25347DA9004B760E /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
 		3B65B76D2534AB93004B760E /* ProfileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfo.swift; sourceTree = "<group>"; };
+		3B68B66A25599D6600FD1998 /* CoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssembly.swift; sourceTree = "<group>"; };
+		3B68B66C2559A18900FD1998 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		3B68B66E255A8A1C00FD1998 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		3B68B670255A8D5500FD1998 /* ServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAssembly.swift; sourceTree = "<group>"; };
+		3B68B672255A9DD400FD1998 /* ConversationListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListModel.swift; sourceTree = "<group>"; };
+		3B68B674255AB31600FD1998 /* RootAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
+		3B68B676255AB45600FD1998 /* PresentationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationAssembly.swift; sourceTree = "<group>"; };
+		3B68B678255AF28700FD1998 /* ConversationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsModel.swift; sourceTree = "<group>"; };
+		3B68B67A255C086700FD1998 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		3B68B67F255D23E400FD1998 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		3B6D6919252B7EE600EAE76F /* ThemesPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesPickerDelegate.swift; sourceTree = "<group>"; };
 		3B6D691B252BA38000EAE76F /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
-		3B6D691D252C77FF00EAE76F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		3B6D691D252C77FF00EAE76F /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		3B7D32612514F2BB002FD929 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		3B7D326425175913002FD929 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		3B7D326625175CA6002FD929 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -117,19 +137,15 @@
 		3B15E274250E0C7300BC7E69 /* ChatForTinkoff */ = {
 			isa = PBXGroup;
 			children = (
-				3B5EFD7C2545854C00E19AA1 /* Core Data */,
+				3B68B64E255955EB00FD1998 /* PresentationLayer */,
+				3B68B6622559673500FD1998 /* ServiceLayer */,
+				3B68B666255967AD00FD1998 /* CoreLayer */,
+				3B68B668255967F800FD1998 /* SupportingFiles */,
 				3B15E275250E0C7300BC7E69 /* AppDelegate.swift */,
-				3B65B76425347843004B760E /* Managers */,
-				3B7D3275251E062F002FD929 /* Models */,
-				3B7D3274251E0615002FD929 /* Views */,
-				3B7D3276251E063F002FD929 /* Controllers */,
-				3B15E27E250E0C7600BC7E69 /* Assets.xcassets */,
-				3B15E280250E0C7600BC7E69 /* LaunchScreen.storyboard */,
-				3B15E28B250E107300BC7E69 /* SwitchLogs.swift */,
-				3B7D3272251DF6D0002FD929 /* Constants.swift */,
-				3B7D32632514F45B002FD929 /* Fonts */,
 				3B15E283250E0C7600BC7E69 /* Info.plist */,
 				3B5EFD72253C5E3700E19AA1 /* GoogleService-Info.plist */,
+				3B15E280250E0C7600BC7E69 /* LaunchScreen.storyboard */,
+				3B68B674255AB31600FD1998 /* RootAssembly.swift */,
 			);
 			path = ChatForTinkoff;
 			sourceTree = "<group>";
@@ -144,15 +160,251 @@
 			path = "Core Data";
 			sourceTree = "<group>";
 		};
-		3B65B76425347843004B760E /* Managers */ = {
+		3B68B64E255955EB00FD1998 /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				3B68B64F2559560700FD1998 /* Assembly */,
+				3B68B6502559561100FD1998 /* Modules */,
+			);
+			path = PresentationLayer;
+			sourceTree = "<group>";
+		};
+		3B68B64F2559560700FD1998 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				3B68B676255AB45600FD1998 /* PresentationAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		3B68B6502559561100FD1998 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				3B68B6552559568A00FD1998 /* Themes */,
+				3B68B6542559568000FD1998 /* Profile */,
+				3B68B6532559567600FD1998 /* Conversations */,
+				3B68B6522559565000FD1998 /* ConversationList */,
+				3B68B6512559563D00FD1998 /* View */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		3B68B6512559563D00FD1998 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B15E27B250E0C7300BC7E69 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B68B6522559565000FD1998 /* ConversationList */ = {
+			isa = PBXGroup;
+			children = (
+				3B68B658255956AA00FD1998 /* View */,
+				3B68B657255956A500FD1998 /* Model */,
+				3B68B6562559569C00FD1998 /* Controller */,
+			);
+			path = ConversationList;
+			sourceTree = "<group>";
+		};
+		3B68B6532559567600FD1998 /* Conversations */ = {
+			isa = PBXGroup;
+			children = (
+				3B68B65B255956DC00FD1998 /* Model */,
+				3B68B65A255956D700FD1998 /* View */,
+				3B68B659255956D000FD1998 /* Controller */,
+			);
+			path = Conversations;
+			sourceTree = "<group>";
+		};
+		3B68B6542559568000FD1998 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				3B68B65E2559577000FD1998 /* Model */,
+				3B68B65C2559575A00FD1998 /* Controller */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		3B68B6552559568A00FD1998 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				3B68B6612559579400FD1998 /* Model */,
+				3B68B6602559579000FD1998 /* View */,
+				3B68B65F2559578900FD1998 /* Controller */,
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
+		3B68B6562559569C00FD1998 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B7D3270251DF43A002FD929 /* ConversationsListViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B68B657255956A500FD1998 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3B5EFD75253D908700E19AA1 /* Channel.swift */,
+				3B68B672255A9DD400FD1998 /* ConversationListModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3B68B658255956AA00FD1998 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B7D3277251E06B0002FD929 /* ConversationCell.swift */,
+				3B7D3278251E06B0002FD929 /* ConversationCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B68B659255956D000FD1998 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B7D328125226BA9002FD929 /* ConversationViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B68B65A255956D700FD1998 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B7D328525233752002FD929 /* MessageCell.swift */,
+				3B7D328625233752002FD929 /* MessageCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B68B65B255956DC00FD1998 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3B5EFD77253D912000E19AA1 /* Message.swift */,
+				3B68B678255AF28700FD1998 /* ConversationsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3B68B65C2559575A00FD1998 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B15E279250E0C7300BC7E69 /* ProfileViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B68B65E2559577000FD1998 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3B65B76D2534AB93004B760E /* ProfileInfo.swift */,
+				3B68B67F255D23E400FD1998 /* ProfileModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3B68B65F2559578900FD1998 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B7D32912529E1BE002FD929 /* ThemesViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B68B6602559579000FD1998 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B7D328F2529E0C8002FD929 /* Themes.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B68B6612559579400FD1998 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3B6D691B252BA38000EAE76F /* ThemeColors.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3B68B6622559673500FD1998 /* ServiceLayer */ = {
+			isa = PBXGroup;
+			children = (
+				3B68B6652559679800FD1998 /* Assembly */,
+				3B68B6642559675800FD1998 /* Managers */,
+				3B68B6632559674000FD1998 /* Protocols */,
+			);
+			path = ServiceLayer;
+			sourceTree = "<group>";
+		};
+		3B68B6632559674000FD1998 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3B65B7672534789F004B760E /* DataManagerProtocol.swift */,
+				3B7D327B25221096002FD929 /* ConfigurableView.swift */,
+				3B6D6919252B7EE600EAE76F /* ThemesPickerDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		3B68B6642559675800FD1998 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				3B65B76525347866004B760E /* GCDDataManager.swift */,
-				3B65B7672534789F004B760E /* DataManager.swift */,
 				3B65B769253478B1004B760E /* OperationDataManager.swift */,
-				3B65B76B25347DA9004B760E /* Files.swift */,
+				3B68B66C2559A18900FD1998 /* CoreDataManager.swift */,
+				3B68B66E255A8A1C00FD1998 /* FirebaseManager.swift */,
+				3B6D691D252C77FF00EAE76F /* ThemeManager.swift */,
+				3B68B67A255C086700FD1998 /* AlertManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		3B68B6652559679800FD1998 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				3B68B670255A8D5500FD1998 /* ServiceAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		3B68B666255967AD00FD1998 /* CoreLayer */ = {
+			isa = PBXGroup;
+			children = (
+				3B68B667255967C200FD1998 /* Assembly */,
+				3B68B67E255D21D600FD1998 /* Profile Data */,
+				3B5EFD7C2545854C00E19AA1 /* Core Data */,
+			);
+			path = CoreLayer;
+			sourceTree = "<group>";
+		};
+		3B68B667255967C200FD1998 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				3B68B66A25599D6600FD1998 /* CoreAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		3B68B668255967F800FD1998 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				3B7D32632514F45B002FD929 /* Fonts */,
+				3B15E27E250E0C7600BC7E69 /* Assets.xcassets */,
+				3B15E28B250E107300BC7E69 /* SwitchLogs.swift */,
+				3B7D3272251DF6D0002FD929 /* Constants.swift */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		3B68B67E255D21D600FD1998 /* Profile Data */ = {
+			isa = PBXGroup;
+			children = (
+				3B65B76B25347DA9004B760E /* Files.swift */,
+			);
+			path = "Profile Data";
 			sourceTree = "<group>";
 		};
 		3B7D32632514F45B002FD929 /* Fonts */ = {
@@ -163,44 +415,6 @@
 				3B7D326625175CA6002FD929 /* Roboto-Regular.ttf */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		3B7D3274251E0615002FD929 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				3B15E27B250E0C7300BC7E69 /* Main.storyboard */,
-				3B7D3277251E06B0002FD929 /* ConversationCell.swift */,
-				3B7D3278251E06B0002FD929 /* ConversationCell.xib */,
-				3B7D328525233752002FD929 /* MessageCell.swift */,
-				3B7D328625233752002FD929 /* MessageCell.xib */,
-				3B7D328F2529E0C8002FD929 /* Themes.storyboard */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		3B7D3275251E062F002FD929 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				3B7D327B25221096002FD929 /* ConfigurableView.swift */,
-				3B6D6919252B7EE600EAE76F /* ThemesPickerDelegate.swift */,
-				3B6D691B252BA38000EAE76F /* ThemeColors.swift */,
-				3B6D691D252C77FF00EAE76F /* Theme.swift */,
-				3B65B76D2534AB93004B760E /* ProfileInfo.swift */,
-				3B5EFD75253D908700E19AA1 /* Channel.swift */,
-				3B5EFD77253D912000E19AA1 /* Message.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		3B7D3276251E063F002FD929 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				3B7D3270251DF43A002FD929 /* ConversationsListViewController.swift */,
-				3B15E279250E0C7300BC7E69 /* ProfileViewController.swift */,
-				3B7D328125226BA9002FD929 /* ConversationViewController.swift */,
-				3B7D32912529E1BE002FD929 /* ThemesViewController.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		9159A1FCF42D4D1F47A78179 /* Pods */ = {
@@ -360,25 +574,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B68B66F255A8A1C00FD1998 /* FirebaseManager.swift in Sources */,
 				3B65B76E2534AB93004B760E /* ProfileInfo.swift in Sources */,
 				3B15E27A250E0C7300BC7E69 /* ProfileViewController.swift in Sources */,
+				3B68B680255D23E400FD1998 /* ProfileModel.swift in Sources */,
+				3B68B677255AB45600FD1998 /* PresentationAssembly.swift in Sources */,
 				3B7D32922529E1BE002FD929 /* ThemesViewController.swift in Sources */,
 				3B7D328225226BA9002FD929 /* ConversationViewController.swift in Sources */,
 				3B65B76625347866004B760E /* GCDDataManager.swift in Sources */,
 				3B5EFD802545C7AC00E19AA1 /* ObjectsExtensions.swift in Sources */,
 				3B7D3271251DF43B002FD929 /* ConversationsListViewController.swift in Sources */,
 				3B5EFD7B254584FD00E19AA1 /* Chat.xcdatamodeld in Sources */,
-				3B65B7682534789F004B760E /* DataManager.swift in Sources */,
+				3B68B66B25599D6600FD1998 /* CoreAssembly.swift in Sources */,
+				3B68B673255A9DD400FD1998 /* ConversationListModel.swift in Sources */,
+				3B65B7682534789F004B760E /* DataManagerProtocol.swift in Sources */,
 				3B7D328725233752002FD929 /* MessageCell.swift in Sources */,
+				3B68B671255A8D5500FD1998 /* ServiceAssembly.swift in Sources */,
 				3B15E276250E0C7300BC7E69 /* AppDelegate.swift in Sources */,
 				3B15E28C250E107300BC7E69 /* SwitchLogs.swift in Sources */,
 				3B5EFD76253D908700E19AA1 /* Channel.swift in Sources */,
+				3B68B67B255C086700FD1998 /* AlertManager.swift in Sources */,
 				3B6D691A252B7EE600EAE76F /* ThemesPickerDelegate.swift in Sources */,
-				3B6D691E252C77FF00EAE76F /* Theme.swift in Sources */,
+				3B6D691E252C77FF00EAE76F /* ThemeManager.swift in Sources */,
 				3B65B76A253478B1004B760E /* OperationDataManager.swift in Sources */,
 				3B5EFD78253D912000E19AA1 /* Message.swift in Sources */,
+				3B68B66D2559A18900FD1998 /* CoreDataManager.swift in Sources */,
 				3B7D3273251DF6D0002FD929 /* Constants.swift in Sources */,
 				3B5EFD7E2545857500E19AA1 /* CoreDataStack.swift in Sources */,
+				3B68B675255AB31600FD1998 /* RootAssembly.swift in Sources */,
+				3B68B679255AF28700FD1998 /* ConversationsModel.swift in Sources */,
 				3B7D3279251E06B0002FD929 /* ConversationCell.swift in Sources */,
 				3B65B76C25347DA9004B760E /* Files.swift in Sources */,
 				3B6D691C252BA38000EAE76F /* ThemeColors.swift in Sources */,

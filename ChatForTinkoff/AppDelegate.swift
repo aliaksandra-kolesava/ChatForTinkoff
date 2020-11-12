@@ -15,11 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     var switchLogs = SwitchLogs()
+    private let rootAssembly = RootAssembly()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         switchLogs.forAppDelegate(from: "Not Running", to: "Inactive", method: "\(#function)")
  
         FirebaseApp.configure()
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let controller = rootAssembly.presentationAssembly.mainNavigationViewController()
+        window?.rootViewController = controller
+        window?.makeKeyAndVisible()
 //        CoreDataStack.shared.enableObservers()
 
         return true
