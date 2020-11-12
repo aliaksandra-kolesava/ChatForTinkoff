@@ -28,32 +28,27 @@ class ThemesViewController: UIViewController {
         classic.font = UIFont.systemFont(ofSize: 19, weight: .semibold)
         day.font = UIFont.systemFont(ofSize: 19, weight: .semibold)
         night.font = UIFont.systemFont(ofSize: 19, weight: .semibold)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         changeThemeOn(ThemeManager.currentTheme)
-        
     }
     
     @IBAction func dayButton(_ sender: UIButton) {
         changeThemeOn(.day)
-  
     }
     
     @IBAction func classicButton(_ sender: UIButton) {
         changeThemeOn(.classic)
-        
     }
     
     @IBAction func nightButton(_ sender: UIButton) {
         changeThemeOn(.night)
-        
     }
     
     func changeThemeOn(_ theme: ThemeColors) {
-    
+        
         ThemeManager.updateTheme(theme) {
             DispatchQueue.main.async {
                 self.themesPickerDelegate?.changeTheme(self)
@@ -70,11 +65,10 @@ class ThemesViewController: UIViewController {
             changeAttributesTheme(currentTheme: classicImage, anotherTheme1: dayImage, anotherTheme2: nightImage)
             
         case .day:
-          changeAttributesTheme(currentTheme: dayImage, anotherTheme1: classicImage, anotherTheme2: nightImage)
+            changeAttributesTheme(currentTheme: dayImage, anotherTheme1: classicImage, anotherTheme2: nightImage)
             
         case .night:
-       changeAttributesTheme(currentTheme: nightImage, anotherTheme1: dayImage, anotherTheme2: classicImage)
-    
+            changeAttributesTheme(currentTheme: nightImage, anotherTheme1: dayImage, anotherTheme2: classicImage)
         }
     }
     

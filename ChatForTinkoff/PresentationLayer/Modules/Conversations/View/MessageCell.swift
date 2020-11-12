@@ -42,21 +42,24 @@ class MessageCell: UITableViewCell, ConfigurableView {
         createdLabel.text = formatter.string(from: model.created ?? Date())
         
         if model.senderId == UIDevice.current.identifierForVendor?.uuidString ?? "" {
-           incomingMessage.isHidden = true
+            labelsAreHidden(state: true)
             outgoingMessage.isHidden = false
-            senderNameLabel.isHidden = true
             messageBubble.backgroundColor = ThemeManager.currentTheme.incomingMessage
             messageLabel.textColor = ThemeManager.currentTheme.incomingMessagesTextColor
             createdLabel.textColor = ThemeManager.currentTheme.incomingMessagesTextColor
             
         } else {
-            incomingMessage.isHidden = false
+            labelsAreHidden(state: false)
             outgoingMessage.isHidden = true
-            senderNameLabel.isHidden = false
             messageBubble.backgroundColor = ThemeManager.currentTheme.outgoingMessage
             messageLabel.textColor = ThemeManager.currentTheme.outgoingMessagesTextColor
             senderNameLabel.textColor = ThemeManager.currentTheme.outgoingMessagesTextColor
             createdLabel.textColor = ThemeManager.currentTheme.outgoingMessagesTextColor
         }
+    }
+    
+    func labelsAreHidden(state: Bool) {
+        incomingMessage.isHidden = state
+        senderNameLabel.isHidden = state
     }
 }

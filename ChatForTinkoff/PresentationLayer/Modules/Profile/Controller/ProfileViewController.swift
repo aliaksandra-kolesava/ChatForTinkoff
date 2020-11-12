@@ -50,8 +50,8 @@ class ProfileViewController: UIViewController {
         changeTheme()
         activityIndicatorFunc()
         guard let profileGCD = profileGCDModel else { return }
-//        guard let profileOperation = profileOperationModel else { return }
-//        readDataFile(dataManager: profileOperationModel)
+        //        guard let profileOperation = profileOperationModel else { return }
+        //        readDataFile(dataManager: profileOperationModel)
         readDataFile(dataManager: profileGCD)
     }
     
@@ -73,7 +73,7 @@ class ProfileViewController: UIViewController {
         
         profileName.font = UIFont.systemFont(ofSize: fontProfileName, weight: .bold)
         aboutYourself.font = UIFont.systemFont(ofSize: fontAboutYourself, weight: .regular)
-
+        
         switchLogs.forProfileViewController(method: "\(#function)")
     }
     
@@ -91,12 +91,12 @@ class ProfileViewController: UIViewController {
         super.viewDidDisappear(animated)
         switchLogs.forProfileViewController(method: "\(#function)")
     }
-      
-      func delegates() {
-          nameTextField.delegate = self
-          aboutTextField.delegate = self
-          imagePicker.delegate = self
-      }
+    
+    func delegates() {
+        nameTextField.delegate = self
+        aboutTextField.delegate = self
+        imagePicker.delegate = self
+    }
     
     // MARK: - Read and Write Data Functions
     
@@ -104,10 +104,10 @@ class ProfileViewController: UIViewController {
         dataManager.readFile(file: dataManager.fileWithData()) { data in
             
             self.finishedEditing()
-
+            
             if let data = data,
                 let profileInfo = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? ProfileInfo {
-
+                
                 self.profileInfo = profileInfo
                 self.profileName.text = profileInfo.name
                 self.aboutYourself.text = profileInfo.aboutYourself
@@ -142,22 +142,22 @@ class ProfileViewController: UIViewController {
             dataManager.writeFile(file: dataManager.fileWithData(), data: newData) { completed in
                 
                 self.activityIndicator.stopAnimating()
-                            
-                    if completed {
-                        self.profileInfo = newProfile
-                        self.alertManager.editingSuccessfulAlert(title: "Editing was successful", message: "The changes are saved!") {
-                            self.readDataFile(dataManager: dataManager)
-                        }
-
-                    } else {
-                        self.alertManager.errorAlert(message: "Error", repeatedBlock: {
-                            self.writeDataFile(dataManager: dataManager)
-                        }, okBlock: {
-                            self.buttonsAreHidden(parameter1: self.buttonGCD, parameter2: self.buttonOperation, state1: true, state2: true)
-                            self.editButton.isHidden = false
-                        })
+                
+                if completed {
+                    self.profileInfo = newProfile
+                    self.alertManager.editingSuccessfulAlert(title: "Editing was successful", message: "The changes are saved!") {
+                        self.readDataFile(dataManager: dataManager)
                     }
+                    
+                } else {
+                    self.alertManager.errorAlert(message: "Error", repeatedBlock: {
+                        self.writeDataFile(dataManager: dataManager)
+                    }, okBlock: {
+                        self.buttonsAreHidden(parameter1: self.buttonGCD, parameter2: self.buttonOperation, state1: true, state2: true)
+                        self.editButton.isHidden = false
+                    })
                 }
+            }
         } catch {
             print(error)
         }
@@ -167,91 +167,91 @@ class ProfileViewController: UIViewController {
     // MARK: - Keyboard Functions
     
     func addObserversKeyboard() {
-         NotificationCenter.default.addObserver(self, selector: #selector(keyBoard), name: UIResponder.keyboardWillHideNotification, object: nil)
-         NotificationCenter.default.addObserver(self, selector: #selector(keyBoard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     @objc func keyBoard(notification: Notification) {
-           
+        
         if let userInfo = notification.userInfo {
-           
-        guard let keyboardScreenEndFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-           
-        if notification.name == UIResponder.keyboardWillHideNotification {
-               scrollView.contentInset = UIEdgeInsets.zero
-        } else {
-               scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
-        }
-           scrollView.scrollIndicatorInsets = scrollView.contentInset
+            
+            guard let keyboardScreenEndFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+            let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+            
+            if notification.name == UIResponder.keyboardWillHideNotification {
+                scrollView.contentInset = UIEdgeInsets.zero
+            } else {
+                scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
+            }
+            scrollView.scrollIndicatorInsets = scrollView.contentInset
         }
     }
     
     // MARK: - Edit Profile Functions
     
     func profileNameAndAbout() {
-             
-         if profileName.text != nil && profileName.text != "" {
-             firstLetterName.text = initialsName(name: profileName.text ?? "")
-
-         if initialsSurname(name: profileName.text ?? "") != "" {
-             firstLetterSurname.text = initialsSurname(name: profileName.text ?? "")
-         } else {
-             firstLetterSurname.isHidden = true
-         }
-         } else {
-             firstLetterName.text = ""
-             firstLetterSurname.text = ""
-         }
+        
+        if profileName.text != nil && profileName.text != "" {
+            firstLetterName.text = initialsName(name: profileName.text ?? "")
+            
+            if initialsSurname(name: profileName.text ?? "") != "" {
+                firstLetterSurname.text = initialsSurname(name: profileName.text ?? "")
+            } else {
+                firstLetterSurname.isHidden = true
+            }
+        } else {
+            firstLetterName.text = ""
+            firstLetterSurname.text = ""
+        }
     }
-         
+    
     func activityIndicatorFunc() {
-         activityIndicator.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0)
-         activityIndicator.center = view.center
-         activityIndicator.hidesWhenStopped = true
-         activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
-         view.addSubview(activityIndicator)
+        activityIndicator.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0)
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
+        view.addSubview(activityIndicator)
     }
     
     func editingProfile() {
-           
-       aboutYourself.text = text
-       profileName.text = name
-       buttonsAreHidden(parameter1: buttonGCD, parameter2: buttonOperation, state1: true, state2: true)
-       buttonsAreHidden(parameter1: editProfilePhotoButton, parameter2: editButton, state1: true, state2: false)
-   
-       editButton.layer.cornerRadius = editButton.bounds.size.height / 3
-
-       editProfilePhotoButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-       editButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-       buttonGCD.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-       buttonOperation.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-       firstLetterName.font = UIFont.systemFont(ofSize: 120, weight: .regular)
-       firstLetterSurname.font = UIFont.systemFont(ofSize: 120, weight: .regular)
-       
-       profilePhoto.image = UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1")
-       
-       buttonGCD.layer.cornerRadius = buttonGCD.bounds.size.height / 3
-       buttonOperation.layer.cornerRadius = buttonOperation.bounds.size.height / 3
-           
+        
+        aboutYourself.text = text
+        profileName.text = name
+        buttonsAreHidden(parameter1: buttonGCD, parameter2: buttonOperation, state1: true, state2: true)
+        buttonsAreHidden(parameter1: editProfilePhotoButton, parameter2: editButton, state1: true, state2: false)
+        
+        editButton.layer.cornerRadius = editButton.bounds.size.height / 3
+        
+        editProfilePhotoButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        editButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        buttonGCD.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        buttonOperation.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        firstLetterName.font = UIFont.systemFont(ofSize: 120, weight: .regular)
+        firstLetterSurname.font = UIFont.systemFont(ofSize: 120, weight: .regular)
+        
+        profilePhoto.image = UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1")
+        
+        buttonGCD.layer.cornerRadius = buttonGCD.bounds.size.height / 3
+        buttonOperation.layer.cornerRadius = buttonOperation.bounds.size.height / 3
+        
     }
     
     func initialsName(name: String) -> String {
-      let firstLetter = name[name.startIndex]
-      let firstLetterString = String(firstLetter)
-      return firstLetterString
+        let firstLetter = name[name.startIndex]
+        let firstLetterString = String(firstLetter)
+        return firstLetterString
     }
     
     func initialsSurname(name: String) -> String {
-      let fullNameArr = name.components(separatedBy: " ")
-      let numberOfWords = fullNameArr.count
-      if numberOfWords > 1 {
-          let surname = fullNameArr[1]
-          let firstLetter = surname[surname.startIndex]
-          let firstLetterString = String(firstLetter)
-          return firstLetterString
+        let fullNameArr = name.components(separatedBy: " ")
+        let numberOfWords = fullNameArr.count
+        if numberOfWords > 1 {
+            let surname = fullNameArr[1]
+            let firstLetter = surname[surname.startIndex]
+            let firstLetterString = String(firstLetter)
+            return firstLetterString
         } else {
-          return ""
+            return ""
         }
     }
     
@@ -276,10 +276,10 @@ class ProfileViewController: UIViewController {
     }
     
     func finishedEditing() {
-           buttonsAreHidden(parameter1: buttonGCD, parameter2: buttonOperation, state1: true, state2: true)
-           buttonsAreHidden(parameter1: editProfilePhotoButton, parameter2: editButton, state1: true, state2: false)
-           labelsAreHidden(parameter1: profileName, parameter2: aboutYourself, state: false)
-           textfiledsAreHidden(parameter1: nameTextField, parameter2: aboutTextField, state: true)
+        buttonsAreHidden(parameter1: buttonGCD, parameter2: buttonOperation, state1: true, state2: true)
+        buttonsAreHidden(parameter1: editProfilePhotoButton, parameter2: editButton, state1: true, state2: false)
+        labelsAreHidden(parameter1: profileName, parameter2: aboutYourself, state: false)
+        textfiledsAreHidden(parameter1: nameTextField, parameter2: aboutTextField, state: true)
     }
     
     // MARK: - Changing Theme
@@ -293,26 +293,26 @@ class ProfileViewController: UIViewController {
         profileName.textColor = ThemeManager.currentTheme.myProfileTextColor
         aboutYourself.textColor = ThemeManager.currentTheme.myProfileTextColor
         editButton.backgroundColor = ThemeManager.currentTheme.myProfileSaveButton
-     }
+    }
     
     // MARK: - Button Actions
     
     @IBAction func closeButton(_ sender: UIBarButtonItem) {
-         dismiss(animated: true, completion: nil)
-     }
+        dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func editProfilePhotoButtonTapped(_ sender: UIButton) {
-           
-           alertManager.actionSheetProfile(imagePicker: imagePicker, completionFromLibrary: {
-               self.buttonsAreEnable(state: true)
-           }, completionMakePhoto: {
-               self.buttonsAreEnable(state: true)
-           }, completionRemovePhoto: {
-               self.profilePhoto.image = UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1")
-               self.labelsAreHidden(parameter1: self.firstLetterName, parameter2: self.firstLetterSurname, state: false)
-               self.buttonsAreEnable(state: true)
-           })
-       }
+        
+        alertManager.actionSheetProfile(imagePicker: imagePicker, completionFromLibrary: {
+            self.buttonsAreEnable(state: true)
+        }, completionMakePhoto: {
+            self.buttonsAreEnable(state: true)
+        }, completionRemovePhoto: {
+            self.profilePhoto.image = UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1")
+            self.labelsAreHidden(parameter1: self.firstLetterName, parameter2: self.firstLetterSurname, state: false)
+            self.buttonsAreEnable(state: true)
+        })
+    }
     
     @IBAction func editButtonIsTapped(_ sender: UIButton) {
         
@@ -362,23 +362,23 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 extension ProfileViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-       self.view.endEditing(true)
-       return true
+        self.view.endEditing(true)
+        return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-           
-       if !activityIndicator.isAnimating {
-        buttonsAreEnable(state: true)
-       }
-       return true
+        
+        if !activityIndicator.isAnimating {
+            buttonsAreEnable(state: true)
+        }
+        return true
     }
-       
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
-       activeField = textField
+        activeField = textField
     }
-       
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
-       activeField = nil
+        activeField = nil
     }
 }

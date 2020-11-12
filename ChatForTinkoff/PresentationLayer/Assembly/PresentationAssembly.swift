@@ -41,7 +41,6 @@ class PresentationAssembly: PresentationAssemblyProtocol {
         guard let conversationListVC = conversationListViewController else { return ConversationsListViewController() }
         conversationListVC.conversationListModel = conversationListModel
         conversationListVC.presentationAssembly = self
-//        conversationListModel.delegate = conversationListVC
         return conversationListVC
     }
     

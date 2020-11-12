@@ -15,11 +15,8 @@ protocol FilesProtocol {
 }
 
 class Files: FilesProtocol {
-//    var filesWithData: String
     
     static let files = Files()
-    
-//    var fileWithData: String = "fileWithData.plist"
     
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     

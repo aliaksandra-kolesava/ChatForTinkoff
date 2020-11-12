@@ -93,7 +93,6 @@ class CoreDataStack: CoreDataStackProtocol {
     
     private func performSave(in context: NSManagedObjectContext) throws {
         context.perform {
-//              print(Thread.isMainThread)
             do {
                 try context.save()
                 if let parent = context.parent {
