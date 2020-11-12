@@ -354,9 +354,9 @@
 			children = (
 				3B65B76525347866004B760E /* GCDDataManager.swift */,
 				3B65B769253478B1004B760E /* OperationDataManager.swift */,
-				3B6D691D252C77FF00EAE76F /* ThemeManager.swift */,
 				3B68B66C2559A18900FD1998 /* CoreDataManager.swift */,
 				3B68B66E255A8A1C00FD1998 /* FirebaseManager.swift */,
+				3B6D691D252C77FF00EAE76F /* ThemeManager.swift */,
 				3B68B67A255C086700FD1998 /* AlertManager.swift */,
 			);
 			path = Managers;
