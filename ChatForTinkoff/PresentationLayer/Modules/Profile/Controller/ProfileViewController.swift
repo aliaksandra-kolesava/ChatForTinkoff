@@ -26,6 +26,8 @@ class ProfileViewController: UIViewController {
     let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var alertManager = AlertManager()
     
+    var presentationAssembly: PresentationAssemblyProtocol?
+    
     var switchLogs = SwitchLogs()
     var imagePicker = UIImagePickerController()
     var letterName: String = ""
@@ -35,6 +37,8 @@ class ProfileViewController: UIViewController {
     
     var profileGCDModel: ProfileProtocol?
     var profileOperationModel: ProfileProtocol?
+    
+    var model: AvatarModelProtocol?
     
     var profileInfo: ProfileInfo?
     
@@ -307,6 +311,13 @@ class ProfileViewController: UIViewController {
             self.buttonsAreEnable(state: true)
         }, completionMakePhoto: {
             self.buttonsAreEnable(state: true)
+        }, completionDownloadPhoto: {
+            guard let avatarViewController = self.presentationAssembly?.avatarNavigationController() else { return }
+            
+            guard let avatarVC = self.presentationAssembly?.avatarViewController() else { return }
+            avatarVC.delegate = self.presentationAssembly?.profileViewController()
+            
+            self.present(avatarViewController, animated: true)
         }, completionRemovePhoto: {
             self.profilePhoto.image = UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1")
             self.labelsAreHidden(parameter1: self.firstLetterName, parameter2: self.firstLetterSurname, state: false)
@@ -380,5 +391,28 @@ extension ProfileViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         activeField = nil
+    }
+}
+
+extension ProfileViewController: SaveAvatarPicture {
+    func setProfile(image: UIImage?, url: String) {
+        print("Picture is set")
+        print(url)
+//        if let image = image {
+//        profilePhoto.image = image
+//        profileInfo?.profileImage = image
+//        firstLetterName.isHidden = true
+//        firstLetterSurname.isHidden = true
+//        buttonsAreEnable(state: true)
+//            self.loadViewIfNeeded()
+//            guard let avatarVC = presentationAssembly?.avatarViewController() else { return }
+//            avatarVC.dismiss(animated: true) {
+//                print("Is changed")
+//            }
+        print("Picture is set")
+    // }
+//        else {
+//            print("Nil")
+//        }
     }
 }

@@ -14,6 +14,7 @@ class AlertManager {
     func actionSheetProfile(imagePicker: UIImagePickerController,
                             completionFromLibrary: @escaping () -> Void,
                             completionMakePhoto: @escaping () -> Void,
+                            completionDownloadPhoto: @escaping () -> Void,
                             completionRemovePhoto: @escaping () -> Void) {
         let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
         let sheet = UIAlertController(title: "Choose Your Profile Photo", message: "", preferredStyle: .actionSheet)
@@ -45,6 +46,16 @@ class AlertManager {
             }
         }
         
+        let downloadPhoto = UIAlertAction(title: "Download Photo", style: .default) { (_) in
+            completionDownloadPhoto()
+//            if var controller = keyWindow?.rootViewController {
+//                while let presentedViewController = controller.presentedViewController {
+//                    controller = presentedViewController
+//                }
+//                controller.present(controller, animated: true, completion: nil)
+//            }
+        }
+        
         let removePhoto = UIAlertAction(title: "Remove Photo", style: .destructive) { (_) in
             completionRemovePhoto()
         }
@@ -53,6 +64,7 @@ class AlertManager {
         
         sheet.addAction(fromLibrary)
         sheet.addAction(makePhoto)
+        sheet.addAction(downloadPhoto)
         sheet.addAction(removePhoto)
         sheet.addAction(cancelEdition)
         

@@ -54,4 +54,8 @@ struct Key {
         static let senderId = "senderId"
         static let senderName = "senderName"
     }
+    
+    class Avatar {
+        static let reuseCell = "AvatarCell"
+    }
 }

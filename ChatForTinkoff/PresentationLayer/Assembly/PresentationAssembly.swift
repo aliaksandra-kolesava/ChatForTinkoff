@@ -16,6 +16,8 @@ protocol PresentationAssemblyProtocol {
     func profileNavigationViewController() -> UINavigationController
     func profileViewController() -> ProfileViewController
     func themeViewController() -> ThemesViewController
+    func avatarNavigationController() -> UINavigationController
+    func avatarViewController() -> AvatarViewController
 }
 
 class PresentationAssembly: PresentationAssemblyProtocol {
@@ -64,6 +66,7 @@ class PresentationAssembly: PresentationAssemblyProtocol {
     }
 
     func profileViewController() -> ProfileViewController {
+        let model = AvatarModel(networkManager: serviceAssembly.networkManager)
         let storyboard = UIStoryboard(name: Key.StoryBoardName.mainStoryBoard, bundle: nil)
         let profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController
         guard let profileVC = profileViewController else { return ProfileViewController() }
@@ -71,6 +74,9 @@ class PresentationAssembly: PresentationAssemblyProtocol {
         let profileOperationModel = ProfileModel(dataManager: serviceAssembly.operationDataManager)
         profileVC.profileGCDModel = profileGCDModel
         profileVC.profileOperationModel = profileOperationModel
+        profileVC.presentationAssembly = self
+        profileVC.model = model
+//        model.saveAvatarPicureDelegate = profileVC
         return profileVC
     }
 
@@ -81,4 +87,23 @@ class PresentationAssembly: PresentationAssemblyProtocol {
         return themesViewController
     }
     
+    func avatarNavigationController() -> UINavigationController {
+        let avatarStoryBoard: UIStoryboard = UIStoryboard(name: "Avatar", bundle: nil)
+        let avatarNavigation = avatarStoryBoard.instantiateViewController(withIdentifier: "AvatarNavigationController") as? UINavigationController
+        guard let avatarNavigationVC = avatarNavigation else { return UINavigationController() }
+        avatarNavigationVC.setViewControllers([avatarViewController()], animated: true)
+        return avatarNavigationVC
+    }
+    
+    func avatarViewController() -> AvatarViewController {
+        let model = AvatarModel(networkManager: serviceAssembly.networkManager)
+        let avatarStoryBoard: UIStoryboard = UIStoryboard(name: "Avatar", bundle: nil)
+        guard let avatarViewController = avatarStoryBoard.instantiateViewController(withIdentifier: "AvatarViewController") as? AvatarViewController
+            else { return AvatarViewController() }
+        avatarViewController.model = model
+        model.delegate = avatarViewController
+        avatarViewController.presentationAssembly = self
+        avatarViewController.delegate = self.profileViewController()
+        return avatarViewController
+    }
 }
