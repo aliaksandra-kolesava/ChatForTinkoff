@@ -26,6 +26,8 @@ class ProfileViewController: UIViewController {
     let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var alertManager = AlertManager()
     
+    var presentationAssembly: PresentationAssemblyProtocol?
+    
     var switchLogs = SwitchLogs()
     var imagePicker = UIImagePickerController()
     var letterName: String = ""
@@ -35,6 +37,8 @@ class ProfileViewController: UIViewController {
     
     var profileGCDModel: ProfileProtocol?
     var profileOperationModel: ProfileProtocol?
+    
+    var model: AvatarModelProtocol?
     
     var profileInfo: ProfileInfo?
     
@@ -120,7 +124,7 @@ class ProfileViewController: UIViewController {
             if self.profilePhoto.image == nil {
                 self.profilePhoto.image = UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1")
             }
-            if self.profilePhoto.image != UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1") {
+            if self.profileInfo?.profileImage != UIImage(contentsOfFile: "profilePhoto(e4e82b)-1") {
                 self.profilePhoto.contentMode = .scaleAspectFill
             }
         }
@@ -145,6 +149,7 @@ class ProfileViewController: UIViewController {
                 
                 if completed {
                     self.profileInfo = newProfile
+                    self.profilePhoto.contentMode = .scaleAspectFill
                     self.alertManager.editingSuccessfulAlert(title: "Editing was successful", message: "The changes are saved!") {
                         self.readDataFile(dataManager: dataManager)
                     }
@@ -307,6 +312,10 @@ class ProfileViewController: UIViewController {
             self.buttonsAreEnable(state: true)
         }, completionMakePhoto: {
             self.buttonsAreEnable(state: true)
+        }, completionDownloadPhoto: {
+            guard let avatarVC = self.presentationAssembly?.avatarViewController() else { return }
+            avatarVC.delegate = self
+            self.present(avatarVC, animated: true)
         }, completionRemovePhoto: {
             self.profilePhoto.image = UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1")
             self.labelsAreHidden(parameter1: self.firstLetterName, parameter2: self.firstLetterSurname, state: false)
@@ -380,5 +389,19 @@ extension ProfileViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         activeField = nil
+    }
+}
+
+extension ProfileViewController: SaveAvatarPicture {
+    func setProfile(image: UIImage?, url: String) {
+        if let image = image {
+            profilePhoto.image = image
+            labelsAreHidden(parameter1: firstLetterName, parameter2: firstLetterSurname, state: true)
+            buttonsAreEnable(state: true)
+        }
+    }
+    
+    func ifCancelIsTapped() {
+        finishedEditing()
     }
 }

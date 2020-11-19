@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Avatar View Controller-->
+        <scene sceneID="qKx-Nq-foI">
+            <objects>
+                <viewController storyboardIdentifier="AvatarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="S0X-Ia-Rr6" customClass="AvatarViewController" customModule="ChatForTinkoff" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DUL-ZW-SS6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ord-TP-VZ9">
+                                <rect key="frame" x="7" y="51" width="361" height="609"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="2" id="QVS-sz-rYk">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AvatarCell" id="EK3-xU-8A2" customClass="AvatarViewCell" customModule="ChatForTinkoff" customModuleProvider="target">
+                                        <rect key="frame" x="5" y="5" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="rBq-ay-jeE">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1jY-3m-S2U">
+                                                    <rect key="frame" x="5" y="5" width="118" height="118"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="1jY-3m-S2U" secondAttribute="height" multiplier="1:1" id="ODf-ua-vOK"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="1jY-3m-S2U" firstAttribute="top" secondItem="rBq-ay-jeE" secondAttribute="top" constant="5" id="7G6-aQ-XEl"/>
+                                                <constraint firstAttribute="bottom" secondItem="1jY-3m-S2U" secondAttribute="bottom" constant="5" id="UKd-CT-nsL"/>
+                                                <constraint firstItem="1jY-3m-S2U" firstAttribute="leading" secondItem="rBq-ay-jeE" secondAttribute="leading" constant="5" id="XdV-ur-Ocy"/>
+                                                <constraint firstAttribute="trailing" secondItem="1jY-3m-S2U" secondAttribute="trailing" constant="5" id="gkH-Ei-Q1F"/>
+                                                <constraint firstItem="1jY-3m-S2U" firstAttribute="width" relation="lessThanOrEqual" secondItem="rBq-ay-jeE" secondAttribute="width" multiplier="0.921875" id="l7o-om-Qu3"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="avatarPic" destination="1jY-3m-S2U" id="z3y-Zd-Ap0"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V4V-WO-k00">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Download Photo" id="Gac-Ue-I5A">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="eDH-N7-raF">
+                                            <connections>
+                                                <action selector="cancelButton:" destination="S0X-Ia-Rr6" id="Zkh-C9-1Yp"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ord-TP-VZ9" firstAttribute="leading" secondItem="Wjx-bd-ywk" secondAttribute="leading" constant="7" id="P6R-uh-iwO"/>
+                            <constraint firstItem="V4V-WO-k00" firstAttribute="trailing" secondItem="Wjx-bd-ywk" secondAttribute="trailing" id="PzL-0V-p42"/>
+                            <constraint firstItem="Wjx-bd-ywk" firstAttribute="bottom" secondItem="ord-TP-VZ9" secondAttribute="bottom" constant="7" id="YeP-Db-4JF"/>
+                            <constraint firstItem="V4V-WO-k00" firstAttribute="top" secondItem="Wjx-bd-ywk" secondAttribute="top" id="swN-fI-cuq"/>
+                            <constraint firstItem="V4V-WO-k00" firstAttribute="leading" secondItem="Wjx-bd-ywk" secondAttribute="leading" id="tGz-Ui-7jm"/>
+                            <constraint firstItem="ord-TP-VZ9" firstAttribute="top" secondItem="V4V-WO-k00" secondAttribute="bottom" constant="7" id="v6n-pS-TDN"/>
+                            <constraint firstItem="Wjx-bd-ywk" firstAttribute="trailing" secondItem="ord-TP-VZ9" secondAttribute="trailing" constant="7" id="xbu-j9-iUF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Wjx-bd-ywk"/>
+                    </view>
+                    <connections>
+                        <outlet property="avatarCollectionView" destination="ord-TP-VZ9" id="lI1-vc-QRD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ItM-uw-5xe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1808.8" y="145.27736131934034"/>
+        </scene>
+    </scenes>
+</document>
