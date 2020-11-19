@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Download Images-->
+        <!--Avatar View Controller-->
         <scene sceneID="qKx-Nq-foI">
             <objects>
                 <viewController storyboardIdentifier="AvatarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="S0X-Ia-Rr6" customClass="AvatarViewController" customModule="ChatForTinkoff" customModuleProvider="target" sceneMemberID="viewController">
@@ -20,7 +20,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ord-TP-VZ9">
                                 <rect key="frame" x="7" y="51" width="361" height="609"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="5" minimumInteritemSpacing="5" id="QVS-sz-rYk">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="2" id="QVS-sz-rYk">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -55,23 +55,31 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V4V-WO-k00">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Download Photo" id="Gac-Ue-I5A">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="eDH-N7-raF">
+                                            <connections>
+                                                <action selector="cancelButton:" destination="S0X-Ia-Rr6" id="Zkh-C9-1Yp"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="ord-TP-VZ9" firstAttribute="leading" secondItem="Wjx-bd-ywk" secondAttribute="leading" constant="7" id="P6R-uh-iwO"/>
+                            <constraint firstItem="V4V-WO-k00" firstAttribute="trailing" secondItem="Wjx-bd-ywk" secondAttribute="trailing" id="PzL-0V-p42"/>
                             <constraint firstItem="Wjx-bd-ywk" firstAttribute="bottom" secondItem="ord-TP-VZ9" secondAttribute="bottom" constant="7" id="YeP-Db-4JF"/>
-                            <constraint firstItem="ord-TP-VZ9" firstAttribute="top" secondItem="Wjx-bd-ywk" secondAttribute="top" constant="7" id="v6n-pS-TDN"/>
+                            <constraint firstItem="V4V-WO-k00" firstAttribute="top" secondItem="Wjx-bd-ywk" secondAttribute="top" id="swN-fI-cuq"/>
+                            <constraint firstItem="V4V-WO-k00" firstAttribute="leading" secondItem="Wjx-bd-ywk" secondAttribute="leading" id="tGz-Ui-7jm"/>
+                            <constraint firstItem="ord-TP-VZ9" firstAttribute="top" secondItem="V4V-WO-k00" secondAttribute="bottom" constant="7" id="v6n-pS-TDN"/>
                             <constraint firstItem="Wjx-bd-ywk" firstAttribute="trailing" secondItem="ord-TP-VZ9" secondAttribute="trailing" constant="7" id="xbu-j9-iUF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Wjx-bd-ywk"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Download Images" id="Qcx-QY-AgS">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="CY7-5e-TSs">
-                            <connections>
-                                <action selector="cancelButton:" destination="S0X-Ia-Rr6" id="KTc-AJ-nCG"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="avatarCollectionView" destination="ord-TP-VZ9" id="lI1-vc-QRD"/>
                     </connections>
@@ -79,24 +87,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ItM-uw-5xe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1808.8" y="145.27736131934034"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="i1l-b0-QPY">
-            <objects>
-                <navigationController storyboardIdentifier="AvatarNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vog-ZE-ref" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LcE-ze-6Xe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="S0X-Ia-Rr6" kind="relationship" relationship="rootViewController" id="5fx-Ep-aly"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ziX-Ef-LWF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="869.60000000000002" y="145.27736131934034"/>
         </scene>
     </scenes>
 </document>

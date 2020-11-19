@@ -124,7 +124,7 @@ class ProfileViewController: UIViewController {
             if self.profilePhoto.image == nil {
                 self.profilePhoto.image = UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1")
             }
-            if self.profilePhoto.image != UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1") {
+            if self.profileInfo?.profileImage != UIImage(contentsOfFile: "profilePhoto(e4e82b)-1") {
                 self.profilePhoto.contentMode = .scaleAspectFill
             }
         }
@@ -149,6 +149,7 @@ class ProfileViewController: UIViewController {
                 
                 if completed {
                     self.profileInfo = newProfile
+                    self.profilePhoto.contentMode = .scaleAspectFill
                     self.alertManager.editingSuccessfulAlert(title: "Editing was successful", message: "The changes are saved!") {
                         self.readDataFile(dataManager: dataManager)
                     }
@@ -312,12 +313,9 @@ class ProfileViewController: UIViewController {
         }, completionMakePhoto: {
             self.buttonsAreEnable(state: true)
         }, completionDownloadPhoto: {
-            guard let avatarViewController = self.presentationAssembly?.avatarNavigationController() else { return }
-            
             guard let avatarVC = self.presentationAssembly?.avatarViewController() else { return }
-            avatarVC.delegate = self.presentationAssembly?.profileViewController()
-            
-            self.present(avatarViewController, animated: true)
+            avatarVC.delegate = self
+            self.present(avatarVC, animated: true)
         }, completionRemovePhoto: {
             self.profilePhoto.image = UIImage(imageLiteralResourceName: "profilePhoto(e4e82b)-1")
             self.labelsAreHidden(parameter1: self.firstLetterName, parameter2: self.firstLetterSurname, state: false)
@@ -396,23 +394,14 @@ extension ProfileViewController: UITextFieldDelegate {
 
 extension ProfileViewController: SaveAvatarPicture {
     func setProfile(image: UIImage?, url: String) {
-        print("Picture is set")
-        print(url)
-//        if let image = image {
-//        profilePhoto.image = image
-//        profileInfo?.profileImage = image
-//        firstLetterName.isHidden = true
-//        firstLetterSurname.isHidden = true
-//        buttonsAreEnable(state: true)
-//            self.loadViewIfNeeded()
-//            guard let avatarVC = presentationAssembly?.avatarViewController() else { return }
-//            avatarVC.dismiss(animated: true) {
-//                print("Is changed")
-//            }
-        print("Picture is set")
-    // }
-//        else {
-//            print("Nil")
-//        }
+        if let image = image {
+            profilePhoto.image = image
+            labelsAreHidden(parameter1: firstLetterName, parameter2: firstLetterSurname, state: true)
+            buttonsAreEnable(state: true)
+        }
+    }
+    
+    func ifCancelIsTapped() {
+        finishedEditing()
     }
 }

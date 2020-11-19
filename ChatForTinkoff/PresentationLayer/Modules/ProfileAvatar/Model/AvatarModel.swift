@@ -13,8 +13,6 @@ protocol AvatarModelProtocol {
     var arrayOfPictures: [Pictures] { get set }
     func loadPicturesURL()
     func loadPictures(url: String, completion: @escaping (UIImage?) -> Void)
-    func amountOfPictures() -> [Pictures]
-    
 }
 
 protocol AvatarDelegate: class {
@@ -23,6 +21,7 @@ protocol AvatarDelegate: class {
 
 protocol SaveAvatarPicture: class {
     func setProfile(image: UIImage?, url: String)
+    func ifCancelIsTapped()
 }
 
 class AvatarModel: AvatarModelProtocol {
@@ -38,7 +37,6 @@ class AvatarModel: AvatarModelProtocol {
     
     private var page = 0
     var arrayOfPictures: [Pictures] = []
-    
     
     func loadPicturesURL() {
         page += 1
@@ -68,10 +66,5 @@ class AvatarModel: AvatarModelProtocol {
             return
         }
         completion(image)
-    }
-    
-    func amountOfPictures() -> [Pictures] {
-        print("AvatarModel: \(arrayOfPictures)")
-        return arrayOfPictures
     }
 }

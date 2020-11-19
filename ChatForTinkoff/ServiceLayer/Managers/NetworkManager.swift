@@ -35,28 +35,10 @@ class NetworkManager: NetworkManagerProtocol {
                 completionHandler(nil, error)
             }
         }
-//        loadImagesListURL(page: page, requestConfig: requestConfig, completionHandler: competionHandler)
     }
-    
-//    func loadImagesListURL(page: Int?, requestConfig: RequestConfig<ImageURLParser>,
-//                           completionHandler: @escaping ([Pictures]?, String?) -> Void) {
-//        requestSender.send(page: page, requestConfig: requestConfig) { (result: Result<[Pictures]>) in
-//            switch result {
-//            case .success(let pictures):
-//                completionHandler(pictures, nil)
-//                print("NetworkManager: loadImagesListURL")
-//            case .error(let error):
-//                completionHandler(nil, error)
-//            }
-//        }
-//    }
     
     func loadNewPicrures(url: String, completion: @escaping (UIImage?, String?) -> Void) {
         let requestConfig = RequestsFactory.Requests.newImageConfig(url: url)
-        loadImagesList(requestConfig: requestConfig, completion: completion)
-    }
-    
-    func loadImagesList(requestConfig: RequestConfig<ImageParser>, completion: @escaping (UIImage?, String?) -> Void) {
         requestSender.send(page: nil, requestConfig: requestConfig) { (result: Result<UIImage>) in
             switch result {
             case .success(let pictures):

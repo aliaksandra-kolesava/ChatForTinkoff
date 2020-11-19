@@ -23,7 +23,7 @@ class ImageURLRequest: RequestProtocol {
             URLQueryItem(name: "q", value: "yellow+flowers"),
             URLQueryItem(name: "image_type", value: "photo"),
             URLQueryItem(name: "page", value: "\(page)"),
-            URLQueryItem(name: "per_page", value: "30")]
+            URLQueryItem(name: "per_page", value: "25")]
         
         return urlComponents.url
     }

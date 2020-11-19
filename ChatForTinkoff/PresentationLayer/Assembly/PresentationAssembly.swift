@@ -16,7 +16,7 @@ protocol PresentationAssemblyProtocol {
     func profileNavigationViewController() -> UINavigationController
     func profileViewController() -> ProfileViewController
     func themeViewController() -> ThemesViewController
-    func avatarNavigationController() -> UINavigationController
+//    func avatarNavigationController() -> UINavigationController
     func avatarViewController() -> AvatarViewController
 }
 
@@ -87,13 +87,13 @@ class PresentationAssembly: PresentationAssemblyProtocol {
         return themesViewController
     }
     
-    func avatarNavigationController() -> UINavigationController {
-        let avatarStoryBoard: UIStoryboard = UIStoryboard(name: "Avatar", bundle: nil)
-        let avatarNavigation = avatarStoryBoard.instantiateViewController(withIdentifier: "AvatarNavigationController") as? UINavigationController
-        guard let avatarNavigationVC = avatarNavigation else { return UINavigationController() }
-        avatarNavigationVC.setViewControllers([avatarViewController()], animated: true)
-        return avatarNavigationVC
-    }
+//    func avatarNavigationController() -> UINavigationController {
+//        let avatarStoryBoard: UIStoryboard = UIStoryboard(name: "Avatar", bundle: nil)
+//        let avatarNavigation = avatarStoryBoard.instantiateViewController(withIdentifier: "AvatarNavigationController") as? UINavigationController
+//        guard let avatarNavigationVC = avatarNavigation else { return UINavigationController() }
+//        avatarNavigationVC.setViewControllers([avatarViewController()], animated: true)
+//        return avatarNavigationVC
+//    }
     
     func avatarViewController() -> AvatarViewController {
         let model = AvatarModel(networkManager: serviceAssembly.networkManager)
@@ -103,7 +103,7 @@ class PresentationAssembly: PresentationAssemblyProtocol {
         avatarViewController.model = model
         model.delegate = avatarViewController
         avatarViewController.presentationAssembly = self
-        avatarViewController.delegate = self.profileViewController()
+//        avatarViewController.delegate = self.profileViewController()
         return avatarViewController
     }
 }
