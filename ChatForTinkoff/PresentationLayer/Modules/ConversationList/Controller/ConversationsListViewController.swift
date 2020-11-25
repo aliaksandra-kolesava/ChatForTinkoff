@@ -21,6 +21,8 @@ class ConversationsListViewController: UIViewController {
     var conversationListModel: ConversationListProtocol?
     var presentationAssembly: PresentationAssemblyProtocol?
     
+    var emitterAnimation: EmitterAnimationProtocol?
+    
     lazy var fetchResultController: NSFetchedResultsController<Channel_db> = {
         let fetchRequest = NSFetchRequest<Channel_db>(entityName: "Channel_db")
         let sortedChannels = NSSortDescriptor(key: "lastActivity", ascending: false)
@@ -64,12 +66,18 @@ class ConversationsListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(animationEmitter(sender:)))
+        navigationController?.view.addGestureRecognizer(gesture)
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
+    @objc func animationEmitter(sender: UILongPressGestureRecognizer) {
+        emitterAnimation?.gestureIsMade(currentView: view, sender: sender)
     }
     
     func navigationBarItems() {

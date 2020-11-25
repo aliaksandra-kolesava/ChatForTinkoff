@@ -20,6 +20,7 @@ class ThemesViewController: UIViewController {
     //Всякий раз, когда два объекта ссылаются друг на друга, один из них должен держать weak ссылку на другой, или произойдет retain cycle.
     
     weak var themesPickerDelegate: ThemesPickerDelegate?
+    var emitterAnimation: EmitterAnimationProtocol?
     
     var themesClosure: (() -> Void)?
     
@@ -28,6 +29,12 @@ class ThemesViewController: UIViewController {
         classic.font = UIFont.systemFont(ofSize: 19, weight: .semibold)
         day.font = UIFont.systemFont(ofSize: 19, weight: .semibold)
         night.font = UIFont.systemFont(ofSize: 19, weight: .semibold)
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(animationEmitter(sender:)))
+             navigationController?.view.addGestureRecognizer(gesture)
+    }
+         
+    @objc func animationEmitter(sender: UILongPressGestureRecognizer) {
+        emitterAnimation?.gestureIsMade(currentView: view, sender: sender)
     }
     
     override func viewWillAppear(_ animated: Bool) {

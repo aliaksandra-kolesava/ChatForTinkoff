@@ -13,6 +13,7 @@
 		3B15E27F250E0C7600BC7E69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B15E27E250E0C7600BC7E69 /* Assets.xcassets */; };
 		3B15E282250E0C7600BC7E69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B15E280250E0C7600BC7E69 /* LaunchScreen.storyboard */; };
 		3B15E28C250E107300BC7E69 /* SwitchLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15E28B250E107300BC7E69 /* SwitchLogs.swift */; };
+		3B56E7AF256ED482006F57D0 /* EmitterAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B56E7AE256ED482006F57D0 /* EmitterAnimation.swift */; };
 		3B5EFD73253C5E3700E19AA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B5EFD72253C5E3700E19AA1 /* GoogleService-Info.plist */; };
 		3B5EFD76253D908700E19AA1 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5EFD75253D908700E19AA1 /* Channel.swift */; };
 		3B5EFD78253D912000E19AA1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5EFD77253D912000E19AA1 /* Message.swift */; };
@@ -74,6 +75,7 @@
 		3B15E281250E0C7600BC7E69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B15E283250E0C7600BC7E69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B15E28B250E107300BC7E69 /* SwitchLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchLogs.swift; sourceTree = "<group>"; };
+		3B56E7AE256ED482006F57D0 /* EmitterAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmitterAnimation.swift; sourceTree = "<group>"; };
 		3B5EFD72253C5E3700E19AA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3B5EFD75253D908700E19AA1 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		3B5EFD77253D912000E19AA1 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -174,6 +176,14 @@
 			path = ChatForTinkoff;
 			sourceTree = "<group>";
 		};
+		3B56E7AD256ED452006F57D0 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				3B56E7AE256ED482006F57D0 /* EmitterAnimation.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
 		3B5EFD7C2545854C00E19AA1 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +197,7 @@
 		3B68B64E255955EB00FD1998 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				3B56E7AD256ED452006F57D0 /* Animation */,
 				3B68B64F2559560700FD1998 /* Assembly */,
 				3B68B6502559561100FD1998 /* Modules */,
 			);
@@ -695,6 +706,7 @@
 				3B68B6912562EE0000FD1998 /* ParserProtocol.swift in Sources */,
 				3B7D328725233752002FD929 /* MessageCell.swift in Sources */,
 				3B68B671255A8D5500FD1998 /* ServiceAssembly.swift in Sources */,
+				3B56E7AF256ED482006F57D0 /* EmitterAnimation.swift in Sources */,
 				3B15E276250E0C7300BC7E69 /* AppDelegate.swift in Sources */,
 				3B68B69D2562FD7900FD1998 /* RequestsFactory.swift in Sources */,
 				3B15E28C250E107300BC7E69 /* SwitchLogs.swift in Sources */,
