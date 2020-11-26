@@ -202,7 +202,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NXE-Mo-Gjc">
-                                                <rect key="frame" x="0.0" y="281" width="375" height="230"/>
+                                                <rect key="frame" x="0.0" y="281" width="375" height="170"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FPC-MG-6xZ">
                                                         <rect key="frame" x="81" y="0.0" width="200" height="30"/>
@@ -249,59 +249,62 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WVz-KX-lAg">
-                                                <rect key="frame" x="0.0" y="511" width="375" height="60"/>
+                                                <rect key="frame" x="0.0" y="451" width="375" height="120"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EzR-lM-Kkm">
-                                                        <rect key="frame" x="56" y="10" width="263" height="40"/>
-                                                        <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="DUt-DL-QAN"/>
-                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="263" id="nl8-4F-yGc"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
-                                                        <state key="normal" title="Edit"/>
-                                                        <connections>
-                                                            <action selector="editButtonIsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="POE-4T-WeT"/>
-                                                        </connections>
-                                                    </button>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iM1-0z-WN9">
-                                                        <rect key="frame" x="32.5" y="10" width="310" height="40"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="GAH-9k-ZNe">
+                                                        <rect key="frame" x="32.5" y="7.5" width="310" height="105"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6I-EJ-9ij">
-                                                                <rect key="frame" x="0.0" y="0.0" width="150" height="40"/>
-                                                                <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EzR-lM-Kkm">
+                                                                <rect key="frame" x="23.5" y="0.0" width="263" height="40"/>
+                                                                <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="IvZ-R4-cg3"/>
-                                                                    <constraint firstAttribute="height" constant="40" id="NtH-ii-bIg"/>
+                                                                    <constraint firstAttribute="height" constant="40" id="DUt-DL-QAN"/>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="263" id="nl8-4F-yGc"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
-                                                                <state key="normal" title="GCD"/>
+                                                                <state key="normal" title="Edit"/>
                                                                 <connections>
-                                                                    <action selector="buttonGCDIsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AHp-wK-w6f"/>
+                                                                    <action selector="editButtonIsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="POE-4T-WeT"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgf-qM-2KJ">
-                                                                <rect key="frame" x="160" y="0.0" width="150" height="40"/>
-                                                                <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="i2u-R7-vZo"/>
-                                                                    <constraint firstAttribute="height" constant="40" id="kOR-pb-UCz"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
-                                                                <state key="normal" title="Operation"/>
-                                                                <connections>
-                                                                    <action selector="buttonOperationIsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oGM-JC-63N"/>
-                                                                </connections>
-                                                            </button>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iM1-0z-WN9">
+                                                                <rect key="frame" x="0.0" y="65" width="310" height="40"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6I-EJ-9ij">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="40"/>
+                                                                        <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="IvZ-R4-cg3"/>
+                                                                            <constraint firstAttribute="height" constant="40" id="NtH-ii-bIg"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                                                        <state key="normal" title="GCD"/>
+                                                                        <connections>
+                                                                            <action selector="buttonGCDIsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AHp-wK-w6f"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgf-qM-2KJ">
+                                                                        <rect key="frame" x="160" y="0.0" width="150" height="40"/>
+                                                                        <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="i2u-R7-vZo"/>
+                                                                            <constraint firstAttribute="height" constant="40" id="kOR-pb-UCz"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                                                        <state key="normal" title="Operation"/>
+                                                                        <connections>
+                                                                            <action selector="buttonOperationIsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oGM-JC-63N"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                            </stackView>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="EzR-lM-Kkm" firstAttribute="centerX" secondItem="WVz-KX-lAg" secondAttribute="centerX" id="6dP-H3-Wio"/>
-                                                    <constraint firstItem="iM1-0z-WN9" firstAttribute="centerY" secondItem="WVz-KX-lAg" secondAttribute="centerY" id="HeF-B6-Mck"/>
-                                                    <constraint firstItem="iM1-0z-WN9" firstAttribute="centerX" secondItem="WVz-KX-lAg" secondAttribute="centerX" id="Wm2-kT-mal"/>
-                                                    <constraint firstItem="EzR-lM-Kkm" firstAttribute="centerY" secondItem="WVz-KX-lAg" secondAttribute="centerY" id="p2Y-a9-a6g"/>
-                                                    <constraint firstAttribute="height" constant="60" id="s66-10-h1L"/>
+                                                    <constraint firstItem="GAH-9k-ZNe" firstAttribute="centerY" secondItem="WVz-KX-lAg" secondAttribute="centerY" id="QE4-Ym-3Qu"/>
+                                                    <constraint firstItem="GAH-9k-ZNe" firstAttribute="centerX" secondItem="WVz-KX-lAg" secondAttribute="centerX" id="q91-UR-9qD"/>
+                                                    <constraint firstAttribute="height" constant="120" id="s66-10-h1L"/>
                                                 </constraints>
                                             </view>
                                         </subviews>

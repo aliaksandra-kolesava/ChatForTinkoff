@@ -25,6 +25,8 @@ class ProfileViewController: UIViewController {
     
     let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var alertManager = AlertManager()
+    var indicator: Bool = false
+    var emitterAnimation: EmitterAnimationProtocol?
     
     var presentationAssembly: PresentationAssemblyProtocol?
     
@@ -57,6 +59,13 @@ class ProfileViewController: UIViewController {
         //        guard let profileOperation = profileOperationModel else { return }
         //        readDataFile(dataManager: profileOperationModel)
         readDataFile(dataManager: profileGCD)
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(animationGesture(sender:)))
+        navigationController?.view.addGestureRecognizer(gesture)
+    }
+    
+    @objc func animationGesture(sender: UILongPressGestureRecognizer) {
+
+        emitterAnimation?.gestureIsMade(currentView: view, sender: sender)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -222,7 +231,7 @@ class ProfileViewController: UIViewController {
         
         aboutYourself.text = text
         profileName.text = name
-        buttonsAreHidden(parameter1: buttonGCD, parameter2: buttonOperation, state1: true, state2: true)
+        buttonsAreHidden(parameter1: buttonGCD, parameter2: buttonOperation, state1: false, state2: false)
         buttonsAreHidden(parameter1: editProfilePhotoButton, parameter2: editButton, state1: true, state2: false)
         
         editButton.layer.cornerRadius = editButton.bounds.size.height / 3
@@ -303,7 +312,8 @@ class ProfileViewController: UIViewController {
     // MARK: - Button Actions
     
     @IBAction func closeButton(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func editProfilePhotoButtonTapped(_ sender: UIButton) {
@@ -327,9 +337,19 @@ class ProfileViewController: UIViewController {
         
         buttonsAreEnable(state: false)
         labelsAreHidden(parameter1: profileName, parameter2: aboutYourself, state: true)
-        buttonsAreHidden(parameter1: buttonGCD, parameter2: buttonOperation, state1: false, state2: false)
-        buttonsAreHidden(parameter1: editButton, parameter2: editProfilePhotoButton, state1: true, state2: false)
+        buttonsAreHidden(parameter1: editButton, parameter2: editProfilePhotoButton, state1: false, state2: false)
         textfiledsAreHidden(parameter1: nameTextField, parameter2: aboutTextField, state: false)
+        
+        if indicator {
+            animation(state: false)
+            buttonsAreHidden(parameter1: buttonGCD, parameter2: buttonOperation, state1: true, state2: true)
+            
+        } else {
+            animation(state: true)
+            buttonsAreHidden(parameter1: buttonGCD, parameter2: buttonOperation, state1: false, state2: false)
+            
+        }
+        indicator = !indicator
         
         nameTextField.text = profileName.text
         aboutTextField.text = aboutYourself.text
@@ -338,70 +358,129 @@ class ProfileViewController: UIViewController {
     @IBAction func buttonGCDIsTapped(_ sender: UIButton) {
         guard let profileGCD = profileGCDModel else { return }
         writeDataFile(dataManager: profileGCD)
+        animation(state: false)
+        indicator = !indicator
     }
     
     @IBAction func buttonOperationIsTapped(_ sender: UIButton) {
         guard let profileOperation = profileOperationModel else { return }
         writeDataFile(dataManager: profileOperation)
+        animation(state: false)
+        indicator = !indicator
     }
-}
-
-// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
-
-extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+    func animation(state: Bool) {
         
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            profilePhoto.image = image
-            profilePhoto.contentMode = .scaleAspectFill
-            labelsAreHidden(parameter1: firstLetterName, parameter2: firstLetterSurname, state: true)
+        editButton.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        let positionX = editButton.layer.position.x
+        let positionY = editButton.layer.position.y
+            
+            if state {
+                UIView.animateKeyframes(withDuration: 0.3,
+                                        delay: 0,
+                                        options: [.repeat, .allowUserInteraction, .calculationModeCubicPaced], animations: {
+                                            
+                UIView.addKeyframe(withRelativeStartTime: 0,
+                                   relativeDuration: 0.25) {
+                                    self.editButton.center = CGPoint(x: positionX + 5, y: positionY + 5)
+                }
+                
+                UIView.addKeyframe(withRelativeStartTime: 0.2,
+                                   relativeDuration: 0.25) {
+                                    self.editButton.center = CGPoint(x: positionX - 5, y: positionY - 5)
+                }
+                
+                UIView.addKeyframe(withRelativeStartTime: 0.4,
+                                   relativeDuration: 0.25) {
+                                    self.editButton.center = CGPoint(x: positionX - 5, y: positionY - 5)
+                }
+                
+                UIView.addKeyframe(withRelativeStartTime: 0.2,
+                                   relativeDuration: 0.25) {
+                                    self.editButton.transform = CGAffineTransform(rotationAngle: (CGFloat.pi * 2 / (20)))
+                }
+                
+                UIView.addKeyframe(withRelativeStartTime: 0.8,
+                                   relativeDuration: 0.25) {
+                                    self.editButton.center = CGPoint(x: positionX + 5, y: positionY + 5)
+                }
+                
+                UIView.addKeyframe(withRelativeStartTime: 0.6,
+                                   relativeDuration: 0.25) {
+                                    self.editButton.transform = CGAffineTransform(rotationAngle: (CGFloat.pi * 2 / (-20)))
+                }
+            }, completion: nil)
+                
+            } else {
+                editButton.layer.removeAllAnimations()
+                UIView.animate(withDuration: 0.5,
+                               delay: 0,
+                               options: [.allowUserInteraction, .curveEaseOut],
+                               animations: {
+                                self.editButton.transform = CGAffineTransform(rotationAngle: 0)
+                                self.editButton.transform = CGAffineTransform(translationX: .zero, y: .zero)
+                },
+                               completion: nil)
+            }
+        }
+    }
+    
+    // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+    
+    extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+        
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+            
+            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                profilePhoto.image = image
+                profilePhoto.contentMode = .scaleAspectFill
+                labelsAreHidden(parameter1: firstLetterName, parameter2: firstLetterSurname, state: true)
+            }
+            
+            dismiss(animated: true, completion: nil)
         }
         
-        dismiss(animated: true, completion: nil)
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            dismiss(animated: true, completion: nil)
+        }
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: - UITextFieldDelegate
-
-extension ProfileViewController: UITextFieldDelegate {
+    // MARK: - UITextFieldDelegate
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return true
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    extension ProfileViewController: UITextFieldDelegate {
         
-        if !activityIndicator.isAnimating {
-            buttonsAreEnable(state: true)
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            self.view.endEditing(true)
+            return true
         }
-        return true
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        activeField = textField
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        activeField = nil
-    }
-}
-
-extension ProfileViewController: SaveAvatarPicture {
-    func setProfile(image: UIImage?, url: String) {
-        if let image = image {
-            profilePhoto.image = image
-            labelsAreHidden(parameter1: firstLetterName, parameter2: firstLetterSurname, state: true)
-            buttonsAreEnable(state: true)
+        
+        func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            
+            if !activityIndicator.isAnimating {
+                buttonsAreEnable(state: true)
+            }
+            return true
+        }
+        
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+            activeField = textField
+        }
+        
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            activeField = nil
         }
     }
     
-    func ifCancelIsTapped() {
-        finishedEditing()
-    }
+    extension ProfileViewController: SaveAvatarPicture {
+        func setProfile(image: UIImage?, url: String) {
+            if let image = image {
+                profilePhoto.image = image
+                labelsAreHidden(parameter1: firstLetterName, parameter2: firstLetterSurname, state: true)
+                buttonsAreEnable(state: true)
+            }
+        }
+        
+        func ifCancelIsTapped() {
+            finishedEditing()
+        }
 }

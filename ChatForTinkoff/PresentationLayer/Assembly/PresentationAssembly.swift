@@ -35,6 +35,7 @@ class PresentationAssembly: PresentationAssemblyProtocol {
         return navigationVC
     }
     func conversationListViewController() -> ConversationsListViewController {
+        let emitterAnimation = EmitterAnimation()
         let conversationListModel = ConversationListModel(firebaseDataManager: serviceAssembly.firebaseManager,
                                                           coreDataManager: serviceAssembly.coreDataManager)
         let storyboard = UIStoryboard(name: Key.StoryBoardName.mainStoryBoard, bundle: nil)
@@ -42,16 +43,19 @@ class PresentationAssembly: PresentationAssemblyProtocol {
         guard let conversationListVC = conversationListViewController else { return ConversationsListViewController() }
         conversationListVC.conversationListModel = conversationListModel
         conversationListVC.presentationAssembly = self
+        conversationListVC.emitterAnimation = emitterAnimation
         return conversationListVC
     }
     
     func conversationViewController() -> ConversationViewController {
+        let emitterAnimation = EmitterAnimation()
         let storyboard = UIStoryboard(name: Key.StoryBoardName.mainStoryBoard, bundle: nil)
         let conversationsViewController = storyboard.instantiateViewController(withIdentifier: "ConversationViewController") as? ConversationViewController
         guard let conversationsVC = conversationsViewController else { return ConversationViewController() }
         let conversationsModel = ConversationsModel(coreDataManager: serviceAssembly.coreDataManager, firebaseDataManager: serviceAssembly.firebaseManager)
         conversationsVC.conversationsModel = conversationsModel
         conversationsModel.delegate = conversationsVC
+        conversationsVC.emitterAnimation = emitterAnimation
         return conversationsVC
 
     }
@@ -65,6 +69,7 @@ class PresentationAssembly: PresentationAssemblyProtocol {
     }
 
     func profileViewController() -> ProfileViewController {
+        let emitterAnimation = EmitterAnimation()
         let model = AvatarModel(networkManager: serviceAssembly.networkManager)
         let storyboard = UIStoryboard(name: Key.StoryBoardName.mainStoryBoard, bundle: nil)
         let profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController
@@ -75,13 +80,16 @@ class PresentationAssembly: PresentationAssemblyProtocol {
         profileVC.profileOperationModel = profileOperationModel
         profileVC.presentationAssembly = self
         profileVC.model = model
+        profileVC.emitterAnimation = emitterAnimation
         return profileVC
     }
 
     func themeViewController() -> ThemesViewController {
+        let emitterAnimation = EmitterAnimation()
         let themesStoryboard: UIStoryboard = UIStoryboard(name: Key.ThemesViewController.themeStoryBoard, bundle: nil)
         guard let themesViewController = themesStoryboard.instantiateViewController(withIdentifier: Key.ThemesViewController.themesVCId) as? ThemesViewController
             else { return ThemesViewController() }
+        themesViewController.emitterAnimation = emitterAnimation
         return themesViewController
     }
     

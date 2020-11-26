@@ -21,6 +21,8 @@ class ConversationsListViewController: UIViewController {
     var conversationListModel: ConversationListProtocol?
     var presentationAssembly: PresentationAssemblyProtocol?
     
+    var emitterAnimation: EmitterAnimationProtocol?
+    
     lazy var fetchResultController: NSFetchedResultsController<Channel_db> = {
         let fetchRequest = NSFetchRequest<Channel_db>(entityName: "Channel_db")
         let sortedChannels = NSSortDescriptor(key: "lastActivity", ascending: false)
@@ -64,12 +66,18 @@ class ConversationsListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(animationEmitter(sender:)))
+        navigationController?.view.addGestureRecognizer(gesture)
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
+    @objc func animationEmitter(sender: UILongPressGestureRecognizer) {
+        emitterAnimation?.gestureIsMade(currentView: view, sender: sender)
     }
     
     func navigationBarItems() {
@@ -104,7 +112,9 @@ class ConversationsListViewController: UIViewController {
     
     @objc func profileImageIsTapped() {
         guard let profileViewController = presentationAssembly?.profileNavigationViewController() else { return }
-        self.present(profileViewController, animated: true)
+        profileViewController.transitioningDelegate = self
+        profileViewController.modalPresentationStyle = .custom
+        navigationController?.present(profileViewController, animated: true)
     }
     
     func setupTheme() {
@@ -233,8 +243,12 @@ extension ConversationsListViewController: NSFetchedResultsControllerDelegate {
     }
 }
 
-//extension ConversationsListViewController: ConversationListDelegate {
-//    func completedLoad() {
-//        print("Loading Data complited successfully")
-//    }
-//}
+extension ConversationsListViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return AnimationTransitioning(duration: 0.8, presentOrDismiss: .present)
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return AnimationTransitioning(duration: 0.2, presentOrDismiss: .dismiss)
+    }
+}

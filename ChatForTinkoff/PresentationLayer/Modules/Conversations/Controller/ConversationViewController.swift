@@ -21,6 +21,7 @@ class ConversationViewController: UIViewController {
     var channel_db: Channel_db?
     
     var conversationsModel: ConversationsModelProtocol?
+    var emitterAnimation: EmitterAnimationProtocol?
     
     lazy var fetchResultController: NSFetchedResultsController<Message_db>? = {
         let fetchRequest = NSFetchRequest<Message_db>(entityName: "Message_db")
@@ -48,6 +49,13 @@ class ConversationViewController: UIViewController {
         themeChange()
         fetchAllMessages()
         addKeyboardObservers()
+        
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(animationEmitter(sender:)))
+        view.addGestureRecognizer(gesture)
+    }
+    
+    @objc func animationEmitter(sender: UILongPressGestureRecognizer) {
+        emitterAnimation?.gestureIsMade(currentView: view, sender: sender)
     }
     
     func tableViewSetup() {
