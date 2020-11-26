@@ -112,7 +112,9 @@ class ConversationsListViewController: UIViewController {
     
     @objc func profileImageIsTapped() {
         guard let profileViewController = presentationAssembly?.profileNavigationViewController() else { return }
-        self.present(profileViewController, animated: true)
+        profileViewController.transitioningDelegate = self
+        profileViewController.modalPresentationStyle = .custom
+        navigationController?.present(profileViewController, animated: true)
     }
     
     func setupTheme() {
@@ -241,8 +243,12 @@ extension ConversationsListViewController: NSFetchedResultsControllerDelegate {
     }
 }
 
-//extension ConversationsListViewController: ConversationListDelegate {
-//    func completedLoad() {
-//        print("Loading Data complited successfully")
-//    }
-//}
+extension ConversationsListViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return AnimationTransitioning(duration: 0.8, presentOrDismiss: .present)
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return AnimationTransitioning(duration: 0.2, presentOrDismiss: .dismiss)
+    }
+}

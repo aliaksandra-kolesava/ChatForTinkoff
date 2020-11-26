@@ -312,7 +312,8 @@ class ProfileViewController: UIViewController {
     // MARK: - Button Actions
     
     @IBAction func closeButton(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func editProfilePhotoButtonTapped(_ sender: UIButton) {

@@ -14,6 +14,7 @@
 		3B15E282250E0C7600BC7E69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B15E280250E0C7600BC7E69 /* LaunchScreen.storyboard */; };
 		3B15E28C250E107300BC7E69 /* SwitchLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15E28B250E107300BC7E69 /* SwitchLogs.swift */; };
 		3B56E7AF256ED482006F57D0 /* EmitterAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B56E7AE256ED482006F57D0 /* EmitterAnimation.swift */; };
+		3B56E7B3256FBB06006F57D0 /* AnimationTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B56E7B2256FBB06006F57D0 /* AnimationTransitioning.swift */; };
 		3B5EFD73253C5E3700E19AA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B5EFD72253C5E3700E19AA1 /* GoogleService-Info.plist */; };
 		3B5EFD76253D908700E19AA1 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5EFD75253D908700E19AA1 /* Channel.swift */; };
 		3B5EFD78253D912000E19AA1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5EFD77253D912000E19AA1 /* Message.swift */; };
@@ -76,6 +77,7 @@
 		3B15E283250E0C7600BC7E69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B15E28B250E107300BC7E69 /* SwitchLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchLogs.swift; sourceTree = "<group>"; };
 		3B56E7AE256ED482006F57D0 /* EmitterAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmitterAnimation.swift; sourceTree = "<group>"; };
+		3B56E7B2256FBB06006F57D0 /* AnimationTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTransitioning.swift; sourceTree = "<group>"; };
 		3B5EFD72253C5E3700E19AA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3B5EFD75253D908700E19AA1 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		3B5EFD77253D912000E19AA1 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				3B56E7AE256ED482006F57D0 /* EmitterAnimation.swift */,
+				3B56E7B2256FBB06006F57D0 /* AnimationTransitioning.swift */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -716,6 +719,7 @@
 				3B68B69B2562F76800FD1998 /* RequestSenderProtocol.swift in Sources */,
 				3B68B6962562F68C00FD1998 /* RequestProtocol.swift in Sources */,
 				3B6D691E252C77FF00EAE76F /* ThemeManager.swift in Sources */,
+				3B56E7B3256FBB06006F57D0 /* AnimationTransitioning.swift in Sources */,
 				3B65B76A253478B1004B760E /* OperationDataManager.swift in Sources */,
 				3B5EFD78253D912000E19AA1 /* Message.swift in Sources */,
 				3B68B66D2559A18900FD1998 /* CoreDataManager.swift in Sources */,
