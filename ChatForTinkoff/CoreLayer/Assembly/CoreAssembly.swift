@@ -15,7 +15,7 @@ protocol CoreAssemblyProtocol {
 }
 
 class CoreAssembly: CoreAssemblyProtocol {
-    var coreDataStack: CoreDataStackProtocol = CoreDataStack.shared
-    var files: FilesProtocol = Files.files
+    var coreDataStack: CoreDataStackProtocol = CoreDataStack()
+    var files: FilesProtocol = Files()
     var requestSender: RequestSenderProtocol = RequestSender()
 }

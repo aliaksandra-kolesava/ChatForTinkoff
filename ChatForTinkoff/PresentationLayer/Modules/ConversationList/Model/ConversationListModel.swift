@@ -15,7 +15,7 @@ protocol ConversationListProtocol: class {
     func loadAllChannels()
     func createNewChannel(chName: String)
     func deleteCurrentChannel(id: String, channel: Channel_db)
-    func contextMain() -> NSManagedObjectContext
+    func contextMain() -> NSManagedObjectContext?
 }
 
 protocol ConversationListDelegate: class {
@@ -45,7 +45,7 @@ class ConversationListModel: ConversationListProtocol {
         firebaseDataManager.deleteChannel(id: id, channel: channel)
     }
     
-    func contextMain() -> NSManagedObjectContext {
+    func contextMain() -> NSManagedObjectContext? {
         return coreDataManager.contextMain()
     }
 }

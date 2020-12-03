@@ -55,6 +55,9 @@ class ProfileViewController: UIViewController {
         delegates()
         changeTheme()
         activityIndicatorFunc()
+        nameTextField.accessibilityIdentifier = "Name TextField"
+        aboutTextField.accessibilityIdentifier = "About TextField"
+        editButton.accessibilityIdentifier = "Edit Button"
         guard let profileGCD = profileGCDModel else { return }
         //        guard let profileOperation = profileOperationModel else { return }
         //        readDataFile(dataManager: profileOperationModel)
