@@ -9,7 +9,7 @@
 @testable import ChatForTinkoff
 import Foundation
 
-class DataManagerMock: FilesProtocol {
+class DataManagerMock: ReadAndWriteDataProtocol {
 
     var readFileCount = 0
     var writeFileCount = 0
@@ -32,7 +32,7 @@ class DataManagerMock: FilesProtocol {
         return boolWrite
     }
     
-    func fileWithData() -> String {
+    func fileName() -> String {
         return fileName
     }
 }

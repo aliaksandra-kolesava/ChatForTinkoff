@@ -10,12 +10,12 @@ import Foundation
 
 protocol CoreAssemblyProtocol {
     var coreDataStack: CoreDataStackProtocol { get }
-    var files: FilesProtocol { get }
+    var files: ReadAndWriteDataProtocol { get }
     var requestSender: RequestSenderProtocol { get }
 }
 
 class CoreAssembly: CoreAssemblyProtocol {
     var coreDataStack: CoreDataStackProtocol = CoreDataStack()
-    var files: FilesProtocol = Files()
+    var files: ReadAndWriteDataProtocol = ReadAndWriteData()
     var requestSender: RequestSenderProtocol = RequestSender()
 }

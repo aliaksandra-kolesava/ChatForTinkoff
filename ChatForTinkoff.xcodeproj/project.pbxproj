@@ -29,7 +29,7 @@
 		3B65B76625347866004B760E /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B76525347866004B760E /* GCDDataManager.swift */; };
 		3B65B7682534789F004B760E /* DataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B7672534789F004B760E /* DataManagerProtocol.swift */; };
 		3B65B76A253478B1004B760E /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B769253478B1004B760E /* OperationDataManager.swift */; };
-		3B65B76C25347DA9004B760E /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B76B25347DA9004B760E /* Files.swift */; };
+		3B65B76C25347DA9004B760E /* ReadAndWriteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B76B25347DA9004B760E /* ReadAndWriteData.swift */; };
 		3B65B76E2534AB93004B760E /* ProfileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B65B76D2534AB93004B760E /* ProfileInfo.swift */; };
 		3B68B66B25599D6600FD1998 /* CoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B66A25599D6600FD1998 /* CoreAssembly.swift */; };
 		3B68B66D2559A18900FD1998 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B66C2559A18900FD1998 /* CoreDataManager.swift */; };
@@ -120,7 +120,7 @@
 		3B65B76525347866004B760E /* GCDDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
 		3B65B7672534789F004B760E /* DataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerProtocol.swift; sourceTree = "<group>"; };
 		3B65B769253478B1004B760E /* OperationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
-		3B65B76B25347DA9004B760E /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
+		3B65B76B25347DA9004B760E /* ReadAndWriteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadAndWriteData.swift; sourceTree = "<group>"; };
 		3B65B76D2534AB93004B760E /* ProfileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfo.swift; sourceTree = "<group>"; };
 		3B68B66A25599D6600FD1998 /* CoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssembly.swift; sourceTree = "<group>"; };
 		3B68B66C2559A18900FD1998 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -518,7 +518,7 @@
 		3B68B67E255D21D600FD1998 /* Profile Data */ = {
 			isa = PBXGroup;
 			children = (
-				3B65B76B25347DA9004B760E /* Files.swift */,
+				3B65B76B25347DA9004B760E /* ReadAndWriteData.swift */,
 			);
 			path = "Profile Data";
 			sourceTree = "<group>";
@@ -892,7 +892,7 @@
 				3B68B68825615DD400FD1998 /* AvatarViewController.swift in Sources */,
 				3B7D3279251E06B0002FD929 /* ConversationCell.swift in Sources */,
 				3B68B68F2562ED4300FD1998 /* ImageURLParser.swift in Sources */,
-				3B65B76C25347DA9004B760E /* Files.swift in Sources */,
+				3B65B76C25347DA9004B760E /* ReadAndWriteData.swift in Sources */,
 				3B6D691C252BA38000EAE76F /* ThemeColors.swift in Sources */,
 				3B68B69F2563CCF400FD1998 /* NetworkManager.swift in Sources */,
 				3B7D327C25221097002FD929 /* ConfigurableView.swift in Sources */,

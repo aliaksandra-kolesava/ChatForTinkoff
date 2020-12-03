@@ -10,15 +10,15 @@ import Foundation
 
 class GCDDataManager: DataManagerProtocol {
   
-    let files: FilesProtocol
-    init(files: FilesProtocol) {
+    let files: ReadAndWriteDataProtocol
+    init(files: ReadAndWriteDataProtocol) {
         self.files = files
     }
     
     let queue = DispatchQueue.global(qos: .utility)
     
     func fileWithData() -> String {
-        return files.fileWithData()
+        return files.fileName()
     }
     
     func readFile(file: String, callback: @escaping (Data?) -> Void) {

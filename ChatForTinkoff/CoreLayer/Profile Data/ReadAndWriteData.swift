@@ -1,5 +1,5 @@
 //
-//  Files.swift
+//  ReadAndWriteData.swift
 //  ChatForTinkoff
 //
 //  Created by Александра Колесова on 12.10.2020.
@@ -8,19 +8,17 @@
 
 import Foundation
 
-protocol FilesProtocol {
+protocol ReadAndWriteDataProtocol {
     func readFile(file: String) -> Data?
     func writeFile(file: String, data: Data) -> Bool
-    func fileWithData() -> String
+    func fileName() -> String
 }
 
-class Files: FilesProtocol {
-    
-    static let files = Files()
+class ReadAndWriteData: ReadAndWriteDataProtocol {
     
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     
-    func fileWithData() -> String {
+    func fileName() -> String {
         return "fileWithData.plist"
     }
     
