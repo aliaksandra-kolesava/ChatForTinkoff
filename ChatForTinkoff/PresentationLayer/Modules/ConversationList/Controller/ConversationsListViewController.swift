@@ -87,6 +87,7 @@ class ConversationsListViewController: UIViewController {
         let addChannelButton = UIBarButtonItem(image: UIImage(imageLiteralResourceName: "plus-1"), style: .plain, target: self, action: #selector(addChannelIsTapped))
         
         navigationItem.rightBarButtonItems = [addChannelButton, profileButton]
+        profileButton.accessibilityIdentifier = "Profile Button Identifier"
         
         let settingsButton = UIBarButtonItem(image: UIImage(imageLiteralResourceName: "settings-black"), style: .plain, target: self, action: #selector(settingsButtonIsTapped))
         navigationItem.setLeftBarButton(settingsButton, animated: true)

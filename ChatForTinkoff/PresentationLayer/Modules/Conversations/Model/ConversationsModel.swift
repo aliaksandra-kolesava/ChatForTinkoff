@@ -13,7 +13,7 @@ protocol ConversationsModelProtocol: class {
     var delegate: ConversationsProtocol? { get set }
     func loadMessages(identifier: String?)
     func addMessage(identifier: String?, messageContent: String, messageSenderId: String, mySenderName: String)
-    func contextMain() -> NSManagedObjectContext
+    func contextMain() -> NSManagedObjectContext?
 }
 
 protocol ConversationsProtocol: class {
@@ -41,7 +41,7 @@ class ConversationsModel: ConversationsModelProtocol {
         }
     }
     
-    func contextMain() -> NSManagedObjectContext {
+    func contextMain() -> NSManagedObjectContext? {
         return coreDataManager.contextMain()
     }
     

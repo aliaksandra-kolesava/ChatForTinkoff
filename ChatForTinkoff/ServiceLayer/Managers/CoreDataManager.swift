@@ -16,7 +16,7 @@ protocol CoreDataManagerProtocol {
     func removeChannel(channelIdentifier: String)
     func addMessage(messageIdentifier: String, channelIdentifier: String?, newMes: Message)
     
-    func contextMain() -> NSManagedObjectContext
+    func contextMain() -> NSManagedObjectContext?
 }
 
 class CoreDataManager: CoreDataManagerProtocol {
@@ -103,7 +103,7 @@ class CoreDataManager: CoreDataManagerProtocol {
         }
     }
     
-    func contextMain() -> NSManagedObjectContext {
+    func contextMain() -> NSManagedObjectContext? {
         return coreDataStack.mainContext
     }
 }

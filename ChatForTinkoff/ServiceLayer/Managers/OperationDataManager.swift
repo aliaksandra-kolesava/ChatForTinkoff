@@ -12,9 +12,9 @@ import Foundation
     var file: String
     var data: Data?
     
-    let files: FilesProtocol
+    let files: ReadAndWriteDataProtocol
     
-    init(file: String, files: FilesProtocol) {
+    init(file: String, files: ReadAndWriteDataProtocol) {
         self.file = file
         self.files = files
     }
@@ -32,9 +32,9 @@ import Foundation
     let data: Data
     var result: Bool = false
     
-    let files: FilesProtocol
+    let files: ReadAndWriteDataProtocol
     
-    init(file: String, data: Data, files: FilesProtocol) {
+    init(file: String, data: Data, files: ReadAndWriteDataProtocol) {
         self.file = file
         self.data = data
         self.files = files
@@ -53,14 +53,14 @@ import Foundation
  class OperationDataManager: DataManagerProtocol {
     
     let operationQueue = OperationQueue()
-    let files: FilesProtocol
+    let files: ReadAndWriteDataProtocol
     
-    init(files: FilesProtocol) {
+    init(files: ReadAndWriteDataProtocol) {
         self.files = files
     }
     
     func fileWithData() -> String {
-        return files.fileWithData()
+        return files.fileName()
     }
     
     func readFile(file: String, callback: @escaping (Data?) -> Void) {

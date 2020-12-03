@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 protocol CoreDataStackProtocol {
-    var mainContext: NSManagedObjectContext { get }
+    var mainContext: NSManagedObjectContext? { get }
     func performSave(_ block: (NSManagedObjectContext) -> Void)
 }
 
@@ -60,7 +60,7 @@ class CoreDataStack: CoreDataStackProtocol {
         return context
     }()
     
-    private(set) lazy var mainContext: NSManagedObjectContext = {
+    private(set) lazy var mainContext: NSManagedObjectContext? = {
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         context.parent = writterContext
         context.automaticallyMergesChangesFromParent = true
