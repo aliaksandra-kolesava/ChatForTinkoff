@@ -17,6 +17,7 @@
   lane :build_and_test do
     build_for_testing
     run_tests
+    discord_notification
   end
 
   webhook_url = ENV['DISCORD_NOTIFIER_WEBHOOK_URL']
