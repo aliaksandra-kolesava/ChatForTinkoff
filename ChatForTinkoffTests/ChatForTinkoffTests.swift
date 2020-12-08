@@ -25,9 +25,9 @@ class ChatForTinkoffTests: XCTestCase {
     func testGCDReadFile() throws {
         let gcdDataManager = GCDDataManager(files: dataManagerMock)
         let newData = try NSKeyedArchiver.archivedData(withRootObject: profileInfo, requiringSecureCoding: false)
-        gcdDataManager.writeFile(file: dataManagerMock.fileName, data: newData) { (_) in
+        gcdDataManager.writeFile(file: dataManagerMock.fileNameData, data: newData) { (_) in
         }
-        gcdDataManager.readFile(file: dataManagerMock.fileName) { (_) in
+        gcdDataManager.readFile(file: dataManagerMock.fileNameData) { (_) in
             XCTAssertEqual(self.dataManagerMock.readFileCount, 1)
             guard let data = self.dataManagerMock.dataWritten else { return }
             guard let profile = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? ProfileInfo else { return }
@@ -39,7 +39,7 @@ class ChatForTinkoffTests: XCTestCase {
     func testGCDWriteFile() throws {
         let gcdDataManager = GCDDataManager(files: dataManagerMock)
         let newData = try NSKeyedArchiver.archivedData(withRootObject: profileInfo, requiringSecureCoding: false)
-        gcdDataManager.writeFile(file: dataManagerMock.fileName, data: newData) { (_) in
+        gcdDataManager.writeFile(file: dataManagerMock.fileNameData, data: newData) { (_) in
             XCTAssertEqual(self.dataManagerMock.writeFileCount, 1)
         }
     }
@@ -47,9 +47,9 @@ class ChatForTinkoffTests: XCTestCase {
     func testOperationReadFile() throws {
         let operationManager = OperationDataManager(files: dataManagerMock)
         let newData = try NSKeyedArchiver.archivedData(withRootObject: profileInfo, requiringSecureCoding: false)
-        operationManager.writeFile(file: dataManagerMock.fileName, data: newData) { (_) in
+        operationManager.writeFile(file: dataManagerMock.fileNameData, data: newData) { (_) in
         }
-        operationManager.readFile(file: dataManagerMock.fileName) { (_) in
+        operationManager.readFile(file: dataManagerMock.fileNameData) { (_) in
             XCTAssertEqual(self.dataManagerMock.readFileCount, 1)
             guard let data = self.dataManagerMock.dataWritten else { return }
             guard let profile = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? ProfileInfo else { return }
@@ -61,7 +61,7 @@ class ChatForTinkoffTests: XCTestCase {
     func testOperaionWrite() throws {
         let operationManager = OperationDataManager(files: dataManagerMock)
         let newData = try NSKeyedArchiver.archivedData(withRootObject: profileInfo, requiringSecureCoding: false)
-        operationManager.writeFile(file: dataManagerMock.fileName, data: newData) { (_) in
+        operationManager.writeFile(file: dataManagerMock.fileNameData, data: newData) { (_) in
             XCTAssertEqual(self.dataManagerMock.writeFileCount, 1)
         }
     }
