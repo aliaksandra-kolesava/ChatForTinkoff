@@ -1,3 +1,0 @@
-# ChatForTinkoff
-### Author
-Aliaksandra Kolesava
