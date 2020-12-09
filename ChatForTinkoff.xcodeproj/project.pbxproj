@@ -144,6 +144,7 @@
 		3B68B69C2562FD7900FD1998 /* RequestsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsFactory.swift; sourceTree = "<group>"; };
 		3B68B69E2563CCF400FD1998 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		3B68B6A02563D91400FD1998 /* AvatarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarModel.swift; sourceTree = "<group>"; };
+		3B6D514E2580E8EC00CB1426 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		3B6D6919252B7EE600EAE76F /* ThemesPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesPickerDelegate.swift; sourceTree = "<group>"; };
 		3B6D691B252BA38000EAE76F /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
 		3B6D691D252C77FF00EAE76F /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
@@ -197,6 +198,7 @@
 		3B15E269250E0C7300BC7E69 = {
 			isa = PBXGroup;
 			children = (
+				3B6D514E2580E8EC00CB1426 /* Config.xcconfig */,
 				3B56E8572573FECA006F57D0 /* ChatForTinkoffTests */,
 				3B56E86D2576AB08006F57D0 /* ChatForTinkoffUITests */,
 				3B15E273250E0C7300BC7E69 /* Products */,
@@ -955,6 +957,7 @@
 /* Begin XCBuildConfiguration section */
 		3B15E284250E0C7600BC7E69 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B6D514E2580E8EC00CB1426 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1015,6 +1018,7 @@
 		};
 		3B15E285250E0C7600BC7E69 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B6D514E2580E8EC00CB1426 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1152,7 +1156,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ChatForTinkoffUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1171,7 +1175,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ChatForTinkoffUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

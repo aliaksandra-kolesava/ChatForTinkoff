@@ -5,6 +5,9 @@
 ## User settings
 xcuserdata/
 
+## Config Files
+*.xcconfig
+
 ## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
 *.xcscmblueprint
 *.xccheckout
@@ -81,6 +84,7 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+fastlane/.env
 
 # Code Injection
 #

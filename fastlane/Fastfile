@@ -1,0 +1,37 @@
+
+  desc "Build For Testing"
+  lane :build_for_testing do
+    cocoapods
+    scan(
+      build_for_testing: true
+    )
+  end
+
+  desc "Run Tests"
+  lane :run_tests do
+  scan(
+    test_without_building: true
+  )
+  end
+
+  desc "Build And Test"
+  lane :build_and_test do
+    build_for_testing
+    run_tests
+    discord_notification
+  end
+
+  webhook_url = ENV['DISCORD_NOTIFIER_WEBHOOK_URL']
+
+  desc "Discord Notification"
+  lane :discord_notification do
+    discord_notifier(
+      webhook_url: webhook_url,
+      title: "ChatForTinkoff",
+      description: "Success",
+      fields: [
+        {
+          name: "Created by: ",
+          value: "Aliaksandra Kolesava"
+        }])
+  end

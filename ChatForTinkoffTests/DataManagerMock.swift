@@ -13,26 +13,26 @@ class DataManagerMock: ReadAndWriteDataProtocol {
 
     var readFileCount = 0
     var writeFileCount = 0
-    var fileName = "fileWithData.plist"
+    var fileNameData = "fileWithData.plist"
     var dataRead: Data?
     var dataWritten: Data?
     var boolWrite = true
     var readFileStub: (((Data?) -> Void) -> Void)!
     
     func readFile(file: String) -> Data? {
-        fileName = file
+        fileNameData = file
         readFileCount += 1
         return dataRead
     }
     
     func writeFile(file: String, data: Data) -> Bool {
-        fileName = file
+        fileNameData = file
         dataWritten = data
         writeFileCount += 1
         return boolWrite
     }
     
     func fileName() -> String {
-        return fileName
+        return fileNameData
     }
 }
