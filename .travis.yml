@@ -7,6 +7,7 @@ addons:
 before_install: 
   - yes | gem update --system --force
   - gem install bundler
+  - touch Config.xcconfig 
 install:
   - bundle install
 script:

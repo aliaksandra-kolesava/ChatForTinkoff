@@ -10,7 +10,9 @@ import Foundation
 
 class ImageURLRequest: RequestProtocol {
     
-    //https://pixabay.com/api/?key=19122176-97020ac78cbd69103da6f8991&q=yellow+flowers&image_type=photo
+    func getValue(forKey key: String) -> String? {
+        return Bundle.main.infoDictionary?[key] as? String
+    }
     
     private func urlComponents(page: Int) -> URL? {
         var urlComponents = URLComponents()
@@ -18,8 +20,12 @@ class ImageURLRequest: RequestProtocol {
         urlComponents.host = "pixabay.com"
         urlComponents.path = "/api/"
         
+        guard let apiKey = getValue(forKey: "PIXABAY_API_KEY") else {
+            fatalError("API_KEY not set in plist")
+        }
+        
         urlComponents.queryItems = [
-            URLQueryItem(name: "key", value: "19122176-97020ac78cbd69103da6f8991"),
+            URLQueryItem(name: "key", value: "\(apiKey)"),
             URLQueryItem(name: "q", value: "yellow+flowers"),
             URLQueryItem(name: "image_type", value: "photo"),
             URLQueryItem(name: "page", value: "\(page)"),

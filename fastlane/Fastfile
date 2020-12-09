@@ -28,6 +28,10 @@
     discord_notifier(
       webhook_url: webhook_url,
       title: "ChatForTinkoff",
-      description: "Success"
-    )
+      description: "Success",
+      fields: [
+        {
+          name: "Created by: ",
+          value: "Aliaksandra Kolesava"
+        }])
   end
