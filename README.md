@@ -5,19 +5,19 @@
 ### Author
 Aliaksandra Kolesava
 
-###Installation all dependencies
-####Pods
+### Installation all dependencies
+#### Pods
 1. Add Pods (open project directory in terminal)
 ```
 pod install
 ```
-####Creation Config.xcconfig
+#### Creation Config.xcconfig
 1. Create file Config.xcconfig and add there the following
 ```
 PIXABAY_API_KEY = YourAPI
 ```
 where YourAPI is a api key, which you can create in https://pixabay.com/api/docs/
-####Discord Notifier
+#### Discord Notifier
 1. Add fastlane discord_notifier plugin
 ```
 fastlane add_plugin discord_notifier
